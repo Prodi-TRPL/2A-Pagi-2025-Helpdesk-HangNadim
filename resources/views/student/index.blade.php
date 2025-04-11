@@ -29,7 +29,7 @@
     <th>No.</th>
  <th>NIM</th>
  <th>Nama</th>
- <th>Prodi</th>
+ <th>prodi</th>
  <th>#</th>
  </thead>
  <tbody>
