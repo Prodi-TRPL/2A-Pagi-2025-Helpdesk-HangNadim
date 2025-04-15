@@ -73,15 +73,25 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(string $id)
     {
-        //
+        $student = Student::where(['nim' => $id]);
+
+        if ($student->count() < 1) {
+
+            return redirect('/student')->with([
+                'notifikasi' => 'Data siswa tidak ditemukan !',
+                'type' => 'danger'
+            ]);
+        }
+
+            return view('student.edit', ['student' => $student->first()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
             $validatedData = $request->validate([
                 
