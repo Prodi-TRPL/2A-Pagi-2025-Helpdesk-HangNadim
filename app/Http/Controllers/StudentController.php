@@ -95,7 +95,7 @@ class StudentController extends Controller
                 'nama.required' => 'Nama harus diisi',
                 'email.required' => 'Email harus diisi',
                 'email.email' => 'Format email tidak valid',
-                'prodi.required' => 'Program  harus diisi'
+                'prodi.required' => 'Program studi harus diisi'
             ]);
 
             $students = Student::where('nim', $id)->first();
