@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Admin;
+use App\Models\Pelapor;
+use App\Models\Kategori;
+use App\Models\Penilaian;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Komplain extends Model
+{
+    protected $table = 'komplains';
+    protected $fillable = ['pelapor_id', 'kategori_id', 'admin_id', 'message', 'status', 'tingkat', 'bukti', 'penyelesaian'];
+    protected $casts = ['tiket' => 'string'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model){
+            if (!$model->tiket){
+                $model->tiket = Str::ulid();
+            }
+        });
+    }
+
+    public function pelapor(): BelongsTo
+    {
+        return $this->belongsTo(Pelapor::class);
+    }
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function admin(): BelongsTo
+    {   
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function penilaian(): HasOne
+    {
+        return $this->hasOne(Penilaian::class);
+    }
+}

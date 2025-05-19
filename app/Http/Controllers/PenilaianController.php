@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Komplain;
+use App\Models\Penilaian;
+use Illuminate\Http\Request;
+
+class PenilaianController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index($tiket)
+    {
+        $komplain = Komplain::where('tiket', $tiket)->with('pelapor')->firstOrFail();
+        
+        return view('public.form_penilaian', compact('komplain'));
+    }
+
+    public function store(Request $request, $tiket)
+    {
+        $komplain = Komplain::where('tiket', $tiket)->firstOrFail();
+
+        if ($komplain->penilaian) {
+            return redirect()->back()->with('error', 'Anda sudah memberikan rating untuk komplain ini.');
+        }
+
+        $validated = $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'feedback' => 'nullable|string',
+        ]);
+
+        Penilaian::create([
+            'komplain_id' => $komplain->id,
+            'rating' => $validated['rating'],
+            'feedback' => $validated['feedback'],
+        ]);
+
+        return redirect()->route('penilaian.form', $tiket);
+    }
+
+}
