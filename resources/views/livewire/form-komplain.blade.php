@@ -3,9 +3,8 @@
         <div id="formContainer" class="row justify-content-center position-sticky">
             <div class="col-md-9">
 
-        @if ($step === 1)
         <!-- Form Identitas -->
-        <h4 class="mt-3 mb-3">Data Diri</h4>
+        <h4 class="mt-3 mb-3 {{ $step === 1 ? 'text-secondary' : 'd-none' }}">Data Diri</h4>
             @if ($success)
                 <x-alert type="success">
                     {{ $success }}
@@ -16,7 +15,7 @@
                 </x-alert>
             @endif
 
-            <div wire:key="form-identitas" class="bg-light">
+            <div wire:key="form-identitas" class="bg-light {{ $step === 1 ? '' : 'd-none'}}">
                 <form wire:submit.prevent="submitDataDiri" class="p-3 border rounded needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama:</label>
@@ -44,10 +43,9 @@
                 </form>
             </div>
 
-            @elseif ($step === 2)
             <!-- Form Komplain -->
-            <h4 class="mt-3 mb-3">Isi Komplain</h4>
-            <div wire:key="form-komplain" class="bg-light">
+            <h4 class="mt-3 mb-3 {{$step === 2 ? 'text-secondary' : 'd-none'}}">Isi Komplain</h4>
+            <div wire:key="form-komplain" class="bg-light {{ $step === 2 ? '' : 'd-none'}}">
                 <form wire:submit.prevent="submitKomplain" class="p-3 border rounded needs-validation">
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori:</label>
@@ -82,7 +80,6 @@
                     </div>
                 </form>
             </div>
-            @endif
 
             </div>
         </div>
