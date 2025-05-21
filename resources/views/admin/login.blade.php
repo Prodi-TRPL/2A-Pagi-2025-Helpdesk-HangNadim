@@ -10,6 +10,14 @@
 </head>
 <body>
     
+    <form action="{{ route('auth') }}" method="POST">
+        @csrf
+        <label>Email: </label>
+        <input type="email" id="form-email" name="email"></br>
+        <label>Password: </label>
+        <input type="password" id="form-password" name="password"></br>
+        <button type="submit">Login</button>
+    </form>
 
     {{-- Bootstrap JS --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

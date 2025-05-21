@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -11,7 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -19,7 +22,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.form_kelola_admin');
     }
 
     /**
@@ -27,7 +30,21 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|unique:users,email',
+            'role' => 'required|string',
+            'password' => 'required|min:6',
+            'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
+        ]);
+
+        User::create([
+            'name' =>  $validated['name'],
+            'email' => $validated['email'],
+            'role' => $validated['role'],
+            'password' => $validated['password'],
+            'whatsapp' => $validated['whatsapp']
+        ]);
     }
 
     /**
