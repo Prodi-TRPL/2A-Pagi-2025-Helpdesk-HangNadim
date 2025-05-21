@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Pelapor;
 use App\Models\Kategori;
 use App\Models\Penilaian;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -38,9 +39,9 @@ class Komplain extends Model
         return $this->belongsTo(Kategori::class);
     }
 
-    public function admin(): BelongsTo
+    public function user(): BelongsTo
     {   
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(User::class);
     }
 
     public function penilaian(): HasOne

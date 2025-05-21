@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Komplain;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -17,9 +19,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $tables = 'users';
     protected $fillable = [
         'name',
         'email',
+        'whatsapp',
+        'role',
         'password',
     ];
 
@@ -44,5 +49,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function komplain():HasMany
+    {
+        return $this->hasMany(Komplain::class);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pelapor_id')->constrained();
             $table->foreignId('kategori_id')->constrained('kategori');
-            $table->foreignId('admin_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->ulid('tiket')->unique();
             $table->text('message');
             $table->enum('status', ['Menunggu', 'Diproses', 'Selesai'])->default('Menunggu');
