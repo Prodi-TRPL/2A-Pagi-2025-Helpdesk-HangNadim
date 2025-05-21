@@ -8,7 +8,7 @@ use App\Http\Controllers\PenilaianController;
 
 Route::get('/', function () {
     return view('public.dashboard');
-})->name('dashboard');
+})->name('home');
 
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');

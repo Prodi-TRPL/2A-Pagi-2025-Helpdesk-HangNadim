@@ -5,11 +5,7 @@
 
         <!-- Form Identitas -->
         <h4 class="mt-3 mb-3 {{ $step === 1 ? 'text-secondary' : 'd-none' }}">Data Diri</h4>
-            @if ($success)
-                <x-alert type="success">
-                    {{ $success }}
-                </x-alert>
-            @elseif ($error)
+            @if ($error)
                 <x-alert type="danger">
                     {{ $error }}
                 </x-alert>

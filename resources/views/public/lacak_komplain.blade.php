@@ -6,7 +6,7 @@
     Nama: {{$komplain->pelapor->nama}} <br>
     Kategori: {{$komplain->kategori->nama_kategori}} <br>
     Status: {{$komplain->status}} <br>
-    <a href="{{route('dashboard')}}" class="btn btn-primary">Kembali</a>
+    <a href="{{route('home')}}" class="btn btn-primary">Kembali</a>
     @elseif($error)
     {{$error}} <br>
     <a href="{{route('lacak.komplain')}}" class="btn btn-primary">Kembali</a>

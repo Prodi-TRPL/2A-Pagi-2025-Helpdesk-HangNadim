@@ -2,18 +2,14 @@
 @section('content')     
     <div id="formContainer" class="row justify-content-center position-sticky">         
         <div class="col-md-9">             
+            
             @if ($komplain->penilaian)
-                <div class="bg-light p-4 border rounded text-center my-5">
-                    <div class="mb-4">
-                        <img src="{{asset('thankya.svg')}}" alt="Terima Kasih" class="img-fluid" style="max-height: 100px;">
-                    </div>
-                                        
-                    <h3 class="text-info mb-3">Terima Kasih Atas Penilaian Anda!</h3>
-                    <p class="lead text-secondary mb-4">Masukan Anda sangat berarti untuk peningkatan layanan kami.</p>
-                    
+            <x-feedback 
+            title="Terima Kasih Atas Penilaian Anda!"
+            subtitle="Masukan Anda sangat berarti untuk peningkatan layanan kami.">
                     <div class="card mb-4 shadow-sm">
-                        <div class="card-header bg-light">
-                            <h5 class="mb-0">Detail Penilaian</h5>
+                        <div class="card-header bg-primary">
+                            <h5 class="mb-0 text-white">Detail Penilaian</h5>
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
@@ -38,12 +34,8 @@
                             @endif
                         </div>
                     </div>
-                    
-                    <div class="mt-4">
-                        <a href="{{ route('dashboard' ) }}" class="btn btn-info text-white">Kembali ke Dashboard</a>
-                    </div>
-                </div>
-                
+            </x-thanks>
+            
             @elseif(!$komplain->penilaian)             
                 <h4 class="mt-3 mb-3">Rating</h4>                                              
                 <div class="mb-3">                 
