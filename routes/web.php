@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PenilaianController;
+
 
 Route::get('/', function () {
     return view('public.dashboard');
@@ -22,3 +25,8 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
 Route::get('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.');
 Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
 // });
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
+
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
