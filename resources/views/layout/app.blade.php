@@ -12,12 +12,9 @@
     {{-- Navbar --}}
     @include('partials.navbar')
 
-    @if (session('success'))
-        @yield('feedback')
-    @else    
+    {{-- buat @section('content') @endsection di file yang @extends('layout.app')  --}}
         @yield('content')
-    @endif
-    
+
     {{-- Footer --}}
     @include('partials.footer')
 

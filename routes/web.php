@@ -10,7 +10,7 @@ use App\Http\Controllers\PenilaianController;
 
 
 Route::get('/', function () {
-    return view('public.dashboard');
+    return view('public.home');
 })->name('home');
 
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');

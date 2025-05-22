@@ -5,12 +5,12 @@
         <img src="{{asset($image)}}" alt="Terima Kasih" class="img-fluid" style="max-height: 100px;">
     </div>
                         
-    <h3 class="text-info mb-3">{{ $title }}</h3>
+    <h3 class="text-primary mb-3">{{ $title }}</h3>
     <p class="lead text-secondary mb-4">{{ $subtitle }}.</p>
     
     {{$slot}}
     
     <div class="mt-4">
-        <a href="{{ route($back ) }}" class="btn btn-info text-white">Kembali ke Dashboard</a>
+        <a href="{{ route($back ) }}" class="btn btn-primary text-white">Kembali ke Dashboard</a>
     </div>
 </div>

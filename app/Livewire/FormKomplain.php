@@ -18,6 +18,7 @@ class FormKomplain extends Component
     public $step = 1;
     public $success = '';
     public $error = ''; 
+    public $pelapor, $komplain;
 
     protected $rules = [
         'nama' => 'required|string',
@@ -73,7 +74,7 @@ class FormKomplain extends Component
 
             DB::commit();
 
-            $this->success = "Komplain anda berhasil dibuat dengan nomor tiket: $komplain->tiket.";
+            $this->success = ' ';
             $this->step = 1;
 
             $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'message', 'kategori_id', 'bukti']);
@@ -81,7 +82,7 @@ class FormKomplain extends Component
 
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->error = 'Terjadi kesalahan, coba lagi!';
+            $this->error = 'Terjadi kesalahan, silahkan coba lagi!';
             $this->step = 1;
         }
 

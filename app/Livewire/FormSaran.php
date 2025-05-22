@@ -61,7 +61,7 @@ class FormSaran extends Component
 
               DB::commit();
 
-              $this->success = 'Saran berhasil dibuat! Terima kasih.';
+              $this->success = ' ';
               $this->step = 1;
               
               $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'message']);
