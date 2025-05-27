@@ -28,5 +28,5 @@ Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('k
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
-Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
