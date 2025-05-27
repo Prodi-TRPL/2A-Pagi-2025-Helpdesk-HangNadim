@@ -1,4 +1,4 @@
-<div class="container mt-4 flex-grow-1 pt-5" >
+<div class="container mt-4 flex-grow-1 pt-5 pb-5" >
     <div class="row justify-content-center">
         <div id="formContainer" class="row justify-content-center position-sticky">
             <div class="col-md-9">
@@ -41,7 +41,7 @@
                         @error('pekerjaan')<div class="invalid-feedback">{{ $message }}@enderror
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-info text-white mt-3 ">Selanjutnya</button>
+                            <button type="submit" class="btn btn-primary text-white mt-3 ">Selanjutnya</button>
                         </div>
                     </form>
                 </div>
@@ -50,13 +50,13 @@
                 <div wire:key="form-saran" class="bg-light {{ $step === 2 ? '' : 'd-none' }}">
                     <form wire:submit.prevent="submitSaran" class="p-3 border rounded needs-validation" novalidate>
                         <div class="mb-3 bg-light-subtle">
-                            <label for="saran" class="form-label">Saran:</label>
+                            <label for="saran" class="form-label">Berikan Saran Anda:</label>
                             <textarea wire:model="message" id="saran" class="form-control @error('message') is-invalid @enderror" rows="6" ></textarea>
                             @error('message')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                         <div class="d-flex justify-content-end mt-3">
                             <button type="button" wire:click="previousStep" class="btn btn-secondary me-2">Kembali</button>
-                            <button type="submit" class="btn btn-info text-white">Kirim</button>
+                            <button type="submit" class="btn btn-primary text-white">Kirim</button>
                         </div>
                     </form>
                 </div>
