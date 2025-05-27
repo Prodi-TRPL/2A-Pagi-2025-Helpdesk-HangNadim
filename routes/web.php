@@ -13,6 +13,18 @@ Route::get('/', function () {
     return view('public.home');
 })->name('home');
 
+Route::get('/statistik', function () {
+    return view('admin.statistik');
+})->name('statsitik');
+
+Route::get('/pelapor', function () {
+    return view('admin.data_pelapor');
+})->name('data_pelapor');
+
+Route::get('/sidebar', function () {
+    return view('partials.sidebar');
+})->name('sidebar');
+
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
 ROute::get('lacak/komplain',[KomplainController::class, 'viewTrackStatus'])->name('lacak.komplain');
@@ -28,5 +40,12 @@ Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('k
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
+<<<<<<< HEAD
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
+=======
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
+
+
+>>>>>>> f00191c3e0ee753d6022235027bd3e6c0049685d

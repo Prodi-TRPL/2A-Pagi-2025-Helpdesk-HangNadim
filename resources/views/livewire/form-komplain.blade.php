@@ -1,4 +1,4 @@
-<div class="container mt-4 flex-grow-1 pt-5" >
+<div class="container mt-4 flex-grow-1 pt-5 pb-5" >
     <div class="row justify-content-center">
         <div id="formContainer" class="row justify-content-center position-sticky">
             <div class="col-md-9">
@@ -40,7 +40,7 @@
                                 @error('pekerjaan')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-info text-white mt-3">Selanjutnya</button>
+                        <button type="submit" class="btn btn-primary text-white mt-3">Selanjutnya</button>
                     </div>
                 </form>
             </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="d-flex justify-content-end mt-3">
                             <button type="button" wire:click="previousStep" class="btn btn-secondary me-2">Kembali</button>
-                            <button type="submit" class="btn btn-info text-white">Kirim</button>
+                            <button type="submit" class="btn btn-primary text-white">Kirim</button>
                         </div>
                     </form>
                 </div>
