@@ -25,6 +25,10 @@ Route::get('/sidebar', function () {
     return view('partials.sidebar');
 })->name('sidebar');
 
+Route::get('komplain', function () {
+    return view('admin.komplain');
+});
+
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
 ROute::get('lacak/komplain',[KomplainController::class, 'viewTrackStatus'])->name('lacak.komplain');
@@ -34,7 +38,7 @@ Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('pe
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
 // Route::middleware('auth')->group(function (){
-Route::get('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.');
+Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
 Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
 // });
 Route::get('login', [AuthController::class, 'index'])->name('login');

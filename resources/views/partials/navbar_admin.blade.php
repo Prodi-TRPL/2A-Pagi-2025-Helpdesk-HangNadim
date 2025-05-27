@@ -38,8 +38,12 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                        <form action="{{ route('komplain.pdf') }}" method="POST">
+                        @csrf
+                        <label class="form-label text-gray-500" id='pdf'>PDF</label>
+                        <input type="month" class="form-control font-weight-bold" id="pdf" name="pdf">
+                        <button type="submit" class="btn btn-primary">Unduh </button>
+                        </form>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -88,10 +92,13 @@
                             alt="...">
                         <div class="status-indicator bg-success"></div>
                     </div>
-                    <div class="font-weight-bold">
-                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                            problem I've been having.</div>
-                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    <div>
+                        <form action="{{ route('komplain.xlsx') }}" method="POST">
+                        @csrf
+                        <label class="form-label text-gray-500" id='xlsx'>Excel</label>
+                        <input type="month" class="form-control font-weight-bold" id="xlsx" name="xlsx">
+                        <button type="submit" class="btn btn-primary">Unduh </button>
+                        </form>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
