@@ -40,7 +40,6 @@
                 <h4 class="mt-3 mb-3">Rating</h4>                                              
                 <div class="mb-3">                 
                     <h4>Penilaian untuk Tiket: {{ $komplain->tiket }}</h4>                   
-                    <p>Nama: {{ $komplain->pelapor->nama }}</p>             
                 </div>                 
                 <div class="bg-light">                     
                     <form method="POST" action="{{route('penilaian.submit', $komplain->tiket)}}" class="p-3 border rounded needs-validation" novalidate>                         
