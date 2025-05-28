@@ -1,0 +1,71 @@
+body {
+      font-family: 'Segoe UI';
+      background: url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.445); /* Putih dengan opacity 70% */
+  z-index: 1;
+}
+.container-login {
+  position: relative;
+  z-index: 2; /* Di atas overlay */
+}
+    .container-login {
+      background-color: rgba(255, 255, 255, 0.95);
+      display: flex;
+      max-width: 800px;
+      width: 90%;
+      min-height: 450px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .welcome-section {
+  background-color: #0d6efd ;
+  color: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 47px 40px 40px 40px; /* padding atas ditambah agar tombol muat */
+  position: relative;
+}
+    .form-section {
+      flex: 1;
+      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .form-section h2 {
+      color: #3e3e3e;
+    }
+    .form-section .form-control {
+      border-radius: 8px;
+    }
+    .form-section .btn-primary {
+      border-radius: 8px;
+    }
+    .input-group-text {
+      background-color: #e9ecef;
+      border-radius: 8px 0 0 8px;
+    }
+    .branding h1 {
+      color: #003366;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    @media (max-width: 768px) {
+      .container-login {
+        flex-direction: column;
+      }
+    }
