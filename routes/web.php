@@ -13,17 +13,21 @@ Route::get('/', function () {
     return view('public.home');
 })->name('home');
 
-Route::get('/statistik', function () {
+Route::get('statistik', function () {
     return view('admin.statistik');
 })->name('statsitik');
 
-Route::get('/pelapor', function () {
+Route::get('pelapor', function () {
     return view('admin.data_pelapor');
 })->name('data_pelapor');
 
-Route::get('/sidebar', function () {
+Route::get('sidebar', function () {
     return view('partials.sidebar');
 })->name('sidebar');
+
+Route::get('komplain', function () {
+    return view('admin.komplain');
+});
 
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
@@ -34,13 +38,17 @@ Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('pe
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
 // Route::middleware('auth')->group(function (){
-Route::get('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.');
+Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
 Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
 // });
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
+<<<<<<< HEAD
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
-
-
+=======
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
+>>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019

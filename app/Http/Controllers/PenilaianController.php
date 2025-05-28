@@ -13,7 +13,7 @@ class PenilaianController extends Controller
      */
     public function index($tiket)
     {
-        $komplain = Komplain::where('tiket', $tiket)->with('pelapor')->firstOrFail();
+        $komplain = Komplain::where('tiket', $tiket)->firstOrFail();
         
         return view('public.form_penilaian', compact('komplain'));
     }

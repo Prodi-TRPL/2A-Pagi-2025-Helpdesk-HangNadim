@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -34,7 +35,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
             'role' => 'required|string',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
             'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         ]);
 
@@ -42,9 +43,11 @@ class AdminController extends Controller
             'name' =>  $validated['name'],
             'email' => $validated['email'],
             'role' => $validated['role'],
-            'password' => $validated['password'],
+            'password' => Hash::make($validated['password']),
             'whatsapp' => $validated['whatsapp']
         ]);
+
+        return redirect()->route('kelola.admin');
     }
 
     /**
