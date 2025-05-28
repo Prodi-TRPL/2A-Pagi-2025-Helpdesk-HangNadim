@@ -14,10 +14,10 @@ class ExportController extends Controller
     public function generatePdf(Request $request)
     {
         $validated = $request->validate([
-            'tanggalpdf' => 'required'
+            'pdf' => 'required'
         ]);
 
-        $tanggal = $request->tanggalpdf;
+        $tanggal = $request->pdf;
         [$tahun,$bulan] = explode('-', $tanggal);
 
         $data = Komplain::with('pelapor', 'kategori', 'penilaian')
@@ -39,10 +39,10 @@ class ExportController extends Controller
     public function generateExcel(Request $request)
     {
         $validated = $request->validate([
-            'tanggalxlsx' => 'required'
+            'xlsx' => 'required'
         ]);
 
-        $tanggal = $request->tanggalxlsx;
+        $tanggal = $request->xlsx;
         [$tahun,$bulan] = explode('-', $tanggal);
 
         return Excel::download(new ExcelExport($bulan, $tahun), 'komplain.xlsx');
