@@ -23,8 +23,18 @@
                 <td>Budi</td>
                 <td>Pelayanan</td>
                 <td>12-04-2025</td>
-                <td><select class="form-select form-select-sm"><option>Tingkatan</option></select></td>
-                <td><select class="form-select form-select-sm"><option>Status</option></select></td>
+                <td><select class="form-select form-select-sm">
+                    <option hidden>Tingkatan</option>
+                    <option>Ringan</option>
+                    <option>Sedang</option>
+                    <option>Berat</option>
+                </select></td>
+                <td><select class="form-select form-select-sm">
+                    <option hidden>Status</option>
+                    <option >Menunggu</option>
+                    <option >Diproses</option>
+                    <option >Selesai</option>
+                </select></td>
                 <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
               </tr>
               <tr>
@@ -50,4 +60,26 @@
         </div>
       </div>
     </div>
+
+    @push('scripts')
+      <script>
+    $(document).ready(function () {
+      $('#tabel-komplain').DataTable({
+        responsive: true,
+        language: {
+          search: "Cari:",
+          lengthMenu: "Tampilkan _MENU_ data",
+          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+          paginate: {
+            first: "Pertama",
+            last: "Terakhir",
+            next: "→",
+            previous: "←"
+          },
+          zeroRecords: "Tidak ada data ditemukan"
+        }
+      });
+    });
+  </script>
+    @endpush
 @endsection
