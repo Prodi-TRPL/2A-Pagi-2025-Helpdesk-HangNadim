@@ -13,15 +13,15 @@ Route::get('/', function () {
     return view('public.home');
 })->name('home');
 
-Route::get('/statistik', function () {
+Route::get('statistik', function () {
     return view('admin.statistik');
 })->name('statsitik');
 
-Route::get('/pelapor', function () {
+Route::get('pelapor', function () {
     return view('admin.data_pelapor');
 })->name('data_pelapor');
 
-Route::get('/sidebar', function () {
+Route::get('sidebar', function () {
     return view('partials.sidebar');
 })->name('sidebar');
 
@@ -45,6 +45,10 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
+<<<<<<< HEAD
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
+=======
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
+>>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019

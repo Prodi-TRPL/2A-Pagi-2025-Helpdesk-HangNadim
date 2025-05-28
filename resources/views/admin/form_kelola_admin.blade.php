@@ -1,5 +1,5 @@
 @extends('layout.admin')
-<form action="{{ route('kelola_admin_store') }}" method="POST">
+<form action="{{ route('kelola.admin.store') }}" method="POST">
     @csrf
     <label id="label-nama" for="form-nama">Nama: </label>
     <input id="form-nama" type="text" name="name"></br>

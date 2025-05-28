@@ -24,8 +24,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            // return redirect()->intended('public.form_komplain');
-            return redirect()->route('komplain.form');
+            return redirect()->intended('statistik');
         }
  
         return back()->withErrors([
