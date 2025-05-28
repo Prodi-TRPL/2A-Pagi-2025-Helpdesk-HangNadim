@@ -44,5 +44,16 @@ Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('k
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
+<<<<<<< HEAD
 Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin');
 Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
+=======
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
+<<<<<<< HEAD
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
+Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
+=======
+Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
+>>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019
+>>>>>>> 576e38c515887cb65fd255f1cbd2473976ce54d4
