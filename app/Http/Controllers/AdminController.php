@@ -34,7 +34,7 @@ class AdminController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
-            'role' => 'required|string',
+            'role' => 'required|string|in:Officer,Team Leader,Manager,Direktur',
             'password' => 'required|min:8',
             'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         ]);
@@ -47,7 +47,7 @@ class AdminController extends Controller
             'whatsapp' => $validated['whatsapp']
         ]);
 
-        return redirect()->route('kelola.admin');
+        return redirect()->route('kelola.admin.form')->with('success', 'Berhasil menambah akun!');
     }
 
     /**

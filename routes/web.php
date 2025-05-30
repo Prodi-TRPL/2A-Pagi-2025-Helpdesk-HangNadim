@@ -28,6 +28,8 @@ Route::get('sidebar', function () {
 Route::get('komplain', function () {
     return view('admin.komplain');
 });
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
@@ -37,23 +39,10 @@ Route::get('lacak/komplain/{tiket}', [KomplainController::class, 'trackStatus'])
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
-// Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function (){
 Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
 Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
-// });
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
-
-<<<<<<< HEAD
-Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin');
+Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
 Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
-=======
-Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
-<<<<<<< HEAD
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
-Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
-=======
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
->>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019
->>>>>>> 576e38c515887cb65fd255f1cbd2473976ce54d4
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});

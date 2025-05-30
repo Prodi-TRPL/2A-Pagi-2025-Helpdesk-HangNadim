@@ -7,7 +7,7 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "Desember"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "#4e73df",
@@ -46,7 +46,6 @@ var myBarChart = new Chart(ctx, {
           max: 15000,
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return value;
           }

@@ -27,16 +27,24 @@
       <img src="hnd_logo.jpg" alt="Icon" class="mb-4 d-block mx-auto" style="width: 150px;">
       <h2 class="mb-4">Log in</h2>
 
-      <form action="/login" method="POST">
+      <form action="/login" method="POST" novalidate>
         @csrf
-        <div class="mb-3 input-group">
+
+      <div class="mb-3">
+        <div class="input-group">
           <span class="input-group-text"><i class="fa fa-user"></i></span>
           <input type="email" name="email" class="form-control" placeholder="Email" required>
         </div>
-        <div class="mb-4 input-group">
+        @error('email') <small class="text-danger"> {{ $message }}</small>@enderror
+      </div>
+
+      <div class="mb-4">
+        <div class="input-group">
           <span class="input-group-text"><i class="fa fa-lock"></i></span>
           <input type="password" name="password" class="form-control" placeholder="Password" required>
         </div>
+        @error('password') <small class="text-danger"> {{ $message }}</small>@enderror
+      </div>
         <button type="submit" class="btn btn-primary rounded-pill fw-bold w-100 mt-3">Log in</button>
       </form>
 
