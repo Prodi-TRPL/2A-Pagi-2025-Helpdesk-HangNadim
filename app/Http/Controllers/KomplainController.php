@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Komplain;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,31 @@ class KomplainController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
-        return view('public.form_komplain');
+
+        $user = auth()->user();
+
+        $dataFilter = match($user->role){
+            'Officer' => 'Rendah',
+            'Team Leader' => 'Sedang',
+            'Manager' => 'Tinggi',
+            'Direktur' => null,
+            default => abort(403)
+            };
+
+        $komplains = Komplain::with('pelapor','kategori','user:id,name')
+        ->addSelect('*')
+        ->addSelect(DB::raw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai') as status_order"))
+        ->when($dataFilter, function ($query, $tingkat) {
+        $query->where('tingkat', $tingkat);
+        })
+        ->orderBy('status_order')
+        ->orderBy('created_at', 'asc')
+        ->get();
+        
+
+        return view('admin.komplain', compact('komplains'));
     }
 
     /**
@@ -20,7 +43,7 @@ class KomplainController extends Controller
      */
     public function create()
     {
-        //
+        return view('public.form_komplain');
     }
 
     /**
