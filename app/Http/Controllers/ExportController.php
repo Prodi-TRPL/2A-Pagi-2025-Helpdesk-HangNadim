@@ -33,7 +33,7 @@ class ExportController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
 
-        return $pdf->stream("report_{$bulan}_{$tahun}.pdf");
+        return $pdf->stream("Report_{$bulan}_{$tahun}.pdf");
     }
 
     public function generateExcel(Request $request)
@@ -45,6 +45,6 @@ class ExportController extends Controller
         $tanggal = $request->xlsx;
         [$tahun,$bulan] = explode('-', $tanggal);
 
-        return Excel::download(new ExcelExport($bulan, $tahun), 'komplain.xlsx');
+        return Excel::download(new ExcelExport($bulan, $tahun), 'Komplain.xlsx');
     }
 }

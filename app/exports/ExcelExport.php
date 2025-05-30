@@ -3,13 +3,14 @@
 namespace App\Exports;
 
 use App\Models\Komplain;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
-use Maatwebsite\Excel\Events\AfterSheet;
 
 class ExcelExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings, WithCustomStartCell, WithEvents
 {
@@ -61,7 +62,7 @@ class ExcelExport implements FromCollection, ShouldAutoSize, WithMapping, WithHe
 
     public function startCell(): string
     {
-        return 'B3';
+        return 'B4';
     }
 
     public function registerEvents(): array
@@ -72,9 +73,17 @@ class ExcelExport implements FromCollection, ShouldAutoSize, WithMapping, WithHe
 
             $sheet->mergeCells('B1:H1');
             $sheet->setCellValue('B1', 'Komplain bulan ' . $this->bulan . ' tahun ' . $this->tahun);
-            $sheet->getStyle('B1')->getFont()->setSize(16)->setBold(true);
+            $sheet->getStyle('B1')->getFont()->setName('Times New Roman')->setSize(20)->setBold(true);
             $sheet->getStyle('B1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
             $sheet->getStyle('B1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+
+            $sheet->mergeCells('B2:C2');
+            $sheet->mergeCells('F2:H2');
+            $sheet->setCellValue('B2', 'Dibuat oleh: ' . Auth::user()->name);
+            $sheet->setCellValue('F2', 'Tanggal: ' . now()->format('d-m-Y'));
+            $sheet->getStyle('B2:H2')->getFont()->setName('Times New Roman')->setSize(12)->setBold(true);
+            $sheet->getStyle('B2:H2')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
 
             $sheet->getColumnDimension('B')->setWidth(15);
             $sheet->getColumnDimension('C')->setWidth(25);
@@ -85,22 +94,27 @@ class ExcelExport implements FromCollection, ShouldAutoSize, WithMapping, WithHe
             $sheet->getColumnDimension('H')->setWidth(20);
 
             foreach (range('B', 'H') as $col) {
-                $sheet->getStyle($col . '3:' . $col . $sheet->getHighestRow())
+                $range = $col . '4:' . $col . $sheet->getHighestRow();
+
+                $sheet->getStyle($range)->getFont()
+                      ->setName('Times New Roman');
+
+                $sheet->getStyle($range)
                       ->getAlignment()->setWrapText(true)
                       ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
                       ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
             }
 
-            $sheet->getRowDimension(3)->setRowHeight(30); 
-            foreach (range(4, $sheet->getHighestRow()) as $row) {
+            $sheet->getRowDimension(4)->setRowHeight(30); 
+            foreach (range(5, $sheet->getHighestRow()) as $row) {
                 $sheet->getRowDimension($row)->setRowHeight(25); 
             }
 
-            $sheet->getStyle('B3:H3')->getFont()->setSize(14)->setBold(true);
-            $sheet->getStyle('B3:H3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
-            $sheet->getStyle('B3:H3')->getFill()->getStartColor()->setRGB('ADD8E6'); 
+            $sheet->getStyle('B4:H4')->getFont()->setSize(14)->setBold(true);
+            $sheet->getStyle('B4:H4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+            $sheet->getStyle('B4:H4')->getFill()->getStartColor()->setRGB('ADD8E6'); 
 
-            $sheet->getStyle('B3:H' . $sheet->getHighestRow())
+            $sheet->getStyle('B4:H' . $sheet->getHighestRow())
                   ->applyFromArray([
                       'borders' => [
                           'allBorders' => [
