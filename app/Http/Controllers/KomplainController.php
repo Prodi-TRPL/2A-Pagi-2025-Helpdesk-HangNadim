@@ -78,6 +78,18 @@ class KomplainController extends Controller
         //
     }
 
+    public function updateTingkat(Request $request, Komplain $komplain)
+    {
+        $request->validate([
+            'tingkat' => 'in:Rendah,Sedang,Tinggi',
+        ]);
+
+        $komplain->tingkat = $request->tingkat;
+        $komplain->save();
+
+        return redirect()->back()->with('success', 'Berhasil memperbarui tingkat keluhan.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

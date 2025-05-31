@@ -39,6 +39,6 @@ class AuthController extends Controller
         Session::invalidate();
         Session::regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

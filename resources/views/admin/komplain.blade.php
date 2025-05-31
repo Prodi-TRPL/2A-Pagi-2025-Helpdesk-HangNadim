@@ -1,9 +1,12 @@
 @extends('layout.admin')
 @section('content')
+@if(session('success'))
+  <x-alert type="success">
+    {{ session('success') }}</x-alert>
+@endif
 <div class="card shadow">
       <div class="card-body">
         <h5 class="card-title">Daftar Komplain</h5>
-
         <div class="table-responsive">
           <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
             <thead class="table-primary">
@@ -25,20 +28,31 @@
                 <td>{{ $komplain->pelapor->nama }}</td>
                 <td>{{ $komplain->kategori->nama_kategori }}</td>
                 <td>{{ $komplain->created_at }}</td>
-                <td><select class="form-select form-select-sm">
-                    <option hidden>{{ $komplain->tingkat }}</option>
-                    <option>Rendah</option>
-                    <option>Sedang</option>
-                    <option>Tinggi</option>
-                </select></td>
-                <td><select class="form-select form-select-sm">
-                    <option hidden>{{ $komplain->status }}</option>
-                    <option >Menunggu</option>
-                    <option >Diproses</option>
-                    <option >Selesai</option>
-                </select></td>
-                <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
-                 <td>{{ $komplain->status_order }}</td>
+
+                <td>
+                  <form action="{{ route('update.tingkat', $komplain->id) }}" method="POST"> 
+                    @csrf
+                    <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()">
+                      <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
+                      <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>
+                      <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
+                    </select>
+                  </form>
+                </td>
+
+                <td>
+                    <select class="form-select form-select-sm">
+                      <option hidden>{{ $komplain->status }}</option>
+                      <option>Menunggu</option>
+                      <option>Diproses</option>
+                      <option>Selesai</option>
+                    </select>
+              </td>
+                
+              <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
+              
+              {{-- Helper Filter --}}
+              <td>{{ $komplain->status_order }}</td>
               </tr>
               @endforeach
             </tbody>

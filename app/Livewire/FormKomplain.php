@@ -74,6 +74,8 @@ class FormKomplain extends Component
 
             DB::commit();
 
+            $this->pelapor = $pelapor;
+            $this->komplain = $komplain;
             $this->success = ' ';
             $this->step = 1;
 

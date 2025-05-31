@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="{{ asset('hover.css') }}">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     {{-- Navbar --}}
     @include('partials.navbar')
 
-    {{-- buat @section('content') @endsection di file yang @extends('layout.app')  --}}
+    <main class="flex-fill">
         @yield('content')
-
+    </main>
+    
     {{-- Footer --}}
     @include('partials.footer')
 

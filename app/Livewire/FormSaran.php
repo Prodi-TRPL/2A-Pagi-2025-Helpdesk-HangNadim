@@ -15,6 +15,7 @@ class FormSaran extends Component
     public $success = '';
     public $error = '';
     public $step = 1;
+    public $pelapor, $saran;
 
     protected $rules = [
         'nama' => 'required|string',
@@ -54,13 +55,15 @@ class FormSaran extends Component
                 ]   
               );
               
-              Saran::create([
+            $saran = Saran::create([
                 'pelapor_id' => $pelapor->id,
                 'message' => $this->message
               ]);
 
               DB::commit();
 
+              $this->pelapor = $pelapor;
+              $this->saran = $saran;
               $this->success = ' ';
               $this->step = 1;
               

@@ -38,6 +38,7 @@ Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('pe
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
 Route::middleware('auth')->group(function (){
+
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
     
@@ -47,4 +48,6 @@ Route::middleware('auth')->group(function (){
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
+
+    Route::post('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
 });
