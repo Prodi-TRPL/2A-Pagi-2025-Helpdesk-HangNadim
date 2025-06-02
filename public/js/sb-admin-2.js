@@ -1,6 +1,11 @@
 (function($) {
   "use strict"; // Start of use strict
-
+  
+  if($(window).width() < 768){
+    $("body").addClass("sidebar-toggled");
+    $(".sidebar").addClass("toggled")
+  }
+  
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
@@ -11,6 +16,7 @@
   });
 
   // Close any open menu accordions when window is resized below 768px
+
   $(window).resize(function() {
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
