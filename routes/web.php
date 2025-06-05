@@ -39,13 +39,6 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
 
 Route::middleware('auth')->group(function (){
 
-<<<<<<< HEAD
-Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
-Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
-Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
-=======
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
     
@@ -59,4 +52,3 @@ Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admi
 
     Route::post('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
 });
->>>>>>> 88a9e369914236ed6578d02573419fe1172eaa62
