@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -8,6 +9,12 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PenilaianController;
 
+Route::get('random', function () {
+    User::factory()->count(2)->create([
+        'role' => fake()->randomElement(['Officer', 'Team Leader', 'Manager', 'Direktur']),
+    ]);
+    return redirect()->route('home');
+});
 
 Route::get('/', function () {
     return view('public.home');
