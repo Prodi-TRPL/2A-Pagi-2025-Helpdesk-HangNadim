@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Saran;
 use Illuminate\Http\Request;
 
 class SaranController extends Controller
@@ -11,15 +12,19 @@ class SaranController extends Controller
      */
     public function index()
     {
-        return view('public.form_saran');
+        $sarans = Saran::with('pelapor:id,nama')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        
+        return view('admin.saran', compact('sarans'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('public.form_saran');
     }
 
     /**

@@ -29,7 +29,7 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
-Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
+Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
 Route::get('lacak/komplain',[KomplainController::class, 'viewTrackStatus'])->name('lacak.komplain');
 Route::get('lacak/komplain/{tiket}', [KomplainController::class, 'trackStatus'])->name('lacak.komplain.submit');
@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function (){
     Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
     
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    
+
+    Route::get('saran',[SaranController::class, 'index'])->name('saran');
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
 
     Route::post('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');

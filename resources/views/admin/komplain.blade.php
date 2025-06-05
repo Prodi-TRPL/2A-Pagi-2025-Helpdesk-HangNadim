@@ -4,9 +4,6 @@
   <x-alert type="success">
     {{ session('success') }}</x-alert>
 @endif
-<div class="card shadow">
-      <div class="card-body">
-        <h5 class="card-title">Daftar Komplain</h5>
   <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
 
 <div class="card shadow">
@@ -23,7 +20,7 @@
                 <th>Tingkatan</th>
                 <th>Status</th>
                 <th>Aksi</th>
-                <th>Status</th>
+                <th>Tingkat Status</th>
               </tr>
             </thead>
             <tbody>

@@ -41,7 +41,7 @@
     @push('scripts')
       <script>
     $(document).ready(function () {
-      $('#tabel-komplain').DataTable({
+      $('#tabel-saran').DataTable({
         responsive: true,
         language: {
           search: "Cari:  ",
