@@ -56,16 +56,28 @@
 
 
   <!-- Features Section -->
-  <section class="bg-light py-5" id="features">
+  <style>
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: scale(1.05) rotateX(2deg);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+</style>
+
+  <section class="bg-light py-1" id="features">
       <div class="container py-5" style="font-family:Segoe UI', sans-serif;">
           <div class="text-center mb-5">
-              <h2 class="fw-bold mb-3">Lacak Komplain Anda</h2>
+              <h2 class="fw-bold mb-4">Lacak Komplain Anda</h2>
               <p class="lead text-muted">Pantau status komplain Anda dengan mudah dan transparan</p>
           </div>
           <div class="row g-4">
               <div class="col-md-4">
-                  <div class="card border-0 shadow-sm h-100 text-center p-4">
-                      <div class="card-body">
+                <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-file-alt fa-2x"></i>
                           </div>
@@ -75,8 +87,8 @@
                   </div>
               </div>
               <div class="col-md-4">
-                  <div class="card border-0 shadow-sm h-100 text-center p-4">
-                      <div class="card-body">
+                <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-search fa-2x"></i>
                           </div>
@@ -86,8 +98,8 @@
                   </div>
               </div>
               <div class="col-md-4">
-                  <div class="card border-0 shadow-sm h-100 text-center p-4">
-                      <div class="card-body">
+                <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-check-circle fa-2x"></i>
                           </div>
@@ -101,9 +113,9 @@
   </section>
 
   <!-- Options Section -->
-  <section class="py-5" id="options" style="font-family:Segoe UI', sans-serif">
-      <div class="container py-5">
-          <div class="text-center mb-5">
+  <section class="py-1" id="options" style="font-family:Segoe UI', sans-serif">
+      <div class="container py-4">
+          <div class="text-center mb-4">
               <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
               <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
           </div>
@@ -111,7 +123,7 @@
               <div class="col-lg-6">
                   <div class="card h-100 border-0 shadow-sm">
                       <div id="komplain" class="card-body p-5 shadow-sm">
-                          <div class="text-center mb-4">
+                          <div class="text-center mb-5">
                               <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                   <i class="fas fa-thumbs-up fa-2x"></i>
                               </div>

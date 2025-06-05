@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Helpdesk Bandara Hang Nadim</title>
-  <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@extends('layout.app')
+
 <body class="relative min-h-screen overflow-x-hidden">
 
   <!-- Background -->
@@ -21,7 +14,6 @@
     <ul class="hidden md:flex space-x-6 font-medium">
       <li><a href="{{ route('home') }}" class="hover:underline">Dashboard</a></li>
       <li><a href="{{ route('tracking') }}" class="hover:underline">Pelacakan Status</a></li>
-      <li><a href="{{ route('penilian') }}" class="hover:underline">Penilaian</a></li>
     </ul>
   </nav>
 
