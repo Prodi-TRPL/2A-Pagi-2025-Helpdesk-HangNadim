@@ -46,12 +46,13 @@
                                 aria-valuenow="{{ $step === 1 ? 50 : 100}}"
                                 aria-valuemin="0" aria-valuemax="100">
                             </div>
-                @if($error)
-                <x-alert type="danger">
-                    {{ $error }}
-                </x-alert>
-                @endif
-                
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-{{ $step === 1 ? 'primary fw-bold' : 'muted' }}">Data Diri</small>
+                            <small class="text-{{ $step === 2 ? 'primary fw-bold' : 'muted' }}">Komplain</small>
+                        </div>
+                    </div>
+
                     <!-- Form Identitas -->
                 <div class="{{ $step === 1 ? '' : 'd-none' }}">
                     <h4 class="mb-4 text-primary">Data Diri</h4>
