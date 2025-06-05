@@ -45,10 +45,7 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
-<<<<<<< HEAD
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
-=======
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
->>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019
