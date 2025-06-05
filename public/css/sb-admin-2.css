@@ -6411,11 +6411,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-<<<<<<< HEAD
-  background-color: #0d6efd  !important;
-=======
   background-color: #0d6efd !important;
->>>>>>> 7fe3aa4c26446c8332bf6e6a8fb0526bb4663cc6
 }
 
 a.bg-primary:hover, a.bg-primary:focus,

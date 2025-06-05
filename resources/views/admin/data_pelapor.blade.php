@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 font-weight-bold text-gray-900 text-center">Data Pelapor</h1>
+<h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Data Pelapor</h1>
         
 <!-- DataTales Example -->
 <div class="card shadow mb-4">

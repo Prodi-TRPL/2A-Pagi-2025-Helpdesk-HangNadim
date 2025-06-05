@@ -29,6 +29,14 @@ Route::get('komplain', function () {
     return view('admin.komplain');
 });
 
+Route::get('/tracking', function () {
+    return view('public.tracking');
+})->name('tracking');
+
+Route::get('saran', function () {
+    return view('admin.saran');
+});
+
 Route::get('form/komplain',[KomplainController::class, 'index'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'index'])->name('saran.form');
 ROute::get('lacak/komplain',[KomplainController::class, 'viewTrackStatus'])->name('lacak.komplain');
@@ -45,10 +53,7 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola.admin');
-<<<<<<< HEAD
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
 Route::get('kelola/admin',[AdminController::class, 'create'])->name('kelola_admin');
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola_admin_store');
-=======
 Route::post('kelola/admin',[AdminController::class, 'store'])->name('kelola.admin.store');
->>>>>>> 7295a5eace2af4f33607a71a054e72e71ec8f019

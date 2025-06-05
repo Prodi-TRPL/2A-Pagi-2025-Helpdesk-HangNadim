@@ -1,9 +1,10 @@
 @extends('layout.admin')
 @section('content')
+  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
+
 <div class="card shadow">
       <div class="card-body">
-        <h5 class="card-title">Daftar Komplain</h5>
-
+        
         <div class="table-responsive">
           <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
             <thead class="table-primary">
@@ -67,7 +68,7 @@
       $('#tabel-komplain').DataTable({
         responsive: true,
         language: {
-          search: "Cari:",
+          search: "Cari:  ",
           lengthMenu: "Tampilkan _MENU_ data",
           info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
           paginate: {

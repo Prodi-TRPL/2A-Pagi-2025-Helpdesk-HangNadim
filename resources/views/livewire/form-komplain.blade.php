@@ -16,37 +16,47 @@
                 @endif
                 
                 <!-- Form Identitas -->
-                <h4 class="mt-3 mb-3 {{ $step === 1 ? 'text-secondary' : 'd-none' }}">Data Diri</h4>
-                    <div wire:key="form-identitas" class="bg-light {{ $step === 1 ? '' : 'd-none'}}">
-                        <form wire:submit.prevent="submitDataDiri" class="p-3 border rounded needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama:</label>
-                                <input type="text" wire:model="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
-                                @error('nama')<div class="invalid-feedback">{{$message}}</div>@enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email:</label>
-                                <input type="email" wire:model="email" id="email" class="form-control @error('email') is-invalid @enderror">
-                                @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="whatsapp" class="form-label">No. WhatsApp:</label>
-                                <input type="tel" wire:model="whatsapp" id="whatsapp" class="form-control @error('whatsapp') is-invalid @enderror">
-                                @error('whatsapp')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="pekerjaan" class="form-label">Pekerjaan:</label>
-                                <input type="text" wire:model="pekerjaan" id="pekerjaan" class="form-control @error('pekerjaan') is-invalid @enderror">
-                                @error('pekerjaan')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary text-white mt-3">Selanjutnya</button>
-                    </div>
-                </form>
-            </div>
+<h4 class="mt-3 mb-3 {{ $step === 1 ? 'text-secondary' : 'd-none' }} position-relative">
+    Data Diri
+</h4>
+<div wire:key="form-identitas" class="bg-light {{ $step === 1 ? '' : 'd-none'}}">
+    <form wire:submit.prevent="submitDataDiri" class="p-4 border rounded needs-validation" style="border-color: #e9ecef;" novalidate>
+        <div class="mb-3">
+            <label for="nama" class="form-label d-flex align-items-center">
+                <i class="fas fa-user me-2"></i> Nama:
+            </label>
+            <input type="text" wire:model="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
+            @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label d-flex align-items-center">
+                <i class="fas fa-envelope me-2"></i> Email:
+            </label>
+            <input type="email" wire:model="email" id="email" class="form-control @error('email') is-invalid @enderror">
+            @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+        <div class="mb-3">
+            <label for="whatsapp" class="form-label d-flex align-items-center">
+                <i class="fab fa-whatsapp me-2"></i> No. WhatsApp:
+            </label>
+            <input type="tel" wire:model="whatsapp" id="whatsapp" class="form-control @error('whatsapp') is-invalid @enderror">
+            @error('whatsapp')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+        <div class="mb-3">
+            <label for="pekerjaan" class="form-label d-flex align-items-center">
+                <i class="fas fa-briefcase me-2"></i> Pekerjaan:
+            </label>
+            <input type="text" wire:model="pekerjaan" id="pekerjaan" class="form-control @error('pekerjaan') is-invalid @enderror">
+            @error('pekerjaan')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary text-white mt-3 px-4">Selanjutnya</button>
+        </div>
+    </form>
+</div>
             
             <!-- Form Komplain -->
-            <h4 class="mt-3 mb-3 {{$step === 2 ? 'text-secondary' : 'd-none'}}">Isi Komplain</h4>
+            <h4 class="mt-3 mb-3 {{$step === 2 ? 'text-secondary' : 'd-none'}}">Form Komplain</h4>
             <div wire:key="form-komplain" class="bg-light {{ $step === 2 ? '' : 'd-none'}}">
                 <form wire:submit.prevent="submitKomplain" class="p-3 border rounded needs-validation">
                     <div class="mb-3">
@@ -65,7 +75,7 @@
                         @error('message')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
                     <div class="mb-3">
-                        <label for="bukti" class="form-label">Bukti (opsional):</label>
+                        <label for="bukti" class="form-label">Bukti:</label>
                         <input type="file" wire:model="bukti" id="bukti" class="form-control @error('bukti') is-invalid @enderror">
                         @error('bukti')<div class="invalid-feedback">{{ $message }}@enderror
                             

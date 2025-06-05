@@ -15,7 +15,7 @@
 
     <div class="welcome-section position-relative">
       <div class="position-absolute top-0 z-3" style="left: 35px; padding-top: 16px;">
-        <a href="#home" class="btn btn-outline-light btn-sm rounded-pill fw-semibold">
+        <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm rounded-pill fw-semibold">
               <i class="fas fa-arrow-left me-1"></i>Beranda
         </a>
       </div>
@@ -33,10 +33,16 @@
           <span class="input-group-text"><i class="fa fa-user"></i></span>
           <input type="email" name="email" class="form-control" placeholder="Email" required>
         </div>
-        <div class="mb-4 input-group">
+        <div class="mb-3 input-group">
           <span class="input-group-text"><i class="fa fa-lock"></i></span>
           <input type="password" name="password" class="form-control" placeholder="Password" required>
         </div>
+        <div class="mb-2 form-group">
+          <div class="custom-control custom-checkbox small">
+              <input type="checkbox" class="custom-control-input" name="remember" id="customCheck">
+              <label class="custom-control-label" for="customCheck">Remember Me</label>
+          </div>
+      </div>
         <button type="submit" class="btn btn-primary rounded-pill fw-bold w-100 mt-3">Log in</button>
       </form>
 
