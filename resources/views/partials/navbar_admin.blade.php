@@ -64,9 +64,7 @@
                 Download Excel
             </h6>
 
-<<<<<<< HEAD
         <div class="topbar-divider"></div>
-=======
             <div class="px-3 pb-3">
                 <form method="POST" action="{{ route('komplain.xlsx') }}">
                     @csrf
@@ -86,13 +84,11 @@
             
         </li>
      <div class="topbar-divider d-none d-sm-block"></div>
->>>>>>> new_branch
-
+     
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
                 <span class="mr-3 d-inline text-gray-600">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="{{asset('img/undraw_profile.svg')}}">
             </a>
@@ -106,7 +102,6 @@
                         </button>
                 </form>
             </div>
-=======
                 <span class="mr-2 d-none d-lg-inline font-weight-bold text-gray-800 small">Ms. Vioni Az Zahra</span>
                 <img class="img-profile rounded-circle ml-2"
                     src="img/undraw_profile.svg">
@@ -133,7 +128,6 @@ aria-labelledby="userDropdown">
 </a>
 </div>
 
->>>>>>> new_branch
         </li>
     </ul>
 </nav>

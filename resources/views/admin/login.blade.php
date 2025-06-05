@@ -44,11 +44,8 @@
           <input type="password" name="password" class="form-control" placeholder="Password" required>
         </div>
         @error('password') <small class="text-danger"> {{ $message }}</small>@enderror
-        <div class="mb-3 input-group">
-          <span class="input-group-text"><i class="fa fa-lock"></i></span>
-          <input type="password" name="password" class="form-control" placeholder="Password" required>
-        </div>
-        <div class="mb-2 form-group">
+       
+        <div class="mb-4 form-group">
           <div class="custom-control custom-checkbox small">
               <input type="checkbox" class="custom-control-input" name="remember" id="customCheck">
               <label class="custom-control-label" for="customCheck">Remember Me</label>
