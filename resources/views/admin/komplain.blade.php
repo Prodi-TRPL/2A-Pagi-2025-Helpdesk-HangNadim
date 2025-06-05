@@ -1,9 +1,14 @@
 @extends('layout.admin')
 @section('content')
+@if(session('success'))
+  <x-alert type="success">
+    {{ session('success') }}</x-alert>
+@endif
+  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
+
 <div class="card shadow">
       <div class="card-body">
-        <h5 class="card-title">Daftar Komplain</h5>
-
+        
         <div class="table-responsive">
           <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
             <thead class="table-primary">
@@ -15,46 +20,43 @@
                 <th>Tingkatan</th>
                 <th>Status</th>
                 <th>Aksi</th>
+                <th>Tingkat Status</th>
               </tr>
             </thead>
             <tbody>
+              @foreach ($komplains as $komplain)
               <tr>
-                <td>1092gya0</td>
-                <td>Budi</td>
-                <td>Pelayanan</td>
-                <td>12-04-2025</td>
-                <td><select class="form-select form-select-sm">
-                    <option hidden>Tingkatan</option>
-                    <option>Ringan</option>
-                    <option>Sedang</option>
-                    <option>Berat</option>
-                </select></td>
-                <td><select class="form-select form-select-sm">
-                    <option hidden>Status</option>
-                    <option >Menunggu</option>
-                    <option >Diproses</option>
-                    <option >Selesai</option>
-                </select></td>
-                <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
+                <td>{{ $komplain->tiket }}</td>
+                <td>{{ $komplain->pelapor->nama }}</td>
+                <td>{{ $komplain->kategori->nama_kategori }}</td>
+                <td>{{ $komplain->created_at }}</td>
+
+                <td>
+                  <form action="{{ route('update.tingkat', $komplain->id) }}" method="POST"> 
+                    @csrf
+                    <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()">
+                      <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
+                      <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>
+                      <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
+                    </select>
+                  </form>
+                </td>
+
+                <td>
+                    <select class="form-select form-select-sm">
+                      <option hidden>{{ $komplain->status }}</option>
+                      <option>Menunggu</option>
+                      <option>Diproses</option>
+                      <option>Selesai</option>
+                    </select>
+              </td>
+                
+              <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
+              
+              {{-- Helper Filter --}}
+              <td>{{ $komplain->status_order }}</td>
               </tr>
-              <tr>
-                <td>0ka7e2j8</td>
-                <td>Nana</td>
-                <td>Keamanan</td>
-                <td>09-04-2025</td>
-                <td><select class="form-select form-select-sm"><option>Tingkatan</option></select></td>
-                <td><select class="form-select form-select-sm"><option>Status</option></select></td>
-                <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
-              </tr>
-              <tr>
-                <td>1m0s6va</td>
-                <td>Raya</td>
-                <td>Fasilitas</td>
-                <td>05-04-2025</td>
-                <td><select class="form-select form-select-sm"><option>Tingkatan</option></select></td>
-                <td><select class="form-select form-select-sm"><option>Status</option></select></td>
-                <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -64,22 +66,30 @@
     @push('scripts')
       <script>
     $(document).ready(function () {
-      $('#tabel-komplain').DataTable({
-        responsive: true,
-        language: {
-          search: "Cari:",
-          lengthMenu: "Tampilkan _MENU_ data",
-          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-          paginate: {
-            first: "Pertama",
-            last: "Terakhir",
-            next: "→",
-            previous: "←"
-          },
-          zeroRecords: "Tidak ada data ditemukan"
-        }
-      });
-    });
+  $('#tabel-komplain').DataTable({
+    responsive: true,
+    order: [[7, 'asc'], [3, 'asc']],
+    columnDefs: [
+      {
+        targets: 7,
+        visible: false,
+        searchable: false
+      }
+    ],
+    language: {
+      search: "Cari:",
+      lengthMenu: "Tampilkan _MENU_ data",
+      info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+      paginate: {
+        first: "Pertama",
+        last: "Terakhir",
+        next: "→",
+        previous: "←"
+      },
+      zeroRecords: "Tidak ada data ditemukan"
+    }
+  });
+});
   </script>
     @endpush
 @endsection

@@ -34,7 +34,7 @@
                             @endif
                         </div>
                     </div>
-            </x-thanks>
+            </x-feedback>
             
             @elseif(!$komplain->penilaian)             
                 <h4 class="mt-3 mb-3">Rating</h4>                                              

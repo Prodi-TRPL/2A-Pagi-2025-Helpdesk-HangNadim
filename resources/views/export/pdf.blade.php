@@ -36,8 +36,10 @@
     </style>
 </head>
 <body>
-    <h2>Laporan Komplain Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
+    <p>Laporan Dibuat oleh: {{ Auth::user()->name }}</p>
+    <p>Tanggal: {{ now()->format('d-m-Y')}}</p>
 
+    <h2>Laporan Komplain Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
     @if ($data->isEmpty())
         <h1 style="text-align: center;">Tidak ada data untuk periode ini.</h1>
     @else
