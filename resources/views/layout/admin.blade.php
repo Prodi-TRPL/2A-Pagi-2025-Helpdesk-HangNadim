@@ -37,9 +37,8 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<<<<<<< HEAD
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
@@ -47,6 +46,26 @@
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-bar-demo.js') }}"></script>
+=======
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- sb-admin JS -->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+<!-- Charts (jika diperlukan) -->
+<script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+<script src="{{ asset('js/demo/chart-bar-demo.js') }}"></script>
+
+>>>>>>> b4fc2925b2047763497b192a3bec57126a93d323
     @stack('scripts')
 </body>
 </html>

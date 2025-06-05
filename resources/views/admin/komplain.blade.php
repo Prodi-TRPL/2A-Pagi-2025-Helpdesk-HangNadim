@@ -4,13 +4,18 @@
   <x-alert type="success">
     {{ session('success') }}</x-alert>
 @endif
+  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
+
 <div class="card shadow">
       <div class="card-body">
+<<<<<<< HEAD
         <h5 class="card-title">Daftar Komplain</h5>
   <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
 
 <div class="card shadow">
       <div class="card-body">
+=======
+>>>>>>> b4fc2925b2047763497b192a3bec57126a93d323
         
         <div class="table-responsive">
           <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
@@ -23,7 +28,7 @@
                 <th>Tingkatan</th>
                 <th>Status</th>
                 <th>Aksi</th>
-                <th>Status</th>
+                <th>Tingkat Status</th>
               </tr>
             </thead>
             <tbody>
