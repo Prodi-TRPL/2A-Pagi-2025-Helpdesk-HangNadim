@@ -1,5 +1,17 @@
 @extends('layout.app')
 @section('content')
+<!-- Features Section -->
+  <style>
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: scale(1.05) rotateX(2deg);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+</style>
 
 <!-- Hero Section -->
 <section class="text-white pt-5 position-relative" id="home" style="background: url('hangnadim2.jpg') no-repeat center center; background-size: cover;">
@@ -54,20 +66,6 @@
 
 </section>
 
-
-  <!-- Features Section -->
-  <style>
-    .feature-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .feature-card:hover {
-        transform: scale(1.05) rotateX(2deg);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-        z-index: 2;
-    }
-</style>
-
   <section class="bg-light py-1" id="features">
       <div class="container py-5" style="font-family:Segoe UI', sans-serif;">
           <div class="text-center mb-5">
@@ -121,7 +119,7 @@
         <div class="row g-4">
             <!-- Komplain Card -->
             <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card feature-card h-100 border-0 shadow-sm">
                     <div id="komplain" class="card-body p-5 shadow-sm d-flex flex-column">
                         <div class="text-center mb-4">
                             <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -145,7 +143,7 @@
 
             <!-- Saran Card -->
             <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow-sm">
+                <div class="card feature-card h-100 border-0 shadow-sm">
                     <div id="saran" class="card-body p-5 shadow-sm d-flex flex-column">
                         <div class="text-center mb-4">
                             <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">

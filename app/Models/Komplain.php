@@ -7,6 +7,7 @@ use App\Models\Pelapor;
 use App\Models\Kategori;
 use App\Models\Penilaian;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -23,8 +24,10 @@ class Komplain extends Model
         parent::boot();
 
         static::creating(function ($model){
-            if (!$model->tiket){
-                $model->tiket = Str::ulid();
+            $jam = Carbon::now()->format('is');
+            $bulan = now()->format('m')
+;            if (!$model->tiket){
+                $model->tiket = 'TKT-' . random_int(100,999). $jam. '-' . $bulan;
             }
         });
     }
