@@ -13,14 +13,14 @@
           <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
             <thead class="table-primary">
               <tr>
-                <th>No Tiket</th>
-                <th>Nama</th>
-                <th>Kategori</th>
-                <th>Tanggal Masuk</th>
-                <th>Tingkatan</th>
-                <th>Status</th>
-                <th>Aksi</th>
-                <th>Tingkat Status</th>
+                <th class="text-center">No Tiket</th>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Kategori</th>
+                <th class="text-center">Tanggal Masuk</th>
+                <th class="text-center">Tingkatan</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Aksi</th>
+                <th class="text-center">Tingkat Status</th>
               </tr>
             </thead>
             <tbody>

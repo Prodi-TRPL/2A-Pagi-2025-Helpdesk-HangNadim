@@ -111,61 +111,64 @@
           </div>
       </div>
   </section>
+<!-- Options Section -->
+<section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
+    <div class="container py-4">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
+            <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
+        </div>
+        <div class="row g-4">
+            <!-- Komplain Card -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div id="komplain" class="card-body p-5 shadow-sm d-flex flex-column">
+                        <div class="text-center mb-4">
+                            <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                <i class="fas fa-thumbs-up fa-2x"></i>
+                            </div>
+                            <h3 class="fw-bold">Komplain</h3>
+                            <p class="text-muted">Berikan Komplain Anda</p>
+                        </div>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Respon cepat dari tim kami</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Solusi yang efektif</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Komunikasi yang baik</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Hasil yang memuaskan</li>
+                        </ul>
+                        <div class="mt-auto text-center">
+                            <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Laporkan Komplain Anda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Options Section -->
-  <section class="py-1" id="options" style="font-family:Segoe UI', sans-serif">
-      <div class="container py-4">
-          <div class="text-center mb-4">
-              <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
-              <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
-          </div>
-          <div class="row g-4">
-              <div class="col-lg-6">
-                  <div class="card h-100 border-0 shadow-sm">
-                      <div id="komplain" class="card-body p-5 shadow-sm">
-                          <div class="text-center mb-5">
-                              <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                  <i class="fas fa-thumbs-up fa-2x"></i>
-                              </div>
-                              <h3 class="fw-bold">Komplain</h3>
-                              <p class="text-muted mb-4">Berikan Komplain Anda</p>
-                          </div>
-                          <ul class="list-group list-group-flush mb-5">
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Respon cepat dari tim kami</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Solusi yang efektif</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Komunikasi yang baik</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Hasil yang memuaskan</li>
-                          </ul>
-                          <div class="text-center">
-                              <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Laporkan Komplain Anda</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-6">
-                  <div class="card h-100 border-0 shadow-sm">
-                      <div id="saran" class="card-body p-5 shadow-sm">
-                          <div class="text-center mb-4">
-                              <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                  <i class="fas fa-comments fa-2x"></i>
-                              </div>
-                              <h3 class="fw-bold">Punya Saran</h3>
-                              <p class="text-muted mb-4">Bagikan ide untuk perbaikan layanan</p>
-                          </div>
-                          <ul class="list-group list-group-flush mb-5">
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Usulan fitur baru</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Saran perbaikan sistem</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Masukan untuk tim layanan</li>
-                              <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Ide untuk pengembangan</li>
-                          </ul>
-                          <div class="text-center">
-                              <a href="{{ route('saran.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Kirim Saran</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+            <!-- Saran Card -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div id="saran" class="card-body p-5 shadow-sm d-flex flex-column">
+                        <div class="text-center mb-4">
+                            <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                <i class="fas fa-comments fa-2x"></i>
+                            </div>
+                            <h3 class="fw-bold">Punya Saran</h3>
+                            <p class="text-muted">Bagikan ide untuk perbaikan layanan</p>
+                        </div>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Usulan fitur baru</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Saran perbaikan sistem</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Masukan untuk tim layanan</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Ide untuk pengembangan</li>
+                        </ul>
+                        <div class="mt-auto text-center">
+                            <a href="{{ route('saran.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Kirim Saran</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 @endsection
