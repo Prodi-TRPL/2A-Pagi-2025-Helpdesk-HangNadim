@@ -9,73 +9,30 @@
         <table id="tabel-saran" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
             <thead class="table-primary">
                 <tr>
-                    <th class="text-center"style="width: 20%;">Tanggal</th>
-                    <th class="text-center"style="width: 20%; max-width: 200px; white-space: normal; word-wrap: break-word;">Nama</th>
-                    <th class="text-center"style="width: 60%; max-width: 400px; white-space: normal; word-wrap: break-word;">Saran</th>
+                  <th class="text-center">Nama</th>
+                  <th class="text-center">Tanggal</th>
+                    <th class="text-center">Saran</th>
                 </tr>
             </thead>
             <tbody>
+              @foreach ($sarans as $saran)
                 <tr>
-                    <td>15-03-2025</td>
-                    <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 200px;">
-                        Rani
-                    </td>
-                    <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 400px;">
-                        Mohon ditambahkan lebih banyak kursi di area ruang tunggu domestik, terutama saat jam sibuk. Banyak penumpang harus berdiri cukup lama sebelum boarding karena tempat duduk penuh.
-                    </td>
-                </tr>
-                <tr>
-                  <td>01-01-2025</td>
-                  <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 200px;">
-                    Devan
+                  <td>
+                    {{ $saran->pelapor->nama }}
                   </td>
-                  <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 400px;">
-                    Petugas lebih cepat merespon
+                  <td>
+                    {{ $saran->created_at->format('Y-m-d') }}
+                  </td>
+                  <td>
+                    {{  Str::limit($saran->message, 30, '') }}
                   </td>
                 </tr>
-                <tr>
-                  <td>10-12-2024</td>
-                  <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 200px;">
-                    Lalaaaa aaaaaaa aaaaaaaaa
-                  </td>
-                  <td style="white-space: normal; word-break: break-word; text-align: left; max-width: 400px;">
-                    Mungkin bisa ditambah fitur jadwal keberangkatan
-                  </td>
-                </tr>
+                @endforeach
               </tbody>
         </table>
     </div>
     </div>
   </div>
-
-  @push('styles')
-  <style>
-    /* Elegant font and neutral body color */
-    #tabel-saran {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #6b7280;
-      font-size: 16px;
-    }
-
-    /* Ensure text wraps in Nama and Saran columns */
-    #tabel-saran th:nth-child(2),
-    #tabel-saran td:nth-child(2),
-    #tabel-saran th:nth-child(3),
-    #tabel-saran td:nth-child(3) {
-      white-space: normal !important;
-      word-wrap: break-word !important;
-      word-break: break-word !important;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    /* Padding and spacing tweaks for readability */
-    #tabel-saran tbody td {
-      padding: 1rem;
-      vertical-align: top;
-    }
-  </style>
-  @endpush
 
   @push('scripts')
   <script>

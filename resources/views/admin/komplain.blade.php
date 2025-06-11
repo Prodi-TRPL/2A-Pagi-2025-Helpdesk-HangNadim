@@ -29,7 +29,7 @@
                 <td>{{ $komplain->tiket }}</td>
                 <td>{{ $komplain->pelapor->nama }}</td>
                 <td>{{ $komplain->kategori->nama_kategori }}</td>
-                <td>{{ $komplain->created_at }}</td>
+                <td>{{ $komplain->created_at->format('Y-m-d') }}</td>
 
                 <td>
                   <form action="{{ route('update.tingkat', $komplain->id) }}" method="POST"> 
