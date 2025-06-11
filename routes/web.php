@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('statistik', function () {
     return view('admin.statistik');
-})->name('statsitik');
+})->name('statistik');
 
 Route::get('penilaian', function () {
     return view('admin.penilaian');
@@ -34,7 +34,7 @@ Route::get('kelola/admin', function () {
 
 Route::get('pelapor', function () {
     return view('admin.data_pelapor');
-})->name('data_pelapor');
+})->name('data.pelapor');
 
 Route::get('sidebar', function () {
     return view('partials.sidebar');
