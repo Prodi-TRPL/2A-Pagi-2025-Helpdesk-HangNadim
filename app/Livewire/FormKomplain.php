@@ -27,7 +27,7 @@ class FormKomplain extends Component
         'pekerjaan' => 'required|string',
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
-        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
     ];
     public function submitDataDiri()
     {

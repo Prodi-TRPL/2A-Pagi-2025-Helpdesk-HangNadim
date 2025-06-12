@@ -39,11 +39,13 @@
             <span>Data Pelapor</span></a>
     </li>
 
+    @if (auth()->user()->role == 'Team Leader')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('kelola.admin') }}">
             <i class="fas fa-cog"></i>
             <span>Kelola Admin</span></a>
     </li>
+    @endif
 
    <div class="text-center d-none d-md-inline" style="margin-top: 20px;">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>

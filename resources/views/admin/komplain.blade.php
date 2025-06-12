@@ -53,11 +53,34 @@
                     </select>
               </td>
                 
-              <td><a href="#" class="btn btn-primary btn-sm">Detail Keluhan</a></td>
               
+              <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button></td>
+
               {{-- Helper Filter --}}
               <td>{{ $komplain->status_order }}</td>
               </tr>
+
+              <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
+
+                  <div class="mb-3">
+                      <strong>Komplain:</strong>
+                      <p class="mb-0">{{ $komplain->message }}</p>
+                  </div>
+
+                  <div class="mb-2">
+                      <strong>Bukti:</strong><br>
+                    <div class="d-flex justify-content-center">
+                      <a href="{{ asset('storage/' . $komplain->bukti) }}" target="_blank">
+                          <img src="{{ asset('storage/' . $komplain->bukti) }}"
+                              alt="Bukti Komplain"
+                              class="img-fluid rounded shadow-sm"
+                              style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                      </a>
+                    </div>
+                  </div>
+
+              </x-modal>
+
               @endforeach
             </tbody>
           </table>

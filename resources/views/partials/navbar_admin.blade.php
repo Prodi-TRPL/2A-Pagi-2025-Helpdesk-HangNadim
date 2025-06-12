@@ -6,7 +6,7 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <h1 class="h3 mb-4 text-gray-800 pt-4 ms-2">@yield('navbar')</h1>
+    <p class="mb-4 text-gray-800 pt-4">@yield('navbar')</p>
    
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

@@ -10,11 +10,9 @@
 
 <div class="card shadow mb-5">
   
-  @if (auth()->user()->role == 'Team Leader')
   <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
       <i class="fas fa-user-plus"></i> 
   </a>
-  @endif
 
   <div class="card-body">
     <div class="table-responsive ">
