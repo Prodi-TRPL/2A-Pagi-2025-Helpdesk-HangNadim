@@ -1,6 +1,6 @@
 @extends('layout.admin')
 @section('content')
-  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Penilaian</h1>
+@section('navbar', 'Daftar Penilaian')
 
 <div class="card shadow">
       <div class="card-body">

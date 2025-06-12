@@ -8,13 +8,13 @@
     </div>
     
     <div class="mb-4 w-100 row">
-        <form>
-        <div class="input-group">
-            <input type="text" class="form-control rounded-start-pill" placeholder="Masukkan no tiket">
-            <button class="btn btn-primary rounded-end-pill px-4" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+        <form action="{{ route('lacak.komplain.submit') }}" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control rounded-start-pill" placeholder="Masukkan no tiket" name="tiket">
+                <button class="btn btn-primary rounded-end-pill px-4" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </form>
     </div>
     
@@ -24,7 +24,13 @@
     </div>
     
     <div class="text-center text-muted">
+        @if (session('error'))
+        <small class="text-danger">
+            {{session('error')}}
+        </small>
+        @else
         <small>Masukkan nomor tiket yang Anda terima saat mengajukan aduan😉</small>
+        @endif
     </div>
 </div>
 @endsection

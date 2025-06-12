@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KomplainController;
+use App\Http\Controllers\PelaporController;
 use App\Http\Controllers\PenilaianController;
 
 Route::get('random', function () {
@@ -28,13 +29,7 @@ Route::get('penilaian', function () {
     return view('admin.penilaian');
 })->name('penilaian');
 
-Route::get('kelola/admin', function () {
-    return view('admin.kelola_admin');
-})->name('kelola.admin');
 
-Route::get('pelapor', function () {
-    return view('admin.data_pelapor');
-})->name('data.pelapor');
 
 Route::get('sidebar', function () {
     return view('partials.sidebar');
@@ -46,8 +41,8 @@ Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
-Route::get('lacak/komplain',[KomplainController::class, 'viewTrackStatus'])->name('lacak.komplain');
-Route::get('lacak/komplain/{tiket}', [KomplainController::class, 'trackStatus'])->name('lacak.komplain.submit');
+Route::get('lacak/komplain',[KomplainController::class, 'viewTrackComplaint'])->name('lacak.komplain');
+Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
@@ -56,7 +51,11 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
 
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
+
+    Route::get('pelapor', [PelaporController::class, 'index'] )->name('data.pelapor');
     
+    Route::get('kelola/admin', [AdminController::class, 'index'])->name('kelola.admin');
+    Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
     Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
     Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
     
@@ -65,5 +64,5 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
     Route::get('saran',[SaranController::class, 'index'])->name('saran');
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
 
-    Route::post('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
+    Route::patch('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
 // });

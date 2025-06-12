@@ -53,8 +53,14 @@
                         </div>
                     </div>
 
+                    
                     <!-- Form Identitas -->
-                <div class="{{ $step === 1 ? '' : 'd-none' }}">
+                    <div class="{{ $step === 1 ? '' : 'd-none' }}">
+
+                    <a href="/" class="btn btn-outline-success mb-2">
+                        <i class="fas fa-arrow-left me-1"></i> Kembali
+                    </a>
+
                     <h4 class="mb-4 text-primary">Data Diri</h4>
                     <div class="card shadow-sm">
                         <div class="card-body p-3 p-md-4">

@@ -1,8 +1,8 @@
 @extends('layout.admin')
 @section('content')
-  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Saran</h1>
+@section('navbar', 'Daftar Saran')
 
-  <div class="card shadow rounded-3" style="background: #ffffff; padding: 1.5rem; max-width: 1200px; margin: 0 auto;">
+  <div class="card shadow">
     <div class="card-body">
       <div class="table-responsive">
         

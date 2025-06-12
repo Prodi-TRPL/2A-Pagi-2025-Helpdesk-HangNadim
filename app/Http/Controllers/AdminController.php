@@ -15,7 +15,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        
+        $users = User::all(); 
+
+        return view('admin.kelola_admin', compact('users'));
     }
 
     /**
@@ -47,7 +49,7 @@ class AdminController extends Controller
             'whatsapp' => $validated['whatsapp']
         ]);
 
-        return redirect()->route('kelola.admin.form')->with('success', 'Berhasil menambah akun!');
+        return redirect()->route('kelola.admin')->with('success', 'Berhasil menambah akun!');
     }
 
     /**
@@ -77,8 +79,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete(); 
+
+        return redirect()->back()->with('success', 'User berhasil dihapus.');
     }
 }

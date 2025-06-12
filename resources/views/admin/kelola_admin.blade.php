@@ -1,72 +1,70 @@
 @extends('layout.admin')
 @section('content')
-  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Kelola Admin</h1>
-  <div class="modal fade" tabindex="-1" id="modalAdmin">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="card shadow">
-      <div class="card-body">
-        
-        <div class="table-responsive">
-          <table id="tabel-kelola_admin" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
-            <thead class="table-primary">
-              <tr>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Role</th>
-                <th class="text-center">Password</th>
-                <th class="text-center">Aksi</th>
+@section('navbar', 'Kelola Admin')
+  
+@if(session('success'))
+    <x-alert type="success">
+        {{ session('success') }}
+    </x-alert>
+  @endif
 
+<div class="card shadow mb-5">
+  
+  @if (auth()->user()->role == 'Team Leader')
+  <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
+      <i class="fas fa-user-plus"></i> 
+  </a>
+  @endif
+
+  <div class="card-body">
+    <div class="table-responsive ">
+      <table id="tabel-kelola_admin" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
+        <thead class="table-primary">      
+          <tr>
+            <th class="text-center">Nama</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Role</th>
+            <th class="text-center">Aksi</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($users as $user)
+
+              <tr> 
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>{{$user->role}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalAdmin{{ $user->id }}">
+                      <i class="fas fa-trash"></i>
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Rina Wijaya</td>
-                    <td>rina@example</td>
-                    <td>Team Leader</td>
-                    <td>********</td>
-                    <td>
-                      <button type="button" data-bs-toggle="modal" data-bs-target="#modalAdmin">detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Budi Santoso</td>
-                    <td>budi@example</td>
-                    <td>Officer</td>
-                    <td>********</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Siti Lestari</td>
-                    <td>siti@example</td>
-                    <td>Officer</td>
-                    <td>********</td>
-                    <td></td>
-                </tr>
+              <x-modal id="modalAdmin{{ $user->id }}" title="Yakin ingin menghapus?">
+                <p class="text-black">Nama: {{$user->name}}</p>
+                <p class="text-black">Email: {{$user->email}}</p>
+
+                <x-slot name="footer">
+                  <form action={{ route('kelola.admin.destroy', $user->id) }} method="POST">
+                      @csrf @method('DELETE')
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-outline-danger">Hapus</button>
+                  </form>
+                </x-slot>
+              </x-modal>
+              @endforeach
               </tbody>
+          </table>
         </div>
       </div>
-    </div>
+  </div>
 
     @push('scripts')
       <script>
     $(document).ready(function () {
   $('#tabel-kelola_admin').DataTable({
-    responsive: true
+    responsive: true,
     language: {
       search: "Cari:",
       lengthMenu: "Tampilkan _MENU_ data",

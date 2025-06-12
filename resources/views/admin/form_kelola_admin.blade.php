@@ -1,16 +1,9 @@
 @extends('layout.admin')
 
 @section('content')
-<div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Kelola Admin</h1>
 
-    @if(session('success'))
-        <x-alert type="success">
-            {{ session('success') }}
-        </x-alert>
-    @endif
-
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-5">
         <div class="card-body">
             <form action="{{ route('kelola.admin.store') }}" method="POST">
                 @csrf
@@ -51,12 +44,15 @@
                     @error('role') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
-                <div class="d-flex justify-content-end">
-                    <button type="reset" class="btn btn-secondary me-2">Reset</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-between">
+                    <a href="{{ route('kelola.admin') }}" class="btn btn-outline-secondary order-2 order-md-1">
+                        <i class="fas fa-arrow-left me-1"></i> Kembali
+                    </a>
+                    <button type="submit" class="btn btn-primary order-1 order-md-2">
+                        <i class="fas fa-plus me-1"></i> Tambah
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-</div>
 @endsection

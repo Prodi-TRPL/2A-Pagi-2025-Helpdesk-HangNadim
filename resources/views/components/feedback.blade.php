@@ -9,8 +9,9 @@
     <p class="lead text-secondary mb-4">{{ $subtitle }}.</p>
     
     {{$slot}}
-    
     <div class="mt-4">
-        <a href="{{ route($back ) }}" class="btn btn-primary text-white">Kembali ke Dashboard</a>
+        <a href="/" class="btn btn-outline-primary">
+            Kembali Ke Beranda<i class="fas fa-arrow-right ms-2"></i> 
+        </a>
     </div>
 </div>

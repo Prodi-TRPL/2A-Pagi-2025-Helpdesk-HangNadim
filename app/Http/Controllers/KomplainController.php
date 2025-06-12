@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Models\Komplain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class KomplainController extends Controller
 {
@@ -14,7 +15,7 @@ class KomplainController extends Controller
     public function index() 
     {
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         $dataFilter = match($user->role){
             'Officer' => 'Rendah',
@@ -25,7 +26,7 @@ class KomplainController extends Controller
             };
 
         $komplains = Komplain::with('pelapor','kategori','user:id,name')
-        ->addSelect('*')
+        ->select('komplains.*')
         ->addSelect(DB::raw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai') as status_order"))
         ->when($dataFilter, function ($query, $tingkat) {
         $query->where('tingkat', $tingkat);
@@ -98,7 +99,7 @@ class KomplainController extends Controller
         //
     }
 
-    public function viewTrackStatus()
+    public function viewTrackComplaint()
     {
         return view('public.lacak_komplain', [
             'komplain' => null,
@@ -106,17 +107,18 @@ class KomplainController extends Controller
         ]);
     }
 
-    public function trackStatus($tiket)
+    public function trackComplaint(Request $request)
     {
-        $komplain = Komplain::where('tiket', $tiket)->with('pelapor','kategori')->first();
+        $tiket = $request->tiket;
 
-        if($komplain)
-        {
+        $komplain = Komplain::where('tiket', $tiket)
+        ->with('pelapor','kategori')
+        ->first();
+        
+        if($tiket && $komplain){
             return view('public.lacak_komplain', compact('komplain'));
         } else {
-            return view('public.lacak_komplain', [
-                'komplain' => null,
-                'error' => "Komplain dengan tiket $tiket tidak ditemukan"]);
+            return redirect()->back()->with('error','Nomor tiket Anda tidak ditemukan, pastikan untuk melihat lagi tiket Anda😊');
         }
     }
 }

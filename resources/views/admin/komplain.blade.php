@@ -1,10 +1,12 @@
 @extends('layout.admin')
 @section('content')
+@section('navbar', 'Daftar Komplain')
+
+
 @if(session('success'))
   <x-alert type="success">
     {{ session('success') }}</x-alert>
 @endif
-  <h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Daftar Komplain</h1>
 
 <div class="card shadow">
       <div class="card-body">
@@ -33,7 +35,7 @@
 
                 <td>
                   <form action="{{ route('update.tingkat', $komplain->id) }}" method="POST"> 
-                    @csrf
+                    @csrf @method('PATCH')
                     <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()">
                       <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
                       <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>

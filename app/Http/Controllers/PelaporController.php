@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelapor;
 use Illuminate\Http\Request;
 
 class PelaporController extends Controller
@@ -11,7 +12,8 @@ class PelaporController extends Controller
      */
     public function index()
     {
-        //
+        $pelapors = Pelapor::all();
+        return view('admin.data_pelapor', compact('pelapors'));
     }
 
     /**

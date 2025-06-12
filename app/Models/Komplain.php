@@ -25,9 +25,10 @@ class Komplain extends Model
 
         static::creating(function ($model){
             $jam = Carbon::now()->format('is');
-            $bulan = now()->format('m')
+            $bulan = now()->format('m');
+            $tahun = now()->format('y');
 ;            if (!$model->tiket){
-                $model->tiket = 'TKT-' . random_int(100,999). $jam. '-' . $bulan;
+                $model->tiket = 'TKT-' . random_int(100,999). $jam. '-' . $bulan . $tahun;
             }
         });
     }

@@ -6,9 +6,10 @@
         <i class="fa fa-bars"></i>
     </button>
 
+    <h1 class="h3 mb-4 text-gray-800 pt-4 ms-2">@yield('navbar')</h1>
+   
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
             <!-- Dropdown - Messages -->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                 aria-labelledby="searchDropdown">

@@ -1,8 +1,6 @@
 @extends('layout.admin')
 @section('content')
-            
-<!-- Page Heading -->
-<h1 class="h3 mb-2 font-weight-bold text-gray-900 ms-3">Dashboard</h1>
+@section('navbar', 'Dashboard')
 
 <!-- Content Row -->
 <div class="row">
