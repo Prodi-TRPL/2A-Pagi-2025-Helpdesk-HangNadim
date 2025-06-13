@@ -54,7 +54,10 @@
               </td>
                 
               
-              <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button></td>
+              <td>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
+                <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+              </td>
 
               {{-- Helper Filter --}}
               <td>{{ $komplain->status_order }}</td>

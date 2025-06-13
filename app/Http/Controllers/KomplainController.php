@@ -6,6 +6,8 @@ use App\Models\Komplain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Kategori;
+
 
 class KomplainController extends Controller
 {
@@ -66,9 +68,12 @@ class KomplainController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $komplains = Komplain::with('kategori')->findOrFail($id);
+        $kategoris = Kategori::all();
+
+        return view('admin.komplain_edit', compact('komplains', 'kategoris'));
     }
 
     /**
@@ -101,10 +106,7 @@ class KomplainController extends Controller
 
     public function viewTrackComplaint()
     {
-        return view('public.lacak_komplain', [
-            'komplain' => null,
-            'error' => null
-        ]);
+        return view('public.lacak_komplain');
     }
 
     public function trackComplaint(Request $request)
@@ -116,7 +118,7 @@ class KomplainController extends Controller
         ->first();
         
         if($tiket && $komplain){
-            return view('public.lacak_komplain', compact('komplain'));
+            return view('public.status_komplain', compact('komplain'));
         } else {
             return redirect()->back()->with('error','Nomor tiket Anda tidak ditemukan, pastikan untuk melihat lagi tiket Anda😊');
         }

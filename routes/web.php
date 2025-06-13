@@ -65,4 +65,5 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
 
     Route::patch('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
+    Route::get('komplain/edit/{id}', [KomplainController::class, 'edit'])->name('komplain.edit');
 // });

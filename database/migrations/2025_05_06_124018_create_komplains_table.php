@@ -21,7 +21,8 @@ return new class extends Migration
             $table->enum('status', ['Menunggu', 'Diproses', 'Selesai'])->default('Menunggu');
             $table->enum('tingkat',['Rendah', 'Sedang', 'Tinggi'])->default('Rendah');
             $table->string('bukti')->nullable();
-            $table->char('penyelesaian')->nullable();
+            $table->string('bukti_penyelesaian')->nullalble();
+            $table->char('deskripsi_penyelesaian')->nullable();
             $table->timestamps();
         });
     }

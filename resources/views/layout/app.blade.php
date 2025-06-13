@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('hover.css') }}">
 
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 pt-5">
     {{-- Navbar --}}
     @include('partials.navbar')
 
