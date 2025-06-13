@@ -47,7 +47,7 @@
             <!-- Kanan: Gambar Status -->
             <div class="col-md-3 d-flex align-items-center justify-content-center">
               @if($komplain->status == 'Selesai')
-                <img src="" alt="Status" class="img-fluid rounded">
+                <img src="{{ asset('img/selesai.svg') }}" alt="Status" class="img-fluid rounded">
               @elseif($komplain->status == 'Diproses')
                 <img src="{{ asset('img/proses.svg') }}" alt="Status" class="img-fluid rounded">
               @else
