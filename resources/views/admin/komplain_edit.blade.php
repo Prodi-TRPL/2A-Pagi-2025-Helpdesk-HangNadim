@@ -27,6 +27,12 @@
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi Penyelesaian:</label>
+                    <textarea class="form-control @error('deskripsi_penyelesaian') is-invalid @enderror" id="deskripsi" name="deskripsi_penyelesaian" rows="6"></textarea>
+                    @error('deskripsi_penyelesaian')<div class="invalid-feedback">{{ $message }}</div>@enderror              
+            </div>
+
             <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-between">
                 <a href="{{ route('komplain') }}"
                         class="btn btn-outline-secondary order-2 order-md-1">
