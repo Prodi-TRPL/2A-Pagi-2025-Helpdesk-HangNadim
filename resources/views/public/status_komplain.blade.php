@@ -51,7 +51,7 @@
               @elseif($komplain->status == 'Diproses')
                 <img src="{{ asset('img/proses.svg') }}" alt="Status" class="img-fluid rounded">
               @else
-                <img src="{{ asset('img/Menunggu.svg') }}" alt="Status" class="img-fluid rounded">
+                <img src="{{ asset('img/status_menunggu.svg') }}" alt="Status" class="img-fluid rounded">
               @endif
             </div>
           </div>
