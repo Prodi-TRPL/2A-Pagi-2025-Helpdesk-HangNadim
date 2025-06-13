@@ -7,13 +7,12 @@
         {{ session('success') }}
     </x-alert>
   @endif
-
-<div class="card shadow mb-5">
-  
-  <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
-      <i class="fas fa-user-plus"></i> 
-  </a>
-
+  <div class="card-body text-end"> <!-- Menempatkan tombol di kanan -->
+    <a href="{{ route('kelola.admin.form') }}" class="btn btn-success btn-sm">
+      <i class="fas fa-user-plus"></i> Tambah Akun
+    </a>
+  </div>
+  <div class="card shadow mb-5">
   <div class="card-body">
     <div class="table-responsive ">
       <table id="tabel-kelola_admin" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
@@ -33,7 +32,10 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role}}</td>
-                <td>
+                <td class="text-center">
+                  <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
+                    <i class="fas fa-pen"></i>
+                  </a>               
                   <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalAdmin{{ $user->id }}">
                       <i class="fas fa-trash"></i>
                   </button>
