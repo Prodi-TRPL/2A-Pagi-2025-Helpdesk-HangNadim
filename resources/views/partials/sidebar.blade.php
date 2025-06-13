@@ -1,55 +1,88 @@
-<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('statistik') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
+<style>
+    @keyframes growFromCenter {
+      0% {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+    
+    .sidebar .nav-link {
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .sidebar .nav-link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 4px;
+      background-color: #ffffff;
+      border-radius: 0 4px 4px 0;
+      transform-origin: center;
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    
+    .sidebar .nav-link.active::before {
+      animation: growFromCenter 0.4s ease-out forwards;
+    }
+      </style>
+        <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('statistik') }}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    
+                </div>
+                <div class="sidebar-brand-text mx-3">NadimDesk</div>
+            </a>
+                <hr class="sidebar-divider d-none d-md-block" style="opacity: 0.5; background-color: rgb(255, 255, 255); height: 1px; border: none;">
+        
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('statistik') ? 'active' : '' }}" href="{{ route('statistik') }}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Dashboard</span></a>
+            </li>
             
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('komplain') ? 'active' : '' }}" href="{{ route('komplain') }}">            
+                    <i class="fas fa-fw fa-comment-dots"></i>
+                    <span>Komplain</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('saran') ? 'active' : '' }}" href="{{ route('saran') }}">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Saran</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('penilaian') ? 'active' : '' }}" href="{{ route('penilaian') }}">
+                    <i class="fas fa-star"></i>
+                    <span>Penilaian</span></a>
+            </li>
+        
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('data.pelapor') ? 'active' : '' }}" href="{{ route('data.pelapor') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Data Pelapor</span></a>
+            </li>
+        
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('kelola.admin') ? 'active' : '' }}" href="{{ route('kelola.admin') }}">
+                    <i class="fas fa-cog"></i>
+                    <span>Kelola Admin</span></a>
+            </li>
+        
+           <div class="text-center d-none d-md-inline" style="margin-top: 20px;">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-        <div class="sidebar-brand-text mx-3">NadimDesk</div>
-    </a>
-        <hr class="sidebar-divider d-none d-md-block" style="opacity: 0.5; background-color: rgb(255, 255, 255); height: 1px; border: none;">
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('statistik') }}">
-            <i class="fas fa-fw fa-home"></i>
-            <span>Dashboard</span></a>
-    </li>
-    
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('komplain') }}">
-            <i class="fas fa-fw fa-comment-dots"></i>
-            <span>Komplain</span>
-        </a>
-    </li>
-    
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('saran') }}">
-            <i class="fas fa-lightbulb"></i>
-            <span>Saran</span></a>
-    </li>
-    
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('penilaian') }}">
-            <i class="fas fa-star"></i>
-            <span>Penilaian</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('data.pelapor') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Data Pelapor</span></a>
-    </li>
-
-    @if (auth()->user()->role == 'Team Leader')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('kelola.admin') }}">
-            <i class="fas fa-cog"></i>
-            <span>Kelola Admin</span></a>
-    </li>
-    @endif
-
-   <div class="text-center d-none d-md-inline" style="margin-top: 20px;">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
-
-</ul>
-<!-- End of Sidebar -->
+        
+        </ul>
+        <!-- End of Sidebar -->
