@@ -153,7 +153,7 @@
                                         <i class="fas fa-arrow-left me-1"></i> Kembali
                                     </button>
                                     <button type="submit" class="btn btn-primary order-1 order-md-2">
-                                        <i class="fas fa-paper-plane me-1"></i> Kirim Saran
+                                        <i class="fas fa-paper-plane me-1"></i> Kirim Komplain
                                     </button>
                                 </div>
                             </form>

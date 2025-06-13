@@ -36,8 +36,8 @@
                 <small>Status</small>
                 <div class="fw-semibold 
                   @if($komplain->status == 'Selesai') text-success
-                  @elseif($komplain->status == 'Sedang Diproses') text-warning
-                  @else text-secondary
+                  @elseif($komplain->status == 'Diproses') text-warning
+                  @else text-danger
                   @endif">
                   {{ $komplain->status }}
                 </div>
@@ -46,10 +46,12 @@
 
             <!-- Kanan: Gambar Status -->
             <div class="col-md-3 d-flex align-items-center justify-content-center">
-              @if($komplain->status_icon)
-                <img src="" alt="status" class="img-fluid rounded">
+              @if($komplain->status == 'Selesai')
+                <img src="" alt="Status" class="img-fluid rounded">
+              @elseif($komplain->status == 'Diproses')
+                <img src="{{ asset('img/proses.svg') }}" alt="Status" class="img-fluid rounded">
               @else
-                <span class="text-muted">Tidak ada gambar</span>
+                <img src="{{ asset('img/Menunggu.svg') }}" alt="Status" class="img-fluid rounded">
               @endif
             </div>
           </div>
