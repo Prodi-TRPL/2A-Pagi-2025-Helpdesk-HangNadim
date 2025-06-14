@@ -1,7 +1,7 @@
-@props(['id', 'title', 'size' => 'modal-dialog-centered'])
+@props(['id', 'title'])
 
 <div class="modal fade" tabindex="-1" id="{{ $id }}">
-  <div class="modal-dialog {{ $size }}">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-primary">{{ $title }}</h5>

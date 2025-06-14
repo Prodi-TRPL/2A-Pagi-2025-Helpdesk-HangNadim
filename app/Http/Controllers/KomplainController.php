@@ -27,7 +27,7 @@ class KomplainController extends Controller
             default => abort(403)
             };
 
-        $komplains = Komplain::with('pelapor','kategori','user:id,name')
+        $komplains = Komplain::with('pelapor','kategori','user:id,name,role')
         ->select('komplains.*')
         ->addSelect(DB::raw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai') as status_order"))
         ->when($dataFilter, function ($query, $tingkat) {
@@ -70,30 +70,52 @@ class KomplainController extends Controller
      */
     public function edit($id)
     {
-        $komplains = Komplain::with('kategori')->findOrFail($id);
+        $komplain = Komplain::with('kategori')->findOrFail($id);
         $kategoris = Kategori::all();
 
-        return view('admin.komplain_edit', compact('komplains', 'kategoris'));
+        return view('admin.komplain_edit', compact('komplain', 'kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Komplain $komplain)
     {
-        //
-    }
-
-    public function updateTingkat(Request $request, Komplain $komplain)
-    {
-        $request->validate([
-            'tingkat' => 'in:Rendah,Sedang,Tinggi',
+        $data = $request->validate([
+        'kategori_id' => 'required|exists:kategori,id',
+        'status' => 'required|in:Menunggu,Diproses,Selesai',
+        'deskripsi_penyelesaian' => 'nullable',
+        'bukti_penyelesaian' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:8000',
         ]);
 
+        if ($request->hasFile('bukti_penyelesaian')) {
+            $path = $request->file('bukti_penyelesaian')->store('bukti_penyelesaian', 'public');
+            $data['bukti_penyelesaian'] = $path;
+        }
+
+        $komplain->update($data);
+
+        return redirect()->route('komplain')->with('success', 'Berhasil memperbarui komplain.');
+    }
+
+    public function updateStatusTingkat(Request $request, Komplain $komplain)
+    {
+
+        if($request->has('status')){
+            $request->validate(['status' => 'required|in:Menunggu,Diproses,Selesai']);
+            $komplain->status = $request->status;
+            $komplain->user_id = Auth::id();
+        }
+        
+        if($request->has('tingkat')){
+        $request->validate(['tingkat' => 'required|in:Rendah,Sedang,Tinggi',]);
         $komplain->tingkat = $request->tingkat;
+        $komplain->user_id = Auth::id();
+        }
+
         $komplain->save();
 
-        return redirect()->back()->with('success', 'Berhasil memperbarui tingkat keluhan.');
+        return redirect()->back()->with('success', 'Berhasil memperbarui komplain.');
     }
 
     /**
@@ -114,7 +136,7 @@ class KomplainController extends Controller
         $tiket = $request->tiket;
 
         $komplain = Komplain::where('tiket', $tiket)
-        ->with('pelapor','kategori')
+        ->with('kategori')
         ->first();
         
         if($tiket && $komplain){

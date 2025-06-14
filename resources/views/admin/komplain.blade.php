@@ -34,7 +34,7 @@
                 <td>{{ $komplain->created_at->format('Y-m-d') }}</td>
 
                 <td>
-                  <form action="{{ route('update.tingkat', $komplain->id) }}" method="POST"> 
+                  <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST"> 
                     @csrf @method('PATCH')
                     <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()">
                       <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
@@ -45,18 +45,20 @@
                 </td>
 
                 <td>
-                    <select class="form-select form-select-sm">
-                      <option hidden>{{ $komplain->status }}</option>
-                      <option>Menunggu</option>
-                      <option>Diproses</option>
-                      <option>Selesai</option>
+                  <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST">
+                    @csrf @method('PATCH')
+                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                      <option value="Menunggu" {{ $komplain->status == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
+                      <option value="Diproses" {{ $komplain->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
+                      <option value="Selesai" {{ $komplain->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                     </select>
+                  </form>
               </td>
                 
               
               <td>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
                 <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
               </td>
 
               {{-- Helper Filter --}}
@@ -65,13 +67,28 @@
 
               <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
 
+                <div class="mb-3">
+                    <strong>Email:</strong>
+                    <p class="text-muted">{{ $komplain->pelapor->email }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Whatsapp:</strong>
+                    <p class="text-muted">{{ $komplain->pelapor->whatsapp }}</p>
+                </div>
+
                   <div class="mb-3">
                       <strong>Komplain:</strong>
-                      <p class="mb-0">{{ $komplain->message }}</p>
+                      <p class="text-danger">{{ $komplain->message }}</p>
                   </div>
 
-                  <div class="mb-2">
-                      <strong>Bukti:</strong><br>
+                  <div class="mb-3">
+                      <strong>Terakhir diubah oleh:</strong>
+                      <p class="text-muted">{{ $komplain->user->name ?? '-'}}</p>
+                  </div>
+
+                  <div class="mb-3">
+                      <strong>Bukti:</strong>
                     <div class="d-flex justify-content-center">
                       <a href="{{ asset('storage/' . $komplain->bukti) }}" target="_blank">
                           <img src="{{ asset('storage/' . $komplain->bukti) }}"

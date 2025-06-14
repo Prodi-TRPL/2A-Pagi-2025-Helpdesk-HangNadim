@@ -120,7 +120,7 @@
                             <form wire:submit.prevent="submitKomplain" class="needs-validation">
                                 <div class="mb-3">
                                     <label for="kategori" class="form-label">Kategori:</label>
-                                    <select class="form-control @error('kategori_id') is-invalid @enderror" wire:model="kategori_id" id="kategori">
+                                    <select class="form-select @error('kategori_id') is-invalid @enderror" wire:model="kategori_id" id="kategori">
                                         <option value="" hidden>-- Pilih Kategori --</option>
                                         @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
@@ -136,15 +136,9 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="bukti" class="form-label">Bukti (opsional):</label>
+                                    <label for="bukti" class="form-label">Bukti:</label>
                                     <input type="file" wire:model="bukti" id="bukti" class="form-control @error('bukti') is-invalid @enderror">
                                     @error('bukti')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                                    
-                                    @if ($bukti)
-                                    @if (\Illuminate\Support\Str::startsWith($bukti->getMimeType(), 'image/'))
-                                    <img src="{{ $bukti->temporaryUrl() }}" class="mt-3" style="max-width: 300px; max-height: 200px; height: auto; width: auto;" />
-                                    @endif
-                                    @endif
                                 </div>
                                 
                                 <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-between">

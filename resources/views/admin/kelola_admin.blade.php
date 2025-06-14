@@ -7,8 +7,8 @@
         {{ session('success') }}
     </x-alert>
   @endif
-  <div class="card-body text-end"> <!-- Menempatkan tombol di kanan -->
-    <a href="{{ route('kelola.admin.form') }}" class="btn btn-success btn-sm">
+  <div class="pb-3 text-end">
+    <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
       <i class="fas fa-user-plus"></i> Tambah Akun
     </a>
   </div>

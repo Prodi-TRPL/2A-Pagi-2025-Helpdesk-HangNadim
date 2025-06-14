@@ -10,13 +10,6 @@ use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PelaporController;
 use App\Http\Controllers\PenilaianController;
 
-Route::get('random', function () {
-    User::factory()->count(2)->create([
-        'role' => fake()->randomElement(['Officer', 'Team Leader', 'Manager', 'Direktur']),
-    ]);
-    return redirect()->route('home');
-});
-
 Route::get('/', function () {
     return view('public.home');
 })->name('home');
@@ -47,7 +40,7 @@ Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->n
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
-// Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function (){
 
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
@@ -62,8 +55,9 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('saran',[SaranController::class, 'index'])->name('saran');
+    
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
-
-    Route::patch('komplain/update-tingkat/{komplain}', [KomplainController::class, 'updateTingkat'])->name('update.tingkat');
-    Route::get('komplain/edit/{id}', [KomplainController::class, 'edit'])->name('komplain.edit');
-// });
+    Route::patch('komplain/update-tingkat-status/{komplain}', [KomplainController::class, 'updateStatusTingkat'])->name('update.status.tingkat');
+    Route::get('komplain/update/{komplain}', [KomplainController::class, 'edit'])->name('komplain.edit');
+    Route::put('komplain/update/k{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
+});

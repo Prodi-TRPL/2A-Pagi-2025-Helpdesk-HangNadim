@@ -64,8 +64,7 @@ class FormKomplain extends Component
 
             if ($this->bukti && $this->bukti->isValid()) {
                 try{
-                    $namaFile = time() . '_' . $this->bukti->getClientOriginalName();
-                    $path = $this->bukti->storeAs('bukti', $namaFile, 'public');
+                    $path = $this->bukti->store('bukti', 'public');
                     $komplain->update(['bukti' => $path]);
                 } catch (\Exception $e) {
                     DB::statement('ROLLBACK TO SAVEPOINT bukti'); 

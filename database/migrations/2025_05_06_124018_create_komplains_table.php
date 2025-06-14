@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pelapor_id')->constrained();
             $table->foreignId('kategori_id')->constrained('kategori');
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->ulid('tiket')->unique();
             $table->text('message');
             $table->enum('status', ['Menunggu', 'Diproses', 'Selesai'])->default('Menunggu');
             $table->enum('tingkat',['Rendah', 'Sedang', 'Tinggi'])->default('Rendah');
             $table->string('bukti')->nullable();
-            $table->string('bukti_penyelesaian')->nullalble()->default('gambar');
+            $table->string('bukti_penyelesaian')->nullable();
             $table->char('deskripsi_penyelesaian')->nullable();
             $table->timestamps();
         });
