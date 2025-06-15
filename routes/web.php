@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('pelapor', [PelaporController::class, 'index'] )->name('data.pelapor');
     
-    Route::group(['middleware' => 'leader'], function(){ 
+    Route::group(['middleware' => 'role:Team Leader'], function(){ 
         Route::get('kelola/admin', [AdminController::class, 'index'])->name('kelola.admin');
         Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
         Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
@@ -59,7 +59,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('saran',[SaranController::class, 'index'])->name('saran');
     
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
-    Route::patch('komplain/update-tingkat-status/{komplain}', [KomplainController::class, 'updateStatusTingkat'])->name('update.status.tingkat');
-    Route::get('komplain/update/{komplain}', [KomplainController::class, 'edit'])->name('komplain.edit');
-    Route::put('komplain/update/k{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
+
+    Route::group(['middleware' => 'role:Officer,Team Leader,Manager'], function(){
+        Route::patch('komplain/update-tingkat-status/{komplain}', [KomplainController::class, 'updateStatusTingkat'])->name('update.status.tingkat');
+        Route::get('komplain/edit/k{komplain}', [KomplainController::class, 'edit'])->name('komplain.edit');
+        Route::put('komplain/update/{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
+    });
 });

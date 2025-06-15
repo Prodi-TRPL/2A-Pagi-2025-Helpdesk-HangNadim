@@ -36,7 +36,7 @@
                 <td>
                   <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST"> 
                     @csrf @method('PATCH')
-                    <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()" @if(auth()->user()->role == 'Direktur') disabled @endif>
                       <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
                       <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>
                       <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
@@ -47,7 +47,7 @@
                 <td>
                   <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST">
                     @csrf @method('PATCH')
-                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()" @if(auth()->user()->role == 'Direktur') disabled @endif>
                       <option value="Menunggu" {{ $komplain->status == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
                       <option value="Diproses" {{ $komplain->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
                       <option value="Selesai" {{ $komplain->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
@@ -57,7 +57,7 @@
                 
               
               <td>
-                <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm @if(auth()->user()->role == 'Direktur') disabled @endif"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
               </td>
 
