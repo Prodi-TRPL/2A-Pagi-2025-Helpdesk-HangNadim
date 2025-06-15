@@ -27,7 +27,7 @@
       <img src="hnd_logo.jpg" alt="Icon" class="mb-4 d-block mx-auto" style="width: 150px;">
       <h2 class="mb-4">Log in</h2>
 
-      <form action="/login" method="POST" novalidate>
+      <form action="/login" method="POST" class="prevent-multiple-submit" novalidate>
         @csrf
 
       <div class="mb-3">
@@ -58,6 +58,7 @@
   </div>
 
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/disable_button.js') }}"></script>
 
 </body>
 </html>

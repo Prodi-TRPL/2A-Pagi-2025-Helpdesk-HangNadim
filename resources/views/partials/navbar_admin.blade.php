@@ -103,7 +103,7 @@
             </div>
             
             <div class="dropdown-divider"></div>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" class="prevent-multiple-submit">
                     @csrf
                         <button type="submit" class="dropdown-item">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

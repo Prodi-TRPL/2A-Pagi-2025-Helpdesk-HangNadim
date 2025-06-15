@@ -14,7 +14,7 @@
 </style>
 
 <!-- Hero Section -->
-<section class="text-white pt-5 position-relative" id="home" style="background: url('hangnadim2.jpg') no-repeat center center; background-size: cover;">
+<section class="text-white pt-4 position-relative" id="home" style="background: url('hangnadim2.jpg') no-repeat center center; background-size: cover;">
 
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                 background-color: rgba(0, 0, 0, 0.541); z-index: 1;"></div>

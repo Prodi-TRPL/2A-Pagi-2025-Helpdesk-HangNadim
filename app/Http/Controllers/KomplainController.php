@@ -88,6 +88,8 @@ class KomplainController extends Controller
         'bukti_penyelesaian' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:8000',
         ]);
 
+        $data['user_id'] = Auth::id();
+
         if ($request->hasFile('bukti_penyelesaian')) {
             $path = $request->file('bukti_penyelesaian')->store('bukti_penyelesaian', 'public');
             $data['bukti_penyelesaian'] = $path;

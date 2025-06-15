@@ -51,6 +51,8 @@
     <!-- sb-admin JS -->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
+    <script src="{{ asset('js/disable_button.js')}}"></script>
+
     <!-- Charts (jika diperlukan) -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>

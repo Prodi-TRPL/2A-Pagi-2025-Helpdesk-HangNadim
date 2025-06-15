@@ -1,9 +1,9 @@
 @extends('layout.app')
-
 @section('content')
-<div class="container d-flex flex-column justify-content-center align-items-center min-vh-100 py-5">
+
+<div class="container mt-5 mb-5 flex-grow-1 py-5 d-flex flex-column justify-content-center align-items-center">
     <div class="text-center mb-4">
-        <h1 class="display-4 fw-bold text-primary mb-3">Pelacakan Status Aduan</h1>
+        <h1 class="display-4 fw-bold text-primary mb-3 mt-3">Pelacakan Status Aduan</h1>
         <p class="lead text-muted">Masukkan nomor tiket Anda untuk melacak status pengaduan</p>
     </div>
     
@@ -18,7 +18,7 @@
         </form>
     </div>
     
-    <div class="mb-4">
+    <div class="mt-4 mb-4">
         <img src="{{ asset('img/search.svg') }}" alt="Search Preview" class="img-fluid rounded d-none d-md-block" style="max-width: 350px; width: 100%;">
         <img src="{{ asset('img/search.svg') }}" alt="Search Preview" class="img-fluid rounded d-block d-md-none" style="max-width: 250px; width: 100%;">
     </div>
