@@ -40,18 +40,20 @@ Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->n
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
-Route::middleware('auth')->group(function (){
+Route::group(['middleware' => 'auth'], function (){
 
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
 
     Route::get('pelapor', [PelaporController::class, 'index'] )->name('data.pelapor');
     
-    Route::get('kelola/admin', [AdminController::class, 'index'])->name('kelola.admin');
-    Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
-    Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
-    Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
-    
+    Route::group(['middleware' => 'leader'], function(){ 
+        Route::get('kelola/admin', [AdminController::class, 'index'])->name('kelola.admin');
+        Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
+        Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
+        Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
+    });
+
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('saran',[SaranController::class, 'index'])->name('saran');
