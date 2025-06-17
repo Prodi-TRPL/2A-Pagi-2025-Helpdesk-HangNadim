@@ -1,7 +1,9 @@
 @extends('layout.admin')
 @section('content')
 @section('navbar', 'Dashboard')
-
+<div class="d-sm-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0 fw-bold text-gray-900 ps-3">Dashboard</h1>
+</div>
 <!-- Content Row -->
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
