@@ -22,7 +22,9 @@ Route::get('penilaian', function () {
     return view('admin.penilaian');
 })->name('penilaian');
 
-
+Route::get('lacak/komplain', function() {
+    return view('public.lacak_komplain');
+})->name('lacak.komplain');
 
 Route::get('sidebar', function () {
     return view('partials.sidebar');
@@ -34,7 +36,6 @@ Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
-Route::get('lacak/komplain',[KomplainController::class, 'viewTrackComplaint'])->name('lacak.komplain');
 Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');

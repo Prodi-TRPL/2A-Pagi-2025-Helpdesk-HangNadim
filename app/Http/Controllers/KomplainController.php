@@ -128,11 +128,6 @@ class KomplainController extends Controller
         //
     }
 
-    public function viewTrackComplaint()
-    {
-        return view('public.lacak_komplain');
-    }
-
     public function trackComplaint(Request $request)
     {
         $tiket = $request->tiket;
