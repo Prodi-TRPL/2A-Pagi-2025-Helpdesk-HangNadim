@@ -2,6 +2,9 @@
 @section('content')
 @section('navbar', 'Daftar Saran')
 
+<div class="d-sm-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0 fw-bold text-gray-900 ps-3">Daftar Saran</h1>
+</div>
   <div class="card shadow">
     <div class="card-body">
       <div class="table-responsive">

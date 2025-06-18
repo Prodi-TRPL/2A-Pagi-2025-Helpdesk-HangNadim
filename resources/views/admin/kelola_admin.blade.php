@@ -1,17 +1,20 @@
 @extends('layout.admin')
 @section('content')
 @section('navbar', 'Kelola Admin')
-  
+
+<div class="d-flex justify-content-between align-items-center mb-3 px-3">
+  <h1 class="h3 mb-0 fw-bold text-gray-900">Kelola Admin</h1>
+  <a href="{{ route('kelola.admin.form') }}" class="btn btn-success btn-sm">
+    <i class="fas fa-user-plus"></i> Tambah Akun
+  </a>
+</div>
+
 @if(session('success'))
     <x-alert type="success">
         {{ session('success') }}
     </x-alert>
   @endif
-  <div class="pb-3 text-end">
-    <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
-      <i class="fas fa-user-plus"></i> Tambah Akun
-    </a>
-  </div>
+ 
   <div class="card shadow mb-5">
   <div class="card-body">
     <div class="table-responsive ">

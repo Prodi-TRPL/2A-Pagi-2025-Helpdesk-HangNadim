@@ -5,8 +5,6 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
-
-    <p class="mb-4 text-gray-800 pt-4">@yield('navbar')</p>
    
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
