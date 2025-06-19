@@ -36,6 +36,10 @@ Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
+use App\Http\Controllers\StatistikController;
+Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
+
+
 Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 
 Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
