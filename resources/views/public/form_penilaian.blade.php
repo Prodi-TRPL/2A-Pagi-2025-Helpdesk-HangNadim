@@ -1,15 +1,15 @@
 @extends('layout.app') 
 @section('content')     
-<div class="container my-4"> <!-- TAMBAHKAN class container -->
+<div class="container my-4"> 
   <div class="row justify-content-center">
-    <div class="col-12 col-md-9"> <!-- TAMBAHKAN col-12 -->
+    <div class="col-12 col-md-9"> 
         
             @if ($komplain->penilaian)
             <x-feedback 
             title="Terima Kasih Atas Penilaian Anda!"
             subtitle="Masukan Anda sangat berarti untuk peningkatan layanan kami.">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-header bg-primary">
+            <div class="card mb-4 shadow-sm w-100"> 
+                <div class="card-header bg-primary">
                             <h5 class="mb-0 text-white">Detail Penilaian</h5>
                         </div>
                         <div class="card-body">
@@ -38,16 +38,16 @@
             </x-feedback>
             
             @elseif(!$komplain->penilaian)             
-                <h4 class="mt-3 mb-5"></h4>                                              
+            <div class="container pt-5 mt-4">
                 <div class="mb-4">                 
-                    <h4>Penilaian untuk Tiket: <span class="text-primary"> {{ $komplain->tiket }}</h4>                   
+                    <h4>Penilaian untuk Tiket: <span class="text-primary"> {{ $komplain->tiket }} </span> </h4>                   
                 </div>                 
                 <div class="bg-light mb-4">                     
                     <form method="POST" action="{{route('penilaian.submit', $komplain->tiket)}}" class="p-3 border rounded needs-validation" novalidate>                         
                         @csrf                         
                         <div class="mb-3">                             
                             <label for="rating" class="form-label">Tingkat kepuasan:</label>                             
-                            <select name="rating" id="rating" class="form-control @error('rating') is-invalid @enderror">                                 
+                            <select name="rating" id="rating" class="form-select @error('rating') is-invalid @enderror">                                 
                                 <option value="" hidden>Tingkat Kepuasan </option>                                 
                                 @foreach(\App\Models\Penilaian::ratingOptions() as $value => $label)                                     
                                     <option value="{{ $value }}"  {{ old('rating') == $value ? 'selected' : '' }}>{{ $label }}</option>                                 
