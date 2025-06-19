@@ -1,8 +1,9 @@
 @extends('layout.app') 
 @section('content')     
-    <div id="formContainer" class="row justify-content-center position-sticky">         
-        <div class="col-md-9">             
-            
+<div class="container my-4"> <!-- TAMBAHKAN class container -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9"> <!-- TAMBAHKAN col-12 -->
+        
             @if ($komplain->penilaian)
             <x-feedback 
             title="Terima Kasih Atas Penilaian Anda!"
@@ -37,11 +38,11 @@
             </x-feedback>
             
             @elseif(!$komplain->penilaian)             
-                <h4 class="mt-3 mb-3">Rating</h4>                                              
-                <div class="mb-3">                 
-                    <h4>Penilaian untuk Tiket: {{ $komplain->tiket }}</h4>                   
+                <h4 class="mt-3 mb-5"></h4>                                              
+                <div class="mb-4">                 
+                    <h4>Penilaian untuk Tiket: <span class="text-primary"> {{ $komplain->tiket }}</h4>                   
                 </div>                 
-                <div class="bg-light">                     
+                <div class="bg-light mb-4">                     
                     <form method="POST" action="{{route('penilaian.submit', $komplain->tiket)}}" class="p-3 border rounded needs-validation" novalidate>                         
                         @csrf                         
                         <div class="mb-3">                             
