@@ -6,9 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PelaporController;
-use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\KomplainController;
+use App\Http\Controllers\WhatsappController;
 
 Route::get('/', function () {
     return view('public.home');
@@ -36,6 +36,7 @@ Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\StatistikController;
 Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
 
@@ -71,3 +72,5 @@ Route::group(['middleware' => 'auth'], function (){
         Route::put('komplain/update/{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
     });
 });
+
+Route::get('wa', [WhatsappController::class, 'sendMessage'])->name('send.wa');
