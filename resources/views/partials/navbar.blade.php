@@ -1,7 +1,8 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg fixed-top" style="font-family:Segoe UI', sans-serif">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="{{ route('home') }}">NadimDesk</a>
+    <div class="container d-flex align-items-center mb-2">
+        <img src="hnd_logo.jpg" alt="Icon" style="width: 90px;" class="me-4">
+        <a class="navbar-brand fw-bold text-primary mb-0" href="{{ route('home') }}">NadimDesk</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -39,7 +39,8 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3">NadimDesk</div>
+                <img src="hnd_logo.jpg" alt="Icon" style="width: 70px;" class="me-2">
+                <div class="sidebar-brand-text mx-1">NadimDesk</div>
             </a>
                 <hr class="sidebar-divider d-none d-md-block" style="opacity: 0.5; background-color: rgb(255, 255, 255); height: 1px; border: none;">
         

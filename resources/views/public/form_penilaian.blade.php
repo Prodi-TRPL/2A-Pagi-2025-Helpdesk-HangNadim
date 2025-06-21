@@ -61,7 +61,8 @@
                             @error('feedback')<div class="invalid-feedback">{{ $message }}</div>@enderror                         
                         </div>                          
                         <div class="d-flex justify-content-end">                             
-                            <button type="submit" class="btn btn-primary">Kirim Penilaian</button>                         
+                            <button type="submit" class="btn btn-primary"> 
+                                <i class="fas fa-paper-plane me-1"></i> Kirim Penilaian</button>                         
                         </div>                     
                     </form>                 
                 </div>     
