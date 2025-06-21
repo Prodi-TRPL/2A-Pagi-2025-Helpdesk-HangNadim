@@ -33,14 +33,18 @@
               </div>
 
               <div class="mb-2">
-                      <small class="text-primary">Bukti:</small>
-                    <div class="d-flex justify-content-center">
+                      <small class="text-primary">Bukti Penyelesaian:</small>
+                      <div class="d-flex justify-content-center">
+                      @if($komplain->bukti_penyelesaian)
                       <a href="{{ asset('storage/' . $komplain->bukti_penyelesaian) }}" target="_blank">
                           <img src="{{ asset('storage/' . $komplain->bukti_penyelesaian) }}"
                               alt="Bukti Komplain"
                               class="img-fluid rounded shadow-sm"
                               style="max-width: 100%; max-height: 400px; object-fit: contain;">
                       </a>
+                      @else
+                      <div class="text-muted">Tidak ada foto untuk penyelesaian</div>
+                      @endif
                     </div>
                   </div>
 

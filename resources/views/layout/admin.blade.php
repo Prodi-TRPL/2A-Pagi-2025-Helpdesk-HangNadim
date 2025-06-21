@@ -45,7 +45,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     
     <!-- Bootstrap JS -->
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- sb-admin JS -->
@@ -53,12 +53,7 @@
 
     <script src="{{ asset('js/disable_button.js')}}"></script>
 
-    <!-- Charts (jika diperlukan) -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-bar-demo.js') }}"></script>
-
     @stack('scripts')
 </body>
 </html>

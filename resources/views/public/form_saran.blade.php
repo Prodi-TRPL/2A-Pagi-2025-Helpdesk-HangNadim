@@ -1,4 +1,4 @@
 @extends('layout.app')
 @section('content')
-    @livewire('form-saran')
+    <livewire:form-saran />
 @endsection
