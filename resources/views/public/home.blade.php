@@ -1,5 +1,10 @@
 @extends('layout.app')
 @section('content')
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <!-- Features Section -->
   <style>
     .feature-card {
@@ -48,15 +53,15 @@
     <div class="bg-white text-primary py-5 position-relative shadow-sm" style="z-index: 5; font-family:Segoe UI', sans-serif">
         <div class="container text-center">
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <h2 class="fw-bold text-primary-emphasis">15K+</h2>
                     <p class="text-muted">Komplain Terselesaikan</p>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <h2 class="fw-bold text-primary-emphasis">98%</h2>
                     <p class="text-muted">Tingkat Penyelesaian</p>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <h2 class="fw-bold text-primary-emphasis">24 Jam</h2>
                     <p class="text-muted">Respons Rata-rata</p>
                 </div>
@@ -73,7 +78,7 @@
               <p class="lead text-muted">Pantau status komplain Anda dengan mudah dan transparan</p>
           </div>
           <div class="row g-4">
-              <div class="col-md-4">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -84,7 +89,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="550">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -95,7 +100,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -111,14 +116,13 @@
   </section>
 <!-- Options Section -->
 <section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
-    <div class="container py-4">
         <div class="text-center mb-4">
             <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
             <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
         </div>
         <div class="row g-4">
             <!-- Komplain Card -->
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                 <div class="card feature-card h-100 border-0 shadow-sm">
                     <div id="komplain" class="card-body p-5 shadow-sm d-flex flex-column">
                         <div class="text-center mb-4">
@@ -135,14 +139,14 @@
                             <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Hasil yang memuaskan</li>
                         </ul>
                         <div class="mt-auto text-center">
-                            <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Laporkan Komplain Anda</a>
+                            <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Laporkan Komplain</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Saran Card -->
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                 <div class="card feature-card h-100 border-0 shadow-sm">
                     <div id="saran" class="card-body p-5 shadow-sm d-flex flex-column">
                         <div class="text-center mb-4">
