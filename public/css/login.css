@@ -32,16 +32,37 @@ body {
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       font-family: 'Segoe UI', sans-serif;
     }
-    .welcome-section {
-  background-color: #0d6efd ;
+   .welcome-section {
+  background-image: url('../welcome_to_batam.jpg');
+  background-size: cover;
+  background-position: center;
   color: white;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 47px 40px 40px 40px; /* padding atas ditambah agar tombol muat */
+  padding: 47px 40px 40px 40px;
   position: relative;
+  overflow: hidden; /* agar overlay tidak keluar batas */
 }
+
+.welcome-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* ubah angka 0.4 sesuai keinginan */
+  z-index: 1;
+}
+
+/* Agar isi tetap di atas overlay */
+.welcome-section > * {
+  position: relative;
+  z-index: 2;
+}
+
     .form-section {
       flex: 1;
       padding: 40px;
