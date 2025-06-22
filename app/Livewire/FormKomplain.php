@@ -59,6 +59,15 @@ class FormKomplain extends Component
                 'kategori_id' => $this->kategori_id,
                 'bukti' => null
             ]);
+            
+            $data = [
+                "email" => $this->email,
+                "nama" => $this->nama,
+                "target" => $this->whatsapp,
+            ];
+
+           
+
 
             DB::statement('SAVEPOINT bukti');
 
@@ -72,6 +81,10 @@ class FormKomplain extends Component
             }
 
             DB::commit();
+ 
+            $token = 'k6qVZBsEjKp34QbpPZf8';
+            dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
+
 
             $this->pelapor = $pelapor;
             $this->komplain = $komplain;

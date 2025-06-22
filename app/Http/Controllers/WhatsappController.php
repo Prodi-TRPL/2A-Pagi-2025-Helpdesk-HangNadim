@@ -36,11 +36,11 @@ class WhatsappController extends Controller
             $response = curl_exec($curl);
 
             curl_close($curl);
-            echo $response; //log response fonnte
+            // echo $response; //log response fonnte
         }
 
         $data = [
-            "target" => '083822032582',
+            "target" => '0895622379404',
             "message" => "Halo " . "Coeg" . ", Terimakasih telah mendaftar di aplikasi kami"
         ];
 

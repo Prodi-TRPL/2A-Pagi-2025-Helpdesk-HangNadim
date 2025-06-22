@@ -94,6 +94,7 @@ class KomplainController extends Controller
             $path = $request->file('bukti_penyelesaian')->store('bukti_penyelesaian', 'public');
             $data['bukti_penyelesaian'] = $path;
         }
+        
 
         $komplain->update($data);
 
