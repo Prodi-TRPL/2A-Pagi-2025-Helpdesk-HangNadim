@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('public.home');
 })->name('home');
 
-Route::get('penilaian', function () {
-    return view('admin.penilaian');
-})->name('penilaian');
 
 Route::get('lacak/komplain', function() {
     return view('public.lacak_komplain');
@@ -43,7 +40,7 @@ Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('pe
 Route::group(['middleware' => 'auth'], function (){
     
     Route::get('dashboard', [StatistikController::class, 'index'])->name('dashboard');
-
+    
     Route::post('laporan/pdf', [ExportController::class, 'generatePdf'])->name('komplain.pdf');
     Route::post('laporan/excel',[ExportController::class, 'generateExcel'])->name('komplain.xlsx');
     
@@ -64,7 +61,9 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('saran',[SaranController::class, 'index'])->name('saran');
     
     Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
-
+    
+    Route::get('penilaian', [PenilaianController::class, 'show'])->name('penilaian');
+    
     Route::group(['middleware' => 'role:Officer,Team Leader,Manager'], function(){
         Route::patch('komplain/update-tingkat-status/{komplain}', [KomplainController::class, 'updateStatusTingkat'])->name('update.status.tingkat');
         Route::get('komplain/edit/k{komplain}', [KomplainController::class, 'edit'])->name('komplain.edit');

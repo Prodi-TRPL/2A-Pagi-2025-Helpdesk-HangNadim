@@ -19,25 +19,15 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($penilaians as $penilaian)
                 <tr>
-                    <td>12-02-2025</td>
-                    <td>Ari</td>
-                    <td>Memuaskan</td>
-                    <td>Secara keseluruhan memuaskan</td>
+                    <td>{{$penilaian->created_at->format('Y-m-d')}}</td>
+                    <td>{{$penilaian->komplain->pelapor->nama}}</td>
+                    <td>{{$penilaian->rating_text}}</td>
+                    <td>{{$penilaian->feedback}}</td>
                 </tr>
-                <tr>
-                    <td>21-01-2025</td>
-                    <td>Budi</td>
-                    <td>Sangat Puas</td>
-                    <td>Pelayanan sangat cepat dan memuaskan</td>
-                </tr>
-                <tr>
-                    <td>11-01-2025</td>
-                    <td>Nana</td>
-                    <td>Cukup</td>
-                    <td>Cukup baik</td>
-                </tr>
-              </tbody>
+              @endforeach
+            </tbody>
         </div>
       </div>
     </div>

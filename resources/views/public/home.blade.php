@@ -115,11 +115,12 @@
       </div>
   </section>
 <!-- Options Section -->
-<section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
+<section class="py-1 mb-4 mt-3" id="options" style="font-family: 'Segoe UI', sans-serif;">
         <div class="text-center mb-4">
             <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
             <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
         </div>
+        <div class="container">
         <div class="row g-4">
             <!-- Komplain Card -->
             <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
@@ -169,7 +170,7 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 </section>
 
 

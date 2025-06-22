@@ -40,4 +40,11 @@ class PenilaianController extends Controller
         return redirect()->route('penilaian.form', $tiket);
     }
 
+    public function show()
+    {
+        $penilaians = Penilaian::with(['komplain:id,pelapor_id', 'komplain.pelapor:id,nama'])->get();
+
+        return view('admin.penilaian', compact('penilaians'));
+    }
+
 }
