@@ -13,7 +13,7 @@ class FormKomplain extends Component
 {
     use WithFileUploads;
 
-    public $nama, $email, $whatsapp, $pekerjaan;
+    public $nama, $email, $whatsapp, $pekerjaan, $gender, $umur, $is_penumpang, $maskapai, $no_penerbangan;
     public $message, $kategori_id, $bukti;
     public $step = 1;
     public $success = '';
@@ -25,9 +25,12 @@ class FormKomplain extends Component
         'email' => 'required|email',
         'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         'pekerjaan' => 'required|string',
+        'gender' => 'required|in:Laki-Laki,Perempuan',
+        'umur' => 'required|int|min:10|max:100',
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
         'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
+        'is_penumpang' => 'required|in:0,1',
     ];
     public function submitDataDiri()
     {
@@ -35,7 +38,10 @@ class FormKomplain extends Component
         'nama' => 'required|string',
         'email' => 'required|email',
         'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
-        'pekerjaan' => 'required|string'
+        'pekerjaan' => 'required|string',
+        'umur' => 'required|int|min:10|max:100',
+        'gender' => 'required|in:Laki-Laki,Perempuan',
+        'is_penumpang' => 'required|in:0,1',
         ]);
         $this->step = 2; 
     }
@@ -49,7 +55,10 @@ class FormKomplain extends Component
             $pelapor = Pelapor::firstOrCreate(
                 ['email' => $this->email, 'whatsapp' => $this->whatsapp],
                 ['nama' => $this->nama,
+                'umur' => $this->umur,
+                'gender' => $this->gender,
                 'pekerjaan' => $this->pekerjaan,
+                'is_penumpang' => 0,
                 ]
             );
 
@@ -66,8 +75,12 @@ class FormKomplain extends Component
                 "target" => $this->whatsapp,
             ];
 
-           
-
+           if($this->is_penumpang){
+            $this->validate([
+                'maskapai' => 'required',
+                'no_penerbangan' => 'required',
+            ]);
+           }
 
             DB::statement('SAVEPOINT bukti');
 
@@ -91,7 +104,7 @@ class FormKomplain extends Component
             $this->success = ' ';
             $this->step = 1;
 
-            $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'message', 'kategori_id', 'bukti']);
+            $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'message', 'kategori_id', 'bukti', 'gender','is_penumpang', 'umur', 'maskapai', 'no_penerbangan']);
 
 
         } catch (\Exception $e) {

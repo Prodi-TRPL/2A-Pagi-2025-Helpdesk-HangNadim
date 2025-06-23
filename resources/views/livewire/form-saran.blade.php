@@ -58,41 +58,68 @@
                     <div class="card shadow-sm">
                         <div class="card-body p-3 p-md-4">
                             <form wire:submit.prevent="submitDataDiri" class="needs-validation" novalidate>
-                                <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama </label>
-                                    <input type="text" wire:model="nama" id="nama" 
-                                           class="form-control @error('nama') is-invalid @enderror">
-                                    @error('nama')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                               <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nama" class="form-label">Nama</label>
+                                        <input type="text" wire:model="nama" id="nama"
+                                            class="form-control @error('nama') is-invalid @enderror">
+                                        @error('nama')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" wire:model="email" id="email"
+                                            class="form-control @error('email') is-invalid @enderror">
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email </label>
-                                    <input type="email" wire:model="email" id="email" 
-                                           class="form-control @error('email') is-invalid @enderror">
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="whatsapp" class="form-label">WhatsApp</label>
+                                        <input type="text" wire:model="whatsapp" id="whatsapp"
+                                            class="form-control @error('whatsapp') is-invalid @enderror"
+                                            placeholder="Contoh: 08123456789">
+                                        @error('whatsapp')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="umur" class="form-label">Umur</label>
+                                        <input type="number" wire:model="umur" id="umur"
+                                            class="form-control @error('umur') is-invalid @enderror">
+                                        @error('umur')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                
-                                <div class="mb-3">
-                                    <label for="whatsapp" class="form-label">WhatsApp</label>
-                                    <input type="text" wire:model="whatsapp" id="whatsapp" 
-                                           class="form-control @error('whatsapp') is-invalid @enderror"
-                                           placeholder="Contoh: 08123456789">
-                                    @error('whatsapp')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                                    <input type="text" wire:model="pekerjaan" id="pekerjaan" 
-                                           class="form-control @error('pekerjaan') is-invalid @enderror">
-                                    @error('pekerjaan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label d-block">Jenis Kelamin</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" wire:model="gender" id="radio1" value="Laki-Laki">
+                                            <label class="form-check-label" for="radio1">Laki-laki</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" wire:model="gender" id="radio2" value="Perempuan">
+                                            <label class="form-check-label" for="radio2">Perempuan</label>
+                                        </div>
+                                        @error('gender')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                        <input type="text" wire:model="pekerjaan" id="pekerjaan"
+                                            class="form-control @error('pekerjaan') is-invalid @enderror">
+                                        @error('pekerjaan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 
                                 <div class="d-grid d-md-flex justify-content-md-end">
