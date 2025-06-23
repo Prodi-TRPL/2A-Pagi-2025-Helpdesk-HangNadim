@@ -122,6 +122,11 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                    <label for="bukti" class="form-label">Bukti (Opsional):</label>
+                                    <input type="file" wire:model="bukti" id="bukti" class="form-control @error('bukti') is-invalid @enderror">
+                                    @error('bukti')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                                 
                                 <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-between">
                                     <button type="button" wire:click="previousStep" 
