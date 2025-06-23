@@ -34,7 +34,6 @@ Route::get('/statistik', [StatistikController::class, 'getStatistik'])->name('st
 
 Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 
-Route::get('penilaian/{tiket}', [PenilaianController::class, 'index'])->name('penilaian.form');
 Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
 
 Route::group(['middleware' => 'auth'], function (){

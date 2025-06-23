@@ -37,7 +37,7 @@ class PenilaianController extends Controller
             'feedback' => $validated['feedback'],
         ]);
 
-        return redirect()->route('penilaian.form', $tiket);
+        return redirect()->route('lacak.komplain.submit', $tiket);
     }
 
     public function show()
