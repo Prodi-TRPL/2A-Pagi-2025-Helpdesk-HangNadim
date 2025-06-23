@@ -6,8 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PelaporController;
+use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\StatistikController;
 
