@@ -20,7 +20,8 @@
         </a>
       </div>
         <h1 class="mb-4">Welcome to NadimDesk</h1>  
-        <p>Please log in using your personal information to access the helpdesk system. If you experience issues, contact support at support@nadimdesk.com.</p>
+        <p>Please log in using your administrator credentials to access the NadimDesk dashboard.
+          Access is restricted to authorized personnel only.</p>
     </div>
 
     <div class="form-section">

@@ -35,7 +35,7 @@
       </style>
         <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('statistik') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
@@ -75,7 +75,7 @@
                     <span>Data Pelapor</span></a>
             </li>
 
-            @if(in_array(auth()->user()->role, ['Manager', 'Direktur']))
+            @if(auth()->user()->role == 'Team Leader')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('kelola.admin') ? 'active' : '' }}" href="{{ route('kelola.admin') }}">
                     <i class="fas fa-cog"></i>

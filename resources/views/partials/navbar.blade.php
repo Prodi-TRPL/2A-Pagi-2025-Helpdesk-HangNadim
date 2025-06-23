@@ -20,7 +20,8 @@
       </div>
   
       <!-- TULISAN DI TENGAH (Mobile only) -->
-      <a class="navbar-brand fw-bold text-primary d-block d-lg-none position-absolute start-50 translate-middle-x text-center"style="top: 0.5rem; z-index: 1031;">NadimDesk</a>
+      <a class="navbar-brand fw-bold text-primary d-block d-lg-none position-absolute start-50 translate-middle-x text-center"
+      style="top: 0.5rem; z-index: 1031;">NadimDesk</a>
    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>

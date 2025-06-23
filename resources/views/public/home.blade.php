@@ -78,7 +78,7 @@
               <p class="lead text-muted">Pantau status komplain Anda dengan mudah dan transparan</p>
           </div>
           <div class="row g-4">
-              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -89,7 +89,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="550">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -100,7 +100,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">
+              <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
                 <div class="card feature-card border-0 shadow-sm h-100 text-center p-4">
                     <div class="card-body">
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
@@ -115,13 +115,14 @@
       </div>
   </section>
 <!-- Options Section -->
-<section class="py-1 mb-4 mt-3" id="options" style="font-family: 'Segoe UI', sans-serif;">
+<section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
         <div class="text-center mb-4">
             <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
             <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
         </div>
-        <div class="container">
-        <div class="row g-4">
+        <section class="mb-5">
+        <div class="container px-1">
+            <div class="row g-4">
             <!-- Komplain Card -->
             <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                 <div class="card feature-card h-100 border-0 shadow-sm">
@@ -170,7 +171,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </section>
 
 
