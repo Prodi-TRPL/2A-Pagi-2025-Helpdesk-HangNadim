@@ -49,7 +49,7 @@
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
-            
+            @if(auth()->user()->role != 'Direktur')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('komplain') ? 'active' : '' }}" href="{{ route('komplain') }}">            
                     <i class="fas fa-fw fa-comment-dots"></i>
@@ -75,14 +75,14 @@
                     <span>Data Pelapor</span></a>
             </li>
 
-            @if(auth()->user()->role == 'Manager' || auth()->user()->role == 'Direktur')
+            @if(auth()->user()->role == 'Manager')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('kelola.admin') ? 'active' : '' }}" href="{{ route('kelola.admin') }}">
                     <i class="fas fa-cog"></i>
                     <span>Kelola Admin</span></a>
             </li>
             @endif
-            
+            @endif
            <div class="text-center d-none d-md-inline" style="margin-top: 20px;">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>

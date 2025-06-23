@@ -46,11 +46,8 @@ Route::group(['middleware' => 'auth'], function (){
     
     Route::get('pelapor', [PelaporController::class, 'index'] )->name('data.pelapor');
     
-    Route::get('admin', [AdminController::class, 'index'])
-    ->middleware('role:Manager,Direktur')
-    ->name('kelola.admin');
-    
     Route::group(['middleware' => 'role:Manager'], function(){ 
+        Route::get('admin', [AdminController::class, 'index']);
         Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
         Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
         Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
