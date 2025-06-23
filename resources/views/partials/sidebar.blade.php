@@ -75,7 +75,7 @@
                     <span>Data Pelapor</span></a>
             </li>
 
-            @if(auth()->user()->role == 'Team Leader')
+            @if(auth()->user()->role == 'Manager' || auth()->user()>role == 'Direktur')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('kelola.admin') ? 'active' : '' }}" href="{{ route('kelola.admin') }}">
                     <i class="fas fa-cog"></i>
