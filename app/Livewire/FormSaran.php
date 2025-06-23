@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class FormSaran extends Component
 {
 
-    public $nama, $email, $whatsapp, $pekerjaan;
+    public $nama, $email, $whatsapp, $pekerjaan, $gender, $umur;
     public $message;
     public $success = '';
     public $error = '';
@@ -22,6 +22,8 @@ class FormSaran extends Component
         'email' => 'required|email',
         'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         'pekerjaan' => 'required|string',
+        'umur' => 'required|int|min:10|max:100',
+        'gender' => 'required|in:Laki-Laki,Perempuan',
         'message' => 'required|string'
     ];
 
@@ -31,9 +33,11 @@ class FormSaran extends Component
             'nama' => 'required|string',
             'email' => 'required|email',
             'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
-            'pekerjaan' => 'required|string'
-            ]);
-            $this->step = 2;    
+            'pekerjaan' => 'required|string',
+            'umur' => 'required|int|min:10|max:100',
+            'gender' => 'required|in:Laki-Laki,Perempuan',
+        ]);
+        $this->step = 2;    
     }
 
     public function previousStep()
@@ -51,7 +55,9 @@ class FormSaran extends Component
             $pelapor = Pelapor::firstOrCreate(
                 ['email' => $this->email, 'whatsapp' => $this->whatsapp],
                 ['nama' => $this->nama,
-                'pekerjaan' => $this->pekerjaan
+                'pekerjaan' => $this->pekerjaan,
+                'umur' => $this->umur,
+                'gender' => $this->gender,
                 ]   
               );
               
@@ -67,7 +73,7 @@ class FormSaran extends Component
               $this->success = ' ';
               $this->step = 1;
               
-              $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'message']);
+              $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'gender', 'umur', 'message']);
         
         } catch (\Exception $e){
             DB::rollBack();

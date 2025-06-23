@@ -11,7 +11,7 @@ class Pelapor extends Model
 {
     protected $table = 'pelapors';
 
-    protected $fillable = ['nama', 'email', 'whatsapp', 'pekerjaan'];
+    protected $fillable = ['nama', 'email', 'whatsapp', 'pekerjaan', 'umur', 'gender', 'is_penumpang'];
 
     public function komplain(): HasMany
     {
