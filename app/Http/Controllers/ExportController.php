@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Dompdf\Dompdf;
 use App\Models\Komplain;
 use App\Exports\ExcelExport;
@@ -14,37 +15,46 @@ class ExportController extends Controller
     public function generatePdf(Request $request)
     {
         $validated = $request->validate([
-            'pdf' => 'required'
+            'start' => 'required',
+            'end' => 'required'
         ]);
 
-        $tanggal = $request->pdf;
-        [$tahun,$bulan] = explode('-', $tanggal);
+        $start = Carbon::createFromFormat('Y-m', $validated['start'])->startOfMonth()->toDateString();
+        $end = Carbon::createFromFormat('Y-m', $validated['end'])->endOfMonth()->toDateString();  
+
+        if ($validated['start'] > $validated['end']) {
+            return back()->withErrors(['start' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir.']);
+        }
 
         $data = Komplain::with('pelapor', 'kategori', 'penilaian')
-            ->whereMonth('created_at', $bulan)
-            ->whereYear('created_at', $tahun)
+            ->whereBetween('created_at', [$start, $end])
             ->get()
             ->sortByDesc(function ($item) {
                 return $item->penilaian->rating ?? 0;
             });
 
         $pdf = new Dompdf();
-        $pdf->loadHtml(View::make('export.pdf', compact('data', 'bulan', 'tahun'))->render());
+        $pdf->loadHtml(View::make('export.pdf', compact('data', 'start', 'end'))->render());
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
 
-        return $pdf->stream("Report_{$bulan}_{$tahun}.pdf");
+        return $pdf->stream("Report_{$start}_Sampai_{$end}.pdf");
     }
 
     public function generateExcel(Request $request)
     {
         $validated = $request->validate([
-            'xlsx' => 'required'
+            'start' => 'required',
+            'end' => 'required'
         ]);
 
-        $tanggal = $request->xlsx;
-        [$tahun,$bulan] = explode('-', $tanggal);
+       $start = Carbon::createFromFormat('Y-m', $validated['start'])->startOfMonth()->toDateString();
+       $end = Carbon::createFromFormat('Y-m', $validated['end'])->endOfMonth()->toDateString(); 
+       
+       if ($validated['start'] > $validated['end']) {
+            return back()->withErrors(['start' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir.']);
+        }
 
-        return Excel::download(new ExcelExport($bulan, $tahun), 'Komplain.xlsx');
+        return Excel::download(new ExcelExport($start, $end), 'Komplain.xlsx');
     }
 }

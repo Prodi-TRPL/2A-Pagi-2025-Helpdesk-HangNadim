@@ -25,7 +25,10 @@
                         <div class="d-flex align-items-end gap-2" style="max-width: 400px;">
                             <div class="flex-grow-1">
                                 <label for="pdf" class="form-label text-dark fw-semibold">Pilih bulan:</label>
-                                <input type="month" class="form-control fw-bold" id="pdf" name="pdf" required>
+                                <div class="input-group input-group-sm">
+                                <input type="month" class="form-control fw-bold" id="pdf" name="start" required>
+                                <input type="month" class="form-control fw-bold" id="pdf" name="end" required>
+                                </div>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary">
@@ -53,7 +56,10 @@
                         <div class="d-flex align-items-end gap-2" style="max-width: 400px;">
                             <div class="flex-grow-1">
                                 <label for="xlsx" class="form-label text-dark fw-semibold">Pilih bulan:</label>
-                                <input type="month" class="form-control fw-bold" id="xlsx" name="xlsx" required>
+                                <div class="input-group input-group-sm">
+                                <input type="month" class="form-control fw-bold" id="xlsx" name="start" required>
+                                <input type="month" class="form-control fw-bold" id="xlsx" name="end" required>
+                                </div>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary">

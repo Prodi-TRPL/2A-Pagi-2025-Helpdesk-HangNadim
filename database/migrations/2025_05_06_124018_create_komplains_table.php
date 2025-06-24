@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('tingkat',['Rendah', 'Sedang', 'Tinggi'])->default('Rendah');
             $table->string('bukti')->nullable();
             $table->string('bukti_penyelesaian')->nullable();
-            $table->char('deskripsi_penyelesaian')->nullable();
+            $table->text('deskripsi_penyelesaian')->nullable();
             $table->timestamps();
         });
     }
