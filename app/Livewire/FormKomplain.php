@@ -35,6 +35,17 @@ class FormKomplain extends Component
         'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
        
     ];
+
+    public function isPenumpang()
+    {
+        $this->is_penumpang = true;
+    }
+    
+    public function isNotPenumpang()
+    {
+        $this->is_penumpang = false;
+    }
+
   public function submitDataDiri()
 {
     $rules = [
@@ -44,7 +55,7 @@ class FormKomplain extends Component
         'pekerjaan' => 'required|string',
         'umur' => 'required|integer|min:10|max:100',
         'gender' => 'required|in:Laki-Laki,Perempuan',
-        'is_penumpang' => 'required|in:ya,tidak',
+        'is_penumpang' => 'required',
     ];
 
     if ($this->is_penumpang === 'ya') {

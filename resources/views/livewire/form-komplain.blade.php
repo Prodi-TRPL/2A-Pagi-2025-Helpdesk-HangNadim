@@ -128,11 +128,11 @@
                                 <div class="mb-3">
                                     <label class="form-label">Apakah Anda Penumpang?</label><br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" value="ya" id="penumpangYa">
+                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" value='1' wire:click="isPenumpang" id="penumpangYa">
                                         <label class="form-check-label" for="penumpangYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" value="tidak" id="penumpangTidak">
+                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" wire:click="isNotPenumpang" value="0" id="penumpangTidak">
                                         <label class="form-check-label" for="penumpangTidak">Tidak</label>
                                     </div>
                                     @error('is_penumpang')
@@ -140,7 +140,7 @@
                                     @enderror
                                 </div>
                                 
-                                @if ($is_penumpang === 'ya')
+                                @if ($is_penumpang)
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="maskapai" class="form-label">Maskapai</label>
@@ -155,6 +155,7 @@
                                         @error('no_penerbangan')<div class="text-danger mt-1">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
+
                                 @endif
                                 
                                 <div class="d-grid d-md-flex justify-content-md-end">

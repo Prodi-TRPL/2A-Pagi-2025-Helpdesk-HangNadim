@@ -96,8 +96,16 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                    <input type="text" wire:model="pekerjaan" id="pekerjaan"
+                                        class="form-control @error('pekerjaan') is-invalid @enderror">
+                                    @error('pekerjaan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                               
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label d-block">Jenis Kelamin</label>
                                         <div class="form-check form-check-inline">
@@ -112,14 +120,7 @@
                                             <div class="text-danger mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                                        <input type="text" wire:model="pekerjaan" id="pekerjaan"
-                                            class="form-control @error('pekerjaan') is-invalid @enderror">
-                                        @error('pekerjaan')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                  
                                 </div>
                                 
                                 <div class="d-grid d-md-flex justify-content-md-end">
