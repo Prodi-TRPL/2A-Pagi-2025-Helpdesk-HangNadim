@@ -33,6 +33,7 @@ class FormKomplain extends Component
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
         'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5000',
+        'is_penumpang' => 'required|in:ya,tidak',
        
     ];
   public function submitDataDiri()
@@ -44,7 +45,6 @@ class FormKomplain extends Component
         'pekerjaan' => 'required|string',
         'umur' => 'required|integer|min:10|max:100',
         'gender' => 'required|in:Laki-Laki,Perempuan',
-        'is_penumpang' => 'required|in:ya,tidak',
     ];
 
     if ($this->is_penumpang === 'ya') {
@@ -68,15 +68,15 @@ class FormKomplain extends Component
                 'umur' => $this->umur,
                 'gender' => $this->gender,
                 'pekerjaan' => $this->pekerjaan,
-                'is_penumpang' => 0,
                 ]
             );
-
+            
             $komplain = Komplain::create([
                 'pelapor_id' => $pelapor->id,
                 'message' => $this->message,
                 'kategori_id' => $this->kategori_id,
-                'bukti' => null
+                'bukti' => null,
+                'is_penumpang' => $this->is_penumpang,
             ]);
             
             $data = [
@@ -84,12 +84,14 @@ class FormKomplain extends Component
                 "nama" => $this->nama,
                 "target" => $this->whatsapp,
             ];
+
             if ($this->is_penumpang === 'ya') {
                 $this->validate([
                     'maskapai' => 'required|string',
                     'no_penerbangan' => 'required|string',
                 ]);
             }
+
             DB::statement('SAVEPOINT bukti');
 
             if ($this->bukti && $this->bukti->isValid()) {

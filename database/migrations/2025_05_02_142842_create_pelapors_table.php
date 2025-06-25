@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('whatsapp');
             $table->integer('umur');
             $table->enum('gender',['Laki-Laki', 'Perempuan']);
-            $table->boolean('is_penumpang')->nullable();
-            $table->string('maskapai')->nullable();
-            $table->string('no_penerbangan')->nullable();
             $table->string('pekerjaan');
             $table->timestamps();
         });

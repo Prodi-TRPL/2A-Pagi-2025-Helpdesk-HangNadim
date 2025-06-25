@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('bukti')->nullable();
             $table->string('bukti_penyelesaian')->nullable();
             $table->text('deskripsi_penyelesaian')->nullable();
+            $table->boolean('is_penumpang')->nullable();
+            $table->string('maskapai')->nullable();
+            $table->string('no_penerbangan')->nullable();
             $table->timestamps();
         });
     }
