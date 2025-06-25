@@ -32,7 +32,8 @@ class FormKomplain extends Component
         'umur' => 'required|int|min:10|max:100',
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
-        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
+        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5000',
+        'is_penumpang' => 'required',
        
     ];
 
@@ -79,28 +80,29 @@ class FormKomplain extends Component
                 'umur' => $this->umur,
                 'gender' => $this->gender,
                 'pekerjaan' => $this->pekerjaan,
-                'is_penumpang' => 0,
                 ]
             );
-
+            
             $komplain = Komplain::create([
                 'pelapor_id' => $pelapor->id,
                 'message' => $this->message,
                 'kategori_id' => $this->kategori_id,
-                'bukti' => null
+                'bukti' => null,
+                'is_penumpang' => $this->is_penumpang,
             ]);
+
+            if($komplain->is_penumpang == true) {
+                $komplain->maskapai = $this->maskapai;
+                $komplain->no_penerbangan = $this->no_penerbangan;
+                $komplain->save();
+            }
             
             $data = [
                 "email" => $this->email,
                 "nama" => $this->nama,
                 "target" => $this->whatsapp,
             ];
-            if ($this->is_penumpang === 'ya') {
-                $this->validate([
-                    'maskapai' => 'required|string',
-                    'no_penerbangan' => 'required|string',
-                ]);
-            }
+
             DB::statement('SAVEPOINT bukti');
 
             if ($this->bukti && $this->bukti->isValid()) {
@@ -114,7 +116,7 @@ class FormKomplain extends Component
 
             DB::commit();
  
-            $token = 'k6qVZBsEjKp34QbpPZf8';
+            $token = env('FONTTE_TOKEN');
             dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
 
 
