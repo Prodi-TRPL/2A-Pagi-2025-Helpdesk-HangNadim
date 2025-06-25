@@ -16,7 +16,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Komplain extends Model
 {
     protected $table = 'komplains';
-    protected $fillable = ['pelapor_id', 
+    protected $fillable = [
+    'tiket',
+    'pelapor_id', 
     'kategori_id', 
     'user_id', 
     'message', 
@@ -29,7 +31,6 @@ class Komplain extends Model
     'maskapai',
     'no_penerbangan'
 ];
-    protected $casts = ['tiket' => 'string'];
 
     protected static function boot()
     {

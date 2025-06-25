@@ -22,6 +22,7 @@ class FormKomplain extends Component
     public $is_penumpang = null;
     public $maskapai;
     public $no_penerbangan;
+    protected $tiket;
 
     protected $rules = [
         'nama' => 'required|string',
@@ -96,12 +97,6 @@ class FormKomplain extends Component
                 $komplain->no_penerbangan = $this->no_penerbangan;
                 $komplain->save();
             }
-            
-            $data = [
-                "email" => $this->email,
-                "nama" => $this->nama,
-                "target" => $this->whatsapp,
-            ];
 
             DB::statement('SAVEPOINT bukti');
 
@@ -115,10 +110,16 @@ class FormKomplain extends Component
             }
 
             DB::commit();
- 
+            
+            $data = [
+                "email" => $this->email,
+                "nama" => $this->nama,
+                "tiket" => $komplain->tiket,
+                "target" => $this->whatsapp,
+            ];
+            
             $token = env('FONTTE_TOKEN');
             dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
-
 
             $this->pelapor = $pelapor;
             $this->komplain = $komplain;

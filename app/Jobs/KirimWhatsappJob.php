@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class KirimWhatsappJob implements ShouldQueue
 {
@@ -30,7 +30,8 @@ class KirimWhatsappJob implements ShouldQueue
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $this->data["target"],
-                'message' => "Terima kasih {$this->data['nama']} telah mengirimkan komplain",
+                'message' => "Halo {$this->data['nama']} Terima kasih atas komplainnya, kami akan segera menangani keluhan anda. 
+                Nomor tiket anda adalah {$this->data['tiket']}",
             ),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: ' . $this->token
