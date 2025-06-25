@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('whatsapp');
             $table->integer('umur');
             $table->enum('gender',['Laki-Laki', 'Perempuan']);
-            $table->string('pekerjaan');
+            $table->string('pekerjaan');;
             $table->timestamps();
         });
     }

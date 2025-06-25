@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('is_penumpang')->nullable();
             $table->string('maskapai')->nullable();
             $table->string('no_penerbangan')->nullable();
-            $table->timestamps();
+            $table->timestamps();;
         });
     }
 
