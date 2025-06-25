@@ -13,12 +13,15 @@ class FormKomplain extends Component
 {
     use WithFileUploads;
 
-    public $nama, $email, $whatsapp, $pekerjaan, $gender, $umur, $is_penumpang, $maskapai, $no_penerbangan;
+    public $nama, $email, $whatsapp, $pekerjaan, $gender, $umur;
     public $message, $kategori_id, $bukti;
     public $step = 1;
     public $success = '';
     public $error = ''; 
     public $pelapor, $komplain;
+    public $is_penumpang = null;
+    public $maskapai;
+    public $no_penerbangan;
 
     protected $rules = [
         'nama' => 'required|string',
@@ -30,21 +33,28 @@ class FormKomplain extends Component
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
         'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
-        'is_penumpang' => 'required|in:0,1',
+       
     ];
-    public function submitDataDiri()
-    {
-        $this->validate([
+  public function submitDataDiri()
+{
+    $rules = [
         'nama' => 'required|string',
         'email' => 'required|email',
         'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         'pekerjaan' => 'required|string',
-        'umur' => 'required|int|min:10|max:100',
+        'umur' => 'required|integer|min:10|max:100',
         'gender' => 'required|in:Laki-Laki,Perempuan',
-        'is_penumpang' => 'required|in:0,1',
-        ]);
-        $this->step = 2; 
+        'is_penumpang' => 'required|in:ya,tidak',
+    ];
+
+    if ($this->is_penumpang === 'ya') {
+        $rules['maskapai'] = 'required|string';
+        $rules['no_penerbangan'] = 'required|string';
     }
+
+    $this->validate($rules);
+    $this->step = 2;
+}
 
     public function submitKomplain()
     {
@@ -74,14 +84,12 @@ class FormKomplain extends Component
                 "nama" => $this->nama,
                 "target" => $this->whatsapp,
             ];
-
-           if($this->is_penumpang){
-            $this->validate([
-                'maskapai' => 'required',
-                'no_penerbangan' => 'required',
-            ]);
-           }
-
+            if ($this->is_penumpang === 'ya') {
+                $this->validate([
+                    'maskapai' => 'required|string',
+                    'no_penerbangan' => 'required|string',
+                ]);
+            }
             DB::statement('SAVEPOINT bukti');
 
             if ($this->bukti && $this->bukti->isValid()) {

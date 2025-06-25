@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg fixed-top" style="font-family: 'Segoe UI', sans-serif;">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-        <img src="{{ asset('hnd_logo.jpg') }}" alt="Icon" style="width: 80px;" class="me-4">
+        <img src="{{ asset('hnd_logo.jpg') }}" alt="Icon" style="width: 90px;" class="me-4">
         
         <!-- TULISAN DI KIRI (Desktop only) -->
         <a class="navbar-brand fw-bold text-primary d-none d-lg-block mb-0" href="{{ route('home') }}">

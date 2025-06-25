@@ -19,9 +19,10 @@
               <i class="fas fa-arrow-left me-1"></i>Beranda
         </a>
       </div>
-        <h1 class="mb-4">Welcome to NadimDesk</h1>  
-        <p>Please log in using your administrator credentials to access the NadimDesk dashboard.
-          Access is restricted to authorized personnel only.</p>
+        <h1 class="mb-4">Selamat Datang di NadimDesk</h1>
+
+        <p>Silakan masuk menggunakan identitas administrator Anda.
+          Akses dibatasi hanya untuk staf yang berwenang.</p>
     </div>
 
     <div class="form-section">
@@ -46,7 +47,7 @@
         </div>
         @error('password') <small class="text-danger"> {{ $message }}</small>@enderror
        
-        <div class="mb-4 form-group">
+        <div class="mb-4 form-group mt-3">
           <div class="custom-control custom-checkbox small">
               <input type="checkbox" class="custom-control-input" name="remember" id="customCheck">
               <label class="custom-control-label" for="customCheck">Remember Me</label>

@@ -1,62 +1,58 @@
 <div class="container mt-4 flex-grow-1 py-3 py-md-5">
     <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8">
 
-                @if ($success)
-                <x-feedback
+            @if ($success)
+            <x-feedback
                 title="Terima Kasih Atas komplain Anda!"
                 subtitle="Kami akan segera menangani masalah Anda">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-header bg-primary">
-                                <h5 class="mb-0 text-white">Detail Komplain</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-6 fw-bold">Nama:</div>
-                                    <div class="col-md-6">{{ $pelapor->nama }}</div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6 fw-bold">Email:</div>
-                                    <div class="col-md-6">
-                                        {{ $pelapor->email }}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6 fw-bold">Status Komplain:</div>
-                                    <div class="col-md-6">Menunggu</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 fw-bold">Komplain:</div>
-                                    <div class="col-md-6">{{ $komplain->message }}</div>
-                                </div>
-                            </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary">
+                        <h5 class="mb-0 text-white">Detail Komplain</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6 fw-bold">Nama:</div>
+                            <div class="col-md-6">{{ $pelapor->nama }}</div>
                         </div>
-                </x-feedback>
-                @else
-                    @if($error)
-                        <x-alert type="danger">
-                            {{ $error }}
-                        </x-alert>
-                    @endif
-
-                    <div class="mb-4 mt-4">
-                        <div class="progress" style="height: 4px;">
-                            <div class="progress-bar bg-primary" role="progressbar"
-                                style="width: {{ $step === 1 ? '50%' : '100%' }}"
-                                aria-valuenow="{{ $step === 1 ? 50 : 100}}"
-                                aria-valuemin="0" aria-valuemax="100">
-                            </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 fw-bold">Email:</div>
+                            <div class="col-md-6">{{ $pelapor->email }}</div>
                         </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <small class="text-{{ $step === 1 ? 'primary fw-bold' : 'muted' }}">Data Diri</small>
-                            <small class="text-{{ $step === 2 ? 'primary fw-bold' : 'muted' }}">Komplain</small>
+                        <div class="row mb-3">
+                            <div class="col-md-6 fw-bold">Status Komplain:</div>
+                            <div class="col-md-6">Menunggu</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 fw-bold">Komplain:</div>
+                            <div class="col-md-6">{{ $komplain->message }}</div>
                         </div>
                     </div>
+                </div>
+            </x-feedback>
+            @else
+                @if($error)
+                    <x-alert type="danger">
+                        {{ $error }}
+                    </x-alert>
+                @endif
 
-                    
-                    <!-- Form Identitas -->
-                    <div class="{{ $step === 1 ? '' : 'd-none' }}">
+                <div class="mb-4 mt-4">
+                    <div class="progress" style="height: 4px;">
+                        <div class="progress-bar bg-primary" role="progressbar"
+                            style="width: {{ $step === 1 ? '50%' : '100%' }}"
+                            aria-valuenow="{{ $step === 1 ? 50 : 100}}"
+                            aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <small class="text-{{ $step === 1 ? 'primary fw-bold' : 'muted' }}">Data Diri</small>
+                        <small class="text-{{ $step === 2 ? 'primary fw-bold' : 'muted' }}">Komplain</small>
+                    </div>
+                </div>
 
+                <!-- Form Identitas -->
+                <div class="{{ $step === 1 ? '' : 'd-none' }}">
                     <a href="/" class="btn btn-outline-success mb-2">
                         <i class="fas fa-arrow-left me-1"></i> Kembali
                     </a>
@@ -129,22 +125,38 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="mb-3">
                                     <label class="form-label">Apakah Anda Penumpang?</label><br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" id="penumpang_ya" value="1">
-                                        <label class="form-check-label" for="penumpang_ya">Ya</label>
+                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" value="ya" id="penumpangYa">
+                                        <label class="form-check-label" for="penumpangYa">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" id="penumpang_tidak" value="0">
-                                        <label class="form-check-label" for="penumpang_tidak">Tidak</label>
+                                        <input class="form-check-input" type="radio" wire:model="is_penumpang" value="tidak" id="penumpangTidak">
+                                        <label class="form-check-label" for="penumpangTidak">Tidak</label>
                                     </div>
                                     @error('is_penumpang')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-
+                                
+                                @if ($is_penumpang === 'ya')
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="maskapai" class="form-label">Maskapai</label>
+                                        <input type="text" id="maskapai" wire:model="maskapai"
+                                            class="form-control @error('maskapai') is-invalid @enderror">
+                                        @error('maskapai')<div class="text-danger mt-1">{{ $message }}</div>@enderror
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="no_penerbangan" class="form-label">No Penerbangan</label>
+                                        <input type="text" id="no_penerbangan" wire:model="no_penerbangan"
+                                            class="form-control @error('no_penerbangan') is-invalid @enderror">
+                                        @error('no_penerbangan')<div class="text-danger mt-1">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+                                @endif
+                                
                                 <div class="d-grid d-md-flex justify-content-md-end">
                                     <button type="submit" class="btn btn-primary">
                                         Selanjutnya <i class="fas fa-arrow-right ms-1"></i>
@@ -155,7 +167,7 @@
                     </div>
                 </div>
 
-                    <!-- Form Komplain -->
+                <!-- Form Komplain -->
                 <div class="{{ $step === 2 ? '' : 'd-none' }}">
                     <h4 class="mb-3 mb-md-4 text-primary">Komplain</h4>
                     <div class="card shadow-sm">
@@ -200,4 +212,4 @@
             @endif
         </div> 
     </div> 
-</div> 
+</div>
