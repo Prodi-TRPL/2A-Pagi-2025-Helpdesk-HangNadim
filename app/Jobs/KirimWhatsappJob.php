@@ -39,7 +39,6 @@ class KirimWhatsappJob implements ShouldQueue
 
         curl_exec($curl);
         curl_close($curl);
-        Log::info('Fonnte Response: ' . $response);
     }
 }
 

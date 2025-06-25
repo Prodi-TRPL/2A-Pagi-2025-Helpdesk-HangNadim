@@ -32,7 +32,7 @@ class FormKomplain extends Component
         'umur' => 'required|int|min:10|max:100',
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
-        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:8000',
+        'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5000',
        
     ];
   public function submitDataDiri()
@@ -103,7 +103,7 @@ class FormKomplain extends Component
 
             DB::commit();
  
-            $token = 'k6qVZBsEjKp34QbpPZf8';
+            $token = env('FONTTE_TOKEN');
             dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
 
 
