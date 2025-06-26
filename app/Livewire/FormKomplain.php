@@ -2,12 +2,13 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Pelapor;
+use Livewire\Component;
 use App\Models\Kategori;
 use App\Models\Komplain;
-use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
+use App\Models\KomplainHistory;
+use Illuminate\Support\Facades\DB;
 
 class FormKomplain extends Component
 {
@@ -110,6 +111,12 @@ class FormKomplain extends Component
             }
 
             DB::commit();
+
+            KomplainHistory::create([
+                'komplain_id' => $komplain->id,
+                'user_id' => null,
+                'riwayat' => 'Komplain dibuat oleh pengguna.',
+            ]);
             
             $data = [
                 "email" => $this->email,

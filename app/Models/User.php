@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Komplain::class);
     }
+
+    public function histories()
+    {
+        return $this->hasMany(KomplainHistory::class);
+    }
+
 }

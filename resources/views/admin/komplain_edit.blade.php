@@ -1,8 +1,8 @@
 @extends('layout.admin')
 @section('content')
 
-<h4 class="mb-3 mb-md-4 text-primary">Komplain</h4>
-<div class="card shadow-sm">
+<h4 class="mb-2 text-primary">Komplain</h4>
+<div class="card shadow-sm mb-4">
     <div class="card-body p-3 p-md-4">
         <form action="{{ route('komplain.update', $komplain->id) }}" class="needs-validation" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT')
@@ -26,6 +26,23 @@
                       <option value="Selesai" {{ $komplain->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                     @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Tingkatan:</label>
+                <select class="form-select @error('tingkat') is-invalid @enderror" id="tingkat" name="tingkat">
+                      <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
+                      <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>
+                      <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
+                    @error('tingkat')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="catatan" class="form-label">Catatan Perubahan:</label>
+                <textarea class="form-control @error('catatan_perubahan') is-invalid @enderror" id="catatan" name="catatan_perubahan" rows="1"></textarea>
+                @error('catatan_perubahan')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="mb-3">

@@ -65,4 +65,10 @@ class Komplain extends Model
     {
         return $this->hasOne(Penilaian::class);
     }
+
+    public function histories()
+    {
+        return $this->hasMany(KomplainHistory::class);
+    }
+
 }

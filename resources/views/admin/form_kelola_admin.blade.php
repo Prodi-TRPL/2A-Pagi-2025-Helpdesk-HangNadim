@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="form-email">Email:</label>
-                    <input type="email" name="email" id="form-email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                    <input name="email" id="form-email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
                     @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 

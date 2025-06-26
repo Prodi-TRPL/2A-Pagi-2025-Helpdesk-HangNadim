@@ -37,14 +37,15 @@
                 <td>{{ $komplain->created_at->format('Y-m-d') }}</td>
 
                 <td>
-                  <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST"> 
-                    @csrf @method('PATCH')
-                    <select name="tingkat" class="form-select form-select-sm" onchange="this.form.submit()" @if(auth()->user()->role == 'Direktur') disabled @endif>
-                      <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : ''}}>Rendah</option>
-                      <option value="Sedang"{{ $komplain->tingkat == 'Sedang' ? 'selected' : ''}}>Sedang</option>
-                      <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
-                    </select>
-                  </form>
+                  <select
+                      class="form-select form-select-sm"
+                      onchange="showModal(this)"
+                      data-komplain-id="{{ $komplain->id }}"
+                      data-current-tingkat="{{ $komplain->tingkat }}">
+                    <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : '' }}>Rendah</option>
+                    <option value="Sedang" {{ $komplain->tingkat == 'Sedang' ? 'selected' : '' }}>Sedang</option>
+                    <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
+                  </select>
                 </td>
 
                 <td>
@@ -58,10 +59,10 @@
                   </form>
               </td>
                 
-              
               <td>
                 <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm @if(auth()->user()->role == 'Direktur') disabled @endif"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalRiwayat{{ $komplain->id }}"><i class="fas fa-clock"></i></button>
               </td>
 
               {{-- Helper Filter --}}
@@ -104,6 +105,51 @@
 
               </x-modal>
 
+              {{-- Modal Riwayat --}}
+              <x-modal id="modalRiwayat{{ $komplain->id }}" title="Riwayat Komplain">
+                  <p class="text-primary"><strong>Riwayat Komplain dengan tiket: {{$komplain->tiket}}</strong></p>
+                
+                    @foreach($komplain->histories as $history)
+                    <div class="border-bottom border-primary p-3 mb-3 rounded">
+                        <p><strong>{{ $history->created_at->format('d M Y H:i') }}</strong></p>
+                        <strong>Riwayat</strong>
+                        <p> {{ $history->riwayat ?? '-'}}</p>
+                        <strong>Catatan Perubahan</strong>
+                        <p> {{ $history->catatan_perubahan ?? '-' }}</p>
+                        <p><strong>Diubah oleh:</strong> {{ $history->changer->name ?? '-'}}</p>
+                    </div>
+                    @endforeach
+
+              </x-modal>
+
+           <!-- Modal -->
+            <div class="modal fade" id="modalTingkat" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <form id="formTingkat" method="POST">
+                  @csrf
+                  @method('PATCH')
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Catatan Perubahan Tingkat</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" name="tingkat" id="tingkatBaru">
+                      <div class="mb-3">
+                        <label class="form-label">Catatan Perubahan</label>
+                        <textarea name="catatan_perubahan" id="catatan_perubahan" class="form-control @error('catatan_perubahan') is-invalid @enderror"></textarea>
+                        @error('catatan_perubahan') <div class="invalid-feedback">{{$message}}</div> @enderror
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
               @endforeach
             </tbody>
           </table>
@@ -112,32 +158,54 @@
     </div>
 
     @push('scripts')
-      <script>
-    $(document).ready(function () {
-  $('#tabel-komplain').DataTable({
-    responsive: true,
-    order: [[7, 'asc'], [3, 'asc']],
-    columnDefs: [
-      {
-        targets: 7,
-        visible: false,
-        searchable: false
-      }
-    ],
-    language: {
-      search: "Cari:",
-      lengthMenu: "Tampilkan _MENU_ data",
-      info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-      paginate: {
-        first: "Pertama",
-        last: "Terakhir",
-        next: "→",
-        previous: "←"
-      },
-      zeroRecords: "Tidak ada data ditemukan"
+
+  <script>
+    let modal = new bootstrap.Modal(document.getElementById('modalTingkat'));
+
+    function showModal(selectEl) {
+      const selectedTingkat = selectEl.value;
+      const currentTingkat = selectEl.dataset.currentTingkat;
+
+      if (selectedTingkat === currentTingkat) return;
+
+      const komplainId = selectEl.dataset.komplainId;
+      const route = `{{ route('update.status.tingkat', ':id') }}`.replace(':id', komplainId);
+
+      document.getElementById('formTingkat').action = route;
+      document.getElementById('tingkatBaru').value = selectedTingkat;
+
+      document.getElementById('catatan_perubahan').value = '';
+
+      modal.show();
     }
-  });
-});
+  </script>
+
+  <script>
+        $(document).ready(function () {
+      $('#tabel-komplain').DataTable({
+        responsive: true,
+        order: [[7, 'asc'], [3, 'asc']],
+        columnDefs: [
+          {
+            targets: 7,
+            visible: false,
+            searchable: false
+          }
+        ],
+        language: {
+          search: "Cari:",
+          lengthMenu: "Tampilkan _MENU_ data",
+          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+          paginate: {
+            first: "Pertama",
+            last: "Terakhir",
+            next: "→",
+            previous: "←"
+          },
+          zeroRecords: "Tidak ada data ditemukan"
+        }
+      });
+    });
   </script>
     @endpush
 @endsection

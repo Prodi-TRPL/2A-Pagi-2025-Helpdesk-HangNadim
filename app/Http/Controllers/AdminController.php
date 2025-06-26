@@ -34,12 +34,32 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:80',
             'email' => 'required|email|unique:users,email',
             'role' => 'required|string|in:Officer,Team Leader,Manager,Direktur',
             'password' => 'required|min:8',
             'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
+        ], [
+            'name.required' => 'Nama wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama tidak boleh lebih dari 80 karakter.',
+
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+
+            'role.required' => 'Role wajib dipilih.',
+            'role.string' => 'Role harus berupa teks.',
+            'role.in' => 'Role harus salah satu dari: Officer, Team Leader, Manager, atau Direktur.',
+
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 8 karakter.',
+
+            'whatsapp.required' => 'Nomor WhatsApp wajib diisi.',
+            'whatsapp.string' => 'Nomor WhatsApp harus berupa teks.',
+            'whatsapp.regex' => 'Nomor WhatsApp harus terdiri dari 12 hingga 15 digit angka.',
         ]);
+
 
         User::create([
             'name' =>  $validated['name'],

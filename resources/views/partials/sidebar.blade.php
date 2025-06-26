@@ -38,7 +38,7 @@
           <a class="sidebar-brand d-flex align-items-center justify-content-start">
             <div class="sidebar-brand-icon rotate-n-15"></div>
 
-                <img src="hndround-remove.png" alt="Icon" style="width:40px; margin-left:10px; margin-right:8px;">
+                <img src="{{asset('hndround-remove.png')}}" alt="Icon" style="width:40px; margin-left:10px; margin-right:8px;">
                 <div class="sidebar-brand-text mx-1">NadimDesk</div>
             </a>
                 <hr class="sidebar-divider d-none d-md-block" style="opacity: 0.5; background-color: rgb(255, 255, 255); height: 1px; border: none;">
