@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Saran;
+use App\Models\Kategori;
 use App\Models\Komplain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatistikController extends Controller
 {
@@ -22,9 +24,9 @@ class StatistikController extends Controller
         return view('admin.statistik', compact(['totalKomplain', 'totalSaran']));
     }
 
-    public function getStatistik(Request $request)
+    public function getStatistikBar(Request $request)
     {
-        $tahun = $request->get('year', now()->year);
+        $tahun = $request->get('tahun', now()->year);
         
         $results = Komplain::selectRaw('
             MONTH(created_at) as bulan,
@@ -49,5 +51,47 @@ class StatistikController extends Controller
         }
         
         return response()->json($data);
+    }
+
+    public function getStatistikPie(Request $request)
+    {
+        $tahun = $request->get('tahun', now()->year);
+        $bulan = $request->get('bulan', now()->month);
+        
+        $labels = ['Rendah', 'Sedang', 'Tinggi'];
+        $data = Komplain::whereYear('created_at', $tahun)
+        ->whereMonth('created_at', $bulan)
+        ->selectRaw('tingkat, COUNT(*) as total')
+        ->groupBy('tingkat')
+        ->orderByRaw("FIELD(tingkat, 'Rendah', 'Sedang', 'Tinggi')")
+        ->pluck('total', 'tingkat');
+
+        return response()->json([
+            'labels' => $labels,
+            'values' => collect($labels)->map(fn($t) => $data->get($t, 0))
+        ]);
+    }
+
+    public function getStatistikColumn(Request $request)
+    {
+        $tahun = $request->get('tahun', now()->year);
+        $bulan = $request->get('bulan', now()->month);
+
+        $labels = Kategori::pluck('nama_kategori')->toArray();
+
+        $data = DB::table('komplains')
+        ->join('kategori', 'komplains.kategori_id', '=', 'kategori.id')
+        ->whereYear('komplains.created_at', $tahun)
+        ->whereMonth('komplains.created_at', $bulan)
+        ->select('kategori.nama_kategori as kategori', DB::raw('COUNT(*) as total'))
+        ->groupBy('kategori.nama_kategori')
+        ->pluck('total', 'kategori');
+
+        $values = collect($labels)->map(fn($nama) => $data->get($nama, 0));
+
+        return response()->json([
+        'labels' => $labels,
+        'values' => $values
+        ]);
     }
 }

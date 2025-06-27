@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        fetch(`/statistik?year=${tahun}`)
+        fetch(`/statistik/bar?tahun=${tahun}`)
             .then(res => res.json())
             .then(data => {
                 dataCache.set(tahun, data);

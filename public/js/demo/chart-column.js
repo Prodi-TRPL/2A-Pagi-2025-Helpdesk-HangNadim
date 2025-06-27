@@ -3,25 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let columnChart;
     const dataCache = new Map();
 
-    function loadColumnData(tahun, bulan = '') {
-        // Membuat key untuk cache yang menggabungkan tahun dan bulan
-        const cacheKey = `${tahun}-${bulan}`;
-        
-        if (dataCache.has(cacheKey)) {
-            renderColumnChart(dataCache.get(cacheKey));
+    function loadColumnData(tanggalbar) {
+        if (!tanggalbar) return;
+
+        if (dataCache.has(tanggalbar)) {
+            renderColumnChart(dataCache.get(tanggalbar));
             return;
         }
 
-        // Membuat URL dengan parameter tahun dan bulan
-        let url = `/statistik/year=${tahun}`;
-        if (bulan && bulan !== '') {
-            url += `&month=${bulan}`;
-        }
-
+        const [tahun, bulan] = tanggalbar.split('-');
+        const url = `/statistik/column?tahun=${tahun}&bulan=${bulan}`;
+        
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                dataCache.set(cacheKey, data);
+                dataCache.set(tanggalbar, data);
                 renderColumnChart(data);
             })
             .catch(err => console.error('Error loading column data:', err));
@@ -31,23 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
         if (columnChart) columnChart.destroy();
 
         columnChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
-                labels: data.labels, // ['Rendah', 'Sedang', 'Tinggi']
+                labels: data.labels,
                 datasets: [{
                     label: 'Jumlah Komplain',
-                    data: data.values, // [45, 30, 15]
+                    data: data.values,
                     backgroundColor: [
                         'rgba(136, 132, 216, 0.8)',
                         'rgba(130, 202, 157, 0.8)',
                         'rgba(255, 198, 88, 0.8)',
-                        'rgba(255, 124, 124, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(136, 132, 216, 1)',
-                        'rgba(130, 202, 157, 1)',
-                        'rgba(255, 198, 88, 1)',
-                        'rgba(255, 124, 124, 1)'
+                        'rgba(255, 124, 100, 0.8)',
+                        'rgba(154, 100, 124, 0.8)',
+                        'rgba(200, 154, 124, 0.8)',
+                        'rgba(245, 122, 100, 0.8)',
+                        'rgba(202, 188, 115, 0.8)'
                     ],
                     borderWidth: 1
                 }]
@@ -55,25 +49,17 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        }
-                    }
-                },
                 plugins: {
                     legend: {
-                        display: false // Hide legend untuk column chart
+                        display: true, // aktifkan legend agar keterangan warna muncul
+                        position: 'bottom'
                     },
                     tooltip: {
                         callbacks: {
-                            title: function(context) {
-                                return context[0].label;
-                            },
                             label: function(context) {
-                                return `Jumlah: ${context.parsed.y}`;
+                                const label = context.label || '';
+                                const value = context.raw;
+                                return `${label}: ${value}`;
                             }
                         }
                     }
@@ -82,29 +68,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Event listener untuk dropdown tahun dan bulan
-    const selectTahun = document.getElementById('tahun'); // Sesuai dengan ID di blade
-    const selectBulan = document.getElementById('bulan'); // Sesuai dengan ID di blade
+    const inputTanggal = document.getElementById('tanggalbar');
 
-    function updateChart() {
-        const tahun = selectTahun ? selectTahun.value : '';
-        const bulan = selectBulan ? selectBulan.value : '';
-        
-        if (tahun) {
-            loadColumnData(tahun, bulan);
+    if (inputTanggal) {
+        inputTanggal.addEventListener('change', function () {
+            loadColumnData(this.value);
+        });
+
+        if (inputTanggal.value) {
+            loadColumnData(inputTanggal.value);
         }
-    }
-
-    if (selectTahun) {
-        selectTahun.addEventListener('change', updateChart);
-    }
-
-    if (selectBulan) {
-        selectBulan.addEventListener('change', updateChart);
-    }
-
-    // Load data awal
-    if (selectTahun && selectTahun.value) {
-        updateChart();
     }
 });

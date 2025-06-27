@@ -30,7 +30,9 @@ Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
 Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
-Route::get('/statistik', [StatistikController::class, 'getStatistik'])->name('statistik');
+Route::get('/statistik/bar', [StatistikController::class, 'getStatistikBar'])->name('statistik.bar');
+Route::get('/statistik/pie', [StatistikController::class, 'getStatistikPie'])->name('statistik.pie');
+Route::get('/statistik/column', [StatistikController::class, 'getStatistikColumn'])->name('statistik.column');
 
 Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 

@@ -3,23 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let pieChart;
     const dataCache = new Map();
 
-    function loadPieData(tahun, bulan = '') {
-        const cacheKey = `${tahun}-${bulan}`;
-        
-        if (dataCache.has(cacheKey)) {
-            renderPieChart(dataCache.get(cacheKey));
+    function loadPieData(tanggal) {
+        if (!tanggal) return;
+
+        if (dataCache.has(tanggal)) {
+            renderPieChart(dataCache.get(tanggal));
             return;
         }
 
-        let url = `/statistik/year=${tahun}`;
-        if (bulan && bulan !== '') {
-            url += `&month=${bulan}`;
-        }
+        const [tahun, bulan] = tanggal.split('-');
+        const url = `/statistik/pie?tahun=${tahun}&bulan=${bulan}`;
 
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                dataCache.set(cacheKey, data);
+                dataCache.set(tanggal, data);
                 renderPieChart(data);
             })
             .catch(err => console.error('Error loading pie data:', err));
@@ -31,10 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
         pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: data.labels, // ['Rendah', 'Sedang', 'Tinggi']
+                labels: data.labels,
                 datasets: [{
-                    data: data.values, // [45, 30, 15]
-                    backgroundColor: ['#8884d8', '#82ca9d', '#ffc658', '#ff7c7c']
+                    data: data.values,
+                    backgroundColor: ['#ffeaa7', '#fab1a0', '#e84393']
                 }]
             },
             options: {
@@ -49,28 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Event listener untuk dropdown tahun dan bulan
-    const selectTahun = document.getElementById('tahun');
-    const selectBulan = document.getElementById('bulan'); // Sesuai dengan ID di blade
+    const inputTanggal = document.getElementById('tanggal');
 
-    function updateChart() {
-        const tahun = selectTahun ? selectTahun.value : '';
-        const bulan = selectBulan ? selectBulan.value : '';
-        
-        if (tahun) {
-            loadPieData(tahun, bulan);
+    if (inputTanggal) {
+        inputTanggal.addEventListener('change', function () {
+            loadPieData(this.value);
+        });
+
+        if (inputTanggal.value) {
+            loadPieData(inputTanggal.value);
         }
-    }
-
-    if (selectTahun) {
-        selectTahun.addEventListener('change', updateChart);
-    }
-
-    if (selectBulan) {
-        selectBulan.addEventListener('change', updateChart);
-    }
-
-    if (selectTahun && selectTahun.value) {
-        updateChart();
     }
 });

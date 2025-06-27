@@ -38,10 +38,10 @@
 
                 <td>
                   <select
-                      class="form-select form-select-sm"
-                      onchange="showModal(this)"
-                      data-komplain-id="{{ $komplain->id }}"
-                      data-current-tingkat="{{ $komplain->tingkat }}">
+                    class="form-select form-select-sm"
+                    onchange="showModal(this)"
+                    data-komplain-id="{{ $komplain->id }}"
+                    data-current-tingkat="{{ $komplain->tingkat }}">
                     <option value="Rendah" {{ $komplain->tingkat == 'Rendah' ? 'selected' : '' }}>Rendah</option>
                     <option value="Sedang" {{ $komplain->tingkat == 'Sedang' ? 'selected' : '' }}>Sedang</option>
                     <option value="Tinggi" {{ $komplain->tingkat == 'Tinggi' ? 'selected' : '' }}>Tinggi</option>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-pen"></i> Simpan</button>
                     </div>
                   </div>
                 </form>
@@ -157,28 +157,38 @@
       </div>
     </div>
 
-    @push('scripts')
+@push('scripts')
 
   <script>
     let modal = new bootstrap.Modal(document.getElementById('modalTingkat'));
+    let selectedElement = null;
+    let oldValue = '';
+    let newValue = '';
 
     function showModal(selectEl) {
-      const selectedTingkat = selectEl.value;
-      const currentTingkat = selectEl.dataset.currentTingkat;
+      oldValue = selectEl.dataset.currentTingkat;
+      newValue = selectEl.value;
+      if (newValue === oldValue) return;
 
-      if (selectedTingkat === currentTingkat) return;
+      selectedElement = selectEl;
 
       const komplainId = selectEl.dataset.komplainId;
       const route = `{{ route('update.status.tingkat', ':id') }}`.replace(':id', komplainId);
 
       document.getElementById('formTingkat').action = route;
-      document.getElementById('tingkatBaru').value = selectedTingkat;
-
+      document.getElementById('tingkatBaru').value = newValue;
       document.getElementById('catatan_perubahan').value = '';
 
       modal.show();
     }
-  </script>
+
+    document.getElementById('modalTingkat').addEventListener('hidden.bs.modal', function () {
+      if (selectedElement) {
+        selectedElement.value = oldValue;
+      }
+    });
+</script>
+
 
   <script>
         $(document).ready(function () {
