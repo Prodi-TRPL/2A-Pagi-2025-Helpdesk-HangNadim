@@ -87,7 +87,7 @@
     <!-- Bar Chart -->
     <div class="card shadow mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 text-primary fw-bold">Statistik Komplain</h5>
+        <h5 class="mb-0 text-primary fw-bold">Statistik Status Komplain</h5>
     
         <form method="GET" action="#">
           <select class="form-select" name="tahun" id="tahun">
@@ -104,13 +104,90 @@
         </div>
       </div>
     </div>
-
+    
+    <div class="row">
+      <!-- Pie Chart - Tingkatan Komplain -->
+      <div class="col-md-6">
+        <div class="card shadow mb-4">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-primary fw-bold fs-6">Tingkatan Komplain</h5>
+            
+            <form method="GET" action="#" class="d-flex gap-2">
+              <select class="form-select" name="bulan" id="bulan">
+                <option value="1" {{ now()->month == 1 ? 'selected' : '' }}>Januari</option>
+                <option value="2" {{ now()->month == 2 ? 'selected' : '' }}>Februari</option>
+                <option value="3" {{ now()->month == 3 ? 'selected' : '' }}>Maret</option>
+                <option value="4" {{ now()->month == 4 ? 'selected' : '' }}>April</option>
+                <option value="5" {{ now()->month == 5 ? 'selected' : '' }}>Mei</option>
+                <option value="6" {{ now()->month == 6 ? 'selected' : '' }}>Juni</option>
+                <option value="7" {{ now()->month == 7 ? 'selected' : '' }}>Juli</option>
+                <option value="8" {{ now()->month == 8 ? 'selected' : '' }}>Agustus</option>
+                <option value="9" {{ now()->month == 9 ? 'selected' : '' }}>September</option>
+                <option value="10" {{ now()->month == 10 ? 'selected' : '' }}>Oktober</option>
+                <option value="11" {{ now()->month == 11 ? 'selected' : '' }}>November</option>
+                <option value="12" {{ now()->month == 12 ? 'selected' : '' }}>Desember</option>
+              </select>
+              <select class="form-select" name="tahun" id="tahun">
+                @for ($tahun = 2020; $tahun <= now()->year; $tahun++)
+                  <option value="{{ $tahun }}" {{ $tahun == now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
+                @endfor
+              </select>
+            </form>
+          </div>
+          <div class="card-body">
+            <div style="min-height: 300px;">
+              <canvas id="pieChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- column Chart - Kategori Komplain -->
+      <div class="col-md-6">
+        <div class="card shadow mb-4">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-primary fw-bold fs-6">Kategori Komplain</h5>
+            
+            <form method="GET" action="#" class="d-flex gap-2">
+              <select class="form-select" name="bulan" id="bulan">
+                <option value="1" {{ now()->month == 1 ? 'selected' : '' }}>Januari</option>
+                <option value="2" {{ now()->month == 2 ? 'selected' : '' }}>Februari</option>
+                <option value="3" {{ now()->month == 3 ? 'selected' : '' }}>Maret</option>
+                <option value="4" {{ now()->month == 4 ? 'selected' : '' }}>April</option>
+                <option value="5" {{ now()->month == 5 ? 'selected' : '' }}>Mei</option>
+                <option value="6" {{ now()->month == 6 ? 'selected' : '' }}>Juni</option>
+                <option value="7" {{ now()->month == 7 ? 'selected' : '' }}>Juli</option>
+                <option value="8" {{ now()->month == 8 ? 'selected' : '' }}>Agustus</option>
+                <option value="9" {{ now()->month == 9 ? 'selected' : '' }}>September</option>
+                <option value="10" {{ now()->month == 10 ? 'selected' : '' }}>Oktober</option>
+                <option value="11" {{ now()->month == 11 ? 'selected' : '' }}>November</option>
+                <option value="12" {{ now()->month == 12 ? 'selected' : '' }}>Desember</option>
+              </select>
+              <select class="form-select" name="tahun" id="tahun">
+                @for ($tahun = 2020; $tahun <= now()->year; $tahun++)
+                  <option value="{{ $tahun }}" {{ $tahun == now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
+                @endfor
+              </select>
+            </form>
+          </div>
+          <div class="card-body">
+            <div style="min-height: 300px;">
+              <canvas id="columnChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 </div>
 
 </div>
 
 @push('scripts')
 <script src="{{ asset('js/demo/chart-bar.js') }}"></script>
+<script src="{{ asset('js/demo/chart-pie.js') }}"></script>
+<script src="{{ asset('js/demo/chart-column.js') }}"></script>
+
 @endpush
 
 @endsection
