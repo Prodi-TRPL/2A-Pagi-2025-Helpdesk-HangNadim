@@ -88,7 +88,7 @@ class KomplainController extends Controller
             'tingkat' => 'required|in:Rendah,Sedang,Tinggi',
             'deskripsi_penyelesaian' => 'nullable|string',
             'catatan_perubahan' => 'nullable|string',
-            'bukti_penyelesaian' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5000',
+            'bukti_penyelesaian' => 'nullable|file|mimes:jpg,jpeg,png|max:5000',
         ], [
             'kategori_id.required' => 'Kategori wajib dipilih.',
             'kategori_id.exists' => 'Kategori yang dipilih tidak valid.',

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\KirimEmailKomplainBaru;
 use App\Models\Pelapor;
 use Livewire\Component;
 use App\Models\Kategori;
@@ -118,15 +119,17 @@ class FormKomplain extends Component
                 'riwayat' => 'Komplain dibuat oleh pengguna.',
             ]);
             
-            $data = [
-                "email" => $this->email,
-                "nama" => $this->nama,
-                "tiket" => $komplain->tiket,
-                "target" => $this->whatsapp,
-            ];
+            // $data = [
+            //     "email" => $this->email,
+            //     "nama" => $this->nama,
+            //     "tiket" => $komplain->tiket,
+            //     "target" => $this->whatsapp,
+            // ];
             
-            $token = env('FONTTE_TOKEN');
-            dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
+            // $token = env('FONTTE_TOKEN');
+            // dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
+
+            KirimEmailKomplainBaru::dispatch($komplain, $pelapor);
 
             $this->pelapor = $pelapor;
             $this->komplain = $komplain;
