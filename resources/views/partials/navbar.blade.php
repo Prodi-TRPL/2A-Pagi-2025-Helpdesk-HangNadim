@@ -36,18 +36,18 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-globe2 "></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item" href="#">Indonesia</a></li>
-                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a href="{{ route('change.language', 'id') }}" class="dropdown-item">🇮🇩 Indonesia</a></li>
+                        <li><a href="{{ route('change.language', 'en')}}"class="dropdown-item">🇬🇧 English</a></li>
                     </ul>
                 </li>
 
                 <!-- Menu Lain -->
                 <li class="nav-item" style="margin-right: 20px;">
-                    <a class="nav-link rounded-pill btn-hover fw-bold text-primary" href="/">Beranda</a>
+                    <a class="nav-link rounded-pill btn-hover fw-bold text-primary" href="{{ route('home') }}">{{ __('messages.home') }}</a>
                 </li>
 
                 <li class="nav-item" style="margin-right: 20px;">
-                    <a class="nav-link rounded-pill btn-hover fw-bold text-primary" href="{{ route('lacak.komplain') }}">Lacak Komplain</a>
+                    <a class="nav-link rounded-pill btn-hover fw-bold text-primary" href="{{ route('lacak.komplain') }}">{{ __('messages.track_complaint')}}</a>
                 </li>
 
                 <li class="nav-item ms-2">

@@ -31,12 +31,12 @@ class FormKomplain extends Component
         'email' => 'required|email',
         'whatsapp' => 'required|string|regex:/^[0-9]{12,15}$/',
         'pekerjaan' => 'required|string',
-        'gender' => 'required|in:Laki-Laki,Perempuan',
         'umur' => 'required|int|min:10|max:100',
+        'gender' => 'required|in:Laki-Laki,Perempuan',
+        'is_penumpang' => 'required',
         'message' => 'required|string',
         'kategori_id' => 'required|exists:kategori,id',
         'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5000',
-        'is_penumpang' => 'required',
        
     ];
 
@@ -62,7 +62,7 @@ class FormKomplain extends Component
         'is_penumpang' => 'required',
     ];
 
-    if ($this->is_penumpang === 'ya') {
+    if ($this->is_penumpang) {
         $rules['maskapai'] = 'required|string';
         $rules['no_penerbangan'] = 'required|string';
     }
@@ -119,16 +119,6 @@ class FormKomplain extends Component
                 'riwayat' => 'Komplain dibuat oleh pengguna.',
             ]);
             
-            // $data = [
-            //     "email" => $this->email,
-            //     "nama" => $this->nama,
-            //     "tiket" => $komplain->tiket,
-            //     "target" => $this->whatsapp,
-            // ];
-            
-            // $token = env('FONTTE_TOKEN');
-            // dispatch(new \App\Jobs\KirimWhatsappJob($token, $data));
-
             KirimEmailKomplainBaru::dispatch($komplain, $pelapor);
 
             $this->pelapor = $pelapor;

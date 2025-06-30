@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pelapor_id');
             $table->string('message');
+            $table->string('bukti')->nullable();
             $table->timestamps();
         });
     }

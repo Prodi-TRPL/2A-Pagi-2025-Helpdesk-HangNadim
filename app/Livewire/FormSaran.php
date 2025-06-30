@@ -2,16 +2,18 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Saran;
 use App\Models\Pelapor;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
 class FormSaran extends Component
 {
+    use WithFileUploads;
 
     public $nama, $email, $whatsapp, $pekerjaan, $gender, $umur;
-    public $message;
+    public $message, $bukti;
     public $success = '';
     public $error = '';
     public $step = 1;
@@ -24,7 +26,8 @@ class FormSaran extends Component
         'pekerjaan' => 'required|string',
         'umur' => 'required|int|min:10|max:100',
         'gender' => 'required|in:Laki-Laki,Perempuan',
-        'message' => 'required|string'
+        'message' => 'required|string',
+        'bukti' => 'nullable|file|mimes:jpg,jpeg,png|max:5000',
     ];
 
     public function submitDataDiri()
@@ -66,6 +69,17 @@ class FormSaran extends Component
                 'message' => $this->message
               ]);
 
+              DB::statement('SAVEPOINT bukti');
+
+                if ($this->bukti) {
+                    try {
+                        $path = $this->bukti->store('bukti', 'public');
+                        $saran->update(['bukti' => $path]);
+                    } catch (\Exception $e) {
+                        DB::statement('ROLLBACK TO SAVEPOINT bukti');
+                    }
+                }
+
               DB::commit();
 
               $this->pelapor = $pelapor;
@@ -73,7 +87,7 @@ class FormSaran extends Component
               $this->success = ' ';
               $this->step = 1;
               
-              $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'gender', 'umur', 'message']);
+              $this->reset(['nama', 'email', 'whatsapp', 'pekerjaan', 'gender', 'umur', 'message', 'bukti']);
         
         } catch (\Exception $e){
             DB::rollBack();

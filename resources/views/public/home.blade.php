@@ -38,15 +38,11 @@
                 </p>
         
                 <div class="d-flex gap-2 flex-wrap">
-                    <a href="#komplain" class="btn btn-outline-light btn-lg mb-2 rounded-pill">Ajukan Komplain</a>
-                    <a href="#saran" class="btn btn-outline-light btn-lg mb-2 rounded-pill">Berikan Saran</a>
+                    <a href="#komplain" class="btn btn-outline-light btn-lg mb-2 rounded-pill">{{ __('messages.complaint') }}</a>
+                    <a href="#saran" class="btn btn-outline-light btn-lg mb-2 rounded-pill">{{ __('messages.suggestion') }}</a>
                 </div>
             
             </div>  
-            <div class="col-lg-6 d-flex justify-content-center">
-                <!-- Gambar kalau mau -->
-                <!-- <img src="/api/placeholder/500/500" alt="App Preview" class="img-fluid rounded shadow my-5"> -->
-            </div>
         </div>
     </div>
 
@@ -54,16 +50,16 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
-                    <h2 class="fw-bold text-primary-emphasis">15K+</h2>
-                    <p class="text-muted">Komplain Terselesaikan</p>
+                    <h2 class="fw-bold text-primary-emphasis">2K+</h2>
+                    <p class="text-muted">{{ __('messages.resolved') }}</p>
                 </div>
                 <div class="col-md-4">
                     <h2 class="fw-bold text-primary-emphasis">98%</h2>
-                    <p class="text-muted">Tingkat Penyelesaian</p>
+                    <p class="text-muted">{{ __('messages.completion')}}</p>
                 </div>
                 <div class="col-md-4">
-                    <h2 class="fw-bold text-primary-emphasis">24 Jam</h2>
-                    <p class="text-muted">Respons Rata-rata</p>
+                    <h2 class="fw-bold text-primary-emphasis">{{ __('messages.hours') }}</h2>
+                    <p class="text-muted">{{ __('messages.responses') }}</p>
                 </div>
             </div>
         </div>
@@ -114,6 +110,7 @@
           </div>
       </div>
   </section>
+
 <!-- Options Section -->
 <section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
         <div class="text-center mb-4">
@@ -141,7 +138,7 @@
                             <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Hasil yang memuaskan</li>
                         </ul>
                         <div class="mt-auto text-center">
-                            <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Laporkan Komplain</a>
+                            <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">{{ __('messages.complaint') }}</a>
                         </div>
                     </div>
                 </div>
@@ -165,7 +162,7 @@
                             <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Ide untuk pengembangan</li>
                         </ul>
                         <div class="mt-auto text-center">
-                            <a href="{{ route('saran.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">Kirim Saran</a>
+                            <a href="{{ route('saran.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">{{ __('messages.suggestion')}}</a>
                         </div>
                     </div>
                 </div>

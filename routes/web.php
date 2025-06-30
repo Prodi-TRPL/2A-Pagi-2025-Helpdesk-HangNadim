@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SaranController;
@@ -11,32 +12,37 @@ use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\StatistikController;
 
-Route::get('/', function () {
-    return view('public.home');
-})->name('home');
+Route::group(['middleware' => 'lang'], function (){ 
+    
+    Route::get('/language/{locale}', function ($locale) {
+        if (in_array($locale, ['id', 'en'])) {
+            Session::put('app_locale', $locale);
+        }
+    return back(); 
+    })->name('change.language');
 
+    Route::get('/', function () {
+        return view('public.home');
+    })->name('home');
 
-Route::get('lacak/komplain', function() {
-    return view('public.lacak_komplain');
-})->name('lacak.komplain');
+    Route::get('lacak/komplain', function() {
+        return view('public.lacak_komplain');
+    })->name('lacak.komplain');
 
-Route::get('sidebar', function () {
-    return view('partials.sidebar');
-})->name('sidebar');
+    Route::get('login', [AuthController::class, 'index'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('login', [AuthController::class, 'authenticate'])->name('auth');
+    Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
+    Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
 
-Route::get('form/komplain',[KomplainController::class, 'create'])->name('komplain.form');
-Route::get('form/saran',[SaranController::class, 'create'])->name('saran.form');
+    Route::get('/statistik/bar', [StatistikController::class, 'getStatistikBar'])->name('statistik.bar');
+    Route::get('/statistik/pie', [StatistikController::class, 'getStatistikPie'])->name('statistik.pie');
+    Route::get('/statistik/column', [StatistikController::class, 'getStatistikColumn'])->name('statistik.column');
 
-Route::get('/statistik/bar', [StatistikController::class, 'getStatistikBar'])->name('statistik.bar');
-Route::get('/statistik/pie', [StatistikController::class, 'getStatistikPie'])->name('statistik.pie');
-Route::get('/statistik/column', [StatistikController::class, 'getStatistikColumn'])->name('statistik.column');
+    Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 
-Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
-
-Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
+    Route::post('penilaian/{tiket}',[PenilaianController::class, 'store'])->name('penilaian.submit');
+});
 
 Route::group(['middleware' => 'auth'], function (){
     
