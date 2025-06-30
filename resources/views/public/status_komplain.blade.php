@@ -120,15 +120,15 @@
                       @csrf
                       <div class="mb-3">
                        <div class="mb-4 text-center">
-  <label class="form-label fw-bold">Tingkat Kepuasan:</label>
-  <div class="rating">
-    @for($i = 5; $i >= 1; $i--)
-      <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}/>
-      <label for="star{{ $i }}"><i class="fas fa-star"></i></label>
-    @endfor
-  </div>
-  @error('rating') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
-</div>
+                        <label class="form-label fw-bold">Tingkat Kepuasan:</label>
+                        <div class="rating">
+                          @for($i = 5; $i >= 1; $i--)
+                            <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}/>
+                            <label for="star{{ $i }}"><i class="fas fa-star"></i></label>
+                          @endfor
+                        </div>
+                        @error('rating') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
+                      </div>
                         @error('rating')<div class="invalid-feedback">{{ $message }}</div>@enderror
                       </div>
                       
@@ -151,7 +151,7 @@
                 
                 {{-- Tombol Kembali --}}
                 <div class="d-flex justify-content-end mt-4">
-                  <a href="{{ url('/') }}" class="btn btn-outline-primary">
+                  <a href="{{ route('home') }}" class="btn btn-outline-primary">
                     Kembali <i class="fas fa-arrow-right ms-1"></i>
             </a>
           </div>

@@ -24,6 +24,7 @@
             <th class="text-center">Nama</th>
             <th class="text-center">Email</th>
             <th class="text-center">Role</th>
+            <th class="text-center">WhatsApp</th>
             <th class="text-center">Aksi</th>
             
           </tr>
@@ -34,9 +35,10 @@
               <tr> 
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>{{$user->whatsapp}}</td>
                 <td>{{$user->role}}</td>
-                <td class="text-center">
-                  <a href="{{ route('kelola.admin.form') }}" class="btn btn-outline-success btn-sm">
+                <td>
+                  <a href="{{ route('kelola.admin.edit', $user->id) }}" class="btn btn-outline-success btn-sm">
                     <i class="fas fa-pen"></i>
                   </a>               
                   <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalAdmin{{ $user->id }}">

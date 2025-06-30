@@ -46,6 +46,15 @@ class Komplain extends Model
         });
     }
 
+    public function getPenumpangTextAttribute(): string
+    {
+        return match ($this->is_penumpang) {
+            0 => 'Bukan Penumpang',
+            1 => 'Penumpang',
+            default => 'Tidak Valid'
+        };
+    }
+
     public function pelapor(): BelongsTo
     {
         return $this->belongsTo(Pelapor::class);

@@ -62,8 +62,10 @@ class SaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Saran $saran)
     {
-        //
+        $saran->delete(); 
+
+        return redirect()->back()->with('success', 'Saran berhasil dihapus.');
     }
 }

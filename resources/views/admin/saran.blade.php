@@ -5,6 +5,13 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-3">
   <h1 class="h3 mb-0 fw-bold text-gray-900 ps-3">Daftar Saran</h1>
 </div>
+
+@if(session('success'))
+    <x-alert type="success">
+        {{ session('success') }}
+    </x-alert>
+  @endif
+  
   <div class="card shadow">
     <div class="card-body">
       <div class="table-responsive">
@@ -15,21 +22,57 @@
                   <th class="text-center">Nama</th>
                   <th class="text-center">Tanggal</th>
                     <th class="text-center">Saran</th>
+                    <th class="text-center">Detail</th>
                 </tr>
             </thead>
             <tbody>
               @foreach ($sarans as $saran)
                 <tr>
+                  <td>{{ $saran->pelapor->nama }}</td>
+                  <td>{{ $saran->created_at->format('Y-m-d') }}</td>
+                  <td>{{  Str::limit($saran->message, 30, '') }}</td>
                   <td>
-                    {{ $saran->pelapor->nama }}
-                  </td>
-                  <td>
-                    {{ $saran->created_at->format('Y-m-d') }}
-                  </td>
-                  <td>
-                    {{  Str::limit($saran->message, 30, '') }}
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $saran->id }}"><i class="fas fa-info-circle"></i></button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $saran->id }}">
+                      <i class="fas fa-trash"></i>
+                  </button>
                   </td>
                 </tr>
+
+              <x-modal id="modalDetail{{ $saran->id }}" title="Detail Penilaian">
+                <div class="mb-3">
+                    <strong>Saran:</strong>
+                    <p class="text-muted">{{ $saran->message ?? 'Tidak ada komentar' }}</p>
+                </div>
+
+                <div>
+                  <strong>Bukti:</strong>
+                  @if($saran->bukti)
+                    <div class="d-flex justify-content-center">
+                      <a href="{{ asset('storage/' . $saran->bukti) }}" target="_blank">
+                          <img src="{{ asset('storage/' . $saran->bukti) }}"
+                              alt="Bukti Komplain"
+                              class="img-fluid rounded shadow-sm"
+                              style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                      </a>
+                    </div>
+                  @else
+                    <p class="text-mute">Tidak ada</p>
+                  @endif
+                  </div>
+              </x-modal>
+
+              <x-modal id="modalHapus{{ $saran->id }}" title="Yakin ingin menghapus?">
+                <p class="text-black">Saran: {{$saran->message}}</p>
+                <x-slot name="footer">
+                  <form action={{ route('saran.destroy', $saran->id) }} method="POST">
+                      @csrf @method('DELETE')
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-outline-danger">Hapus</button>
+                  </form>
+                </x-slot>
+              </x-modal>
+
                 @endforeach
               </tbody>
         </table>

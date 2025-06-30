@@ -15,7 +15,7 @@
                 <th class="text-center">Tanggal</th>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Penilaian</th>
-                <th class="text-center">Komentar</th>
+                <th class="text-center">Detail</th>
               </tr>
             </thead>
             <tbody>
@@ -24,8 +24,16 @@
                     <td>{{$penilaian->created_at->format('Y-m-d')}}</td>
                     <td>{{$penilaian->komplain->pelapor->nama}}</td>
                     <td>{{$penilaian->rating_text}}</td>
-                    <td>{{$penilaian->feedback}}</td>
+                    <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $penilaian->id }}"><i class="fas fa-info-circle"></i></button></td>
                 </tr>
+
+              <x-modal id="modalDetail{{ $penilaian->id }}" title="Detail Penilaian">
+                <div class="mb-3">
+                    <strong>Komentar:</strong>
+                    <p class="text-muted">{{ $penilaian->feedback ?? 'Tidak ada komentar' }}</p>
+                </div>
+              </x-modal>
+
               @endforeach
             </tbody>
         </div>

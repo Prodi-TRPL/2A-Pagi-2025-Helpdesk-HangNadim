@@ -13,19 +13,21 @@
               <tr>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Email</th>
-                <th class="text-center">NO WhatsApp</th>
+                <th class="text-center">WhatsApp</th>
                 <th class="text-center">Pekerjaan</th>
+                <th class="text-center">Umur</th>
+                <th class="text-center">Jenis Kelamin</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($pelapors as $pelapor)
                 <tr>
-                  
                   <td>{{$pelapor->nama}}</td>
-                  <td>{{$pelapor->email}}</td>
-                  <td>{{$pelapor->whatsapp}}</td>
+                  <td class="text-primary">{{$pelapor->email}}</td>
+                  <td class="text-primary">{{$pelapor->whatsapp}}</td>
                   <td>{{$pelapor->pekerjaan}}</td>
-
+                  <td>{{$pelapor->umur}}</td>
+                  <td>{{$pelapor->gender}}</td>
                 </tr>
                 @endforeach
               </tbody>

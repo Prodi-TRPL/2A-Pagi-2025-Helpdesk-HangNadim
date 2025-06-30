@@ -70,6 +70,22 @@
               </tr>
 
               <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
+                <div class="mb-3">
+                    <strong>Status Penumpang:</strong>
+                    <p class="text-muted">{{ $komplain->penumpang_text }}</p>
+                </div>
+                
+                @if ($komplain->is_penumpang)
+                  <div class="mb-3">
+                    <strong>Maskapai:</strong>
+                    <p class="text-muted">{{ $komplain->maskapai }}</p>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <strong>Nomor Penerbangan:</strong>
+                    <p class="text-muted">{{ ($komplain->no_penerbangan) }}</p>
+                  </div>
+                @endif
 
                 <div class="mb-3">
                     <strong>Email:</strong>
@@ -79,6 +95,11 @@
                 <div class="mb-3">
                     <strong>Whatsapp:</strong>
                     <p class="text-muted">{{ $komplain->pelapor->whatsapp }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Pekerjaan:</strong>
+                    <p class="text-muted">{{ $komplain->pelapor->pekerjaan }}</p>
                 </div>
 
                   <div class="mb-3">
@@ -122,7 +143,7 @@
 
               </x-modal>
 
-           <!-- Modal -->
+           {{-- Modal Catatan --}}
             <div class="modal fade" id="modalTingkat" tabindex="-1" aria-hidden="true">
               <div class="modal-dialog">
                 <form id="formTingkat" method="POST">

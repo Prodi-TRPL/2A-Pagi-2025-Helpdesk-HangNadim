@@ -56,21 +56,25 @@ Route::group(['middleware' => 'auth'], function (){
     Route::group(['middleware' => 'role:Manager'], function(){ 
         Route::get('admin', [AdminController::class, 'index'])->name('kelola.admin');
         Route::delete('kelola/admin/{user}', [AdminController::class, 'destroy'])->name('kelola.admin.destroy');
-        Route::get('kelola/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
-        Route::post('kelola/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
+        Route::get('tambah/admin/form',[AdminController::class, 'create'])->name('kelola.admin.form');
+        Route::post('tambah/admin/form',[AdminController::class, 'store'])->name('kelola.admin.store');
+        Route::get('edit/admin/form/u{user}', [AdminController::class, 'edit'])->name('kelola.admin.edit');
+        Route::post('update/admin/u{user}', [AdminController::class, 'update'])->name('kelola.admin.update');
     });
     
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     
-    Route::get('saran',[SaranController::class, 'index'])->name('saran');
-    
-    Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
-    
-    Route::get('penilaian', [PenilaianController::class, 'show'])->name('penilaian');
-    
     Route::group(['middleware' => 'role:Officer,Team Leader,Manager'], function(){
+    
+        Route::get('saran',[SaranController::class, 'index'])->name('saran');
+        Route::delete('saran/delete/s{saran}', [SaranController::class, 'destroy'])->name('saran.destroy');
+        
+        Route::get('komplain', [KomplainController::class, 'index'])->name('komplain');
+        
+        Route::get('penilaian', [PenilaianController::class, 'show'])->name('penilaian');
+    
         Route::patch('komplain/update-tingkat-status/{komplain}', [KomplainController::class, 'updateStatusTingkat'])->name('update.status.tingkat');
         Route::get('komplain/edit/k{komplain}', [KomplainController::class, 'edit'])->name('komplain.edit');
-        Route::put('komplain/update/{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
+        Route::put('komplain/update/k{komplain}', [KomplainController::class, 'update'])->name('komplain.update');
     });
 });
