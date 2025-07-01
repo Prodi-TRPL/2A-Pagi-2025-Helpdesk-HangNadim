@@ -29,8 +29,13 @@ class Komplain extends Model
     'deskripsi_penyelesaian',
     'is_penumpang',
     'maskapai',
-    'no_penerbangan'
+    'no_penerbangan',
+    'completed_at'
 ];
+
+    protected $casts = [
+        'completed_at' => 'datetime',
+    ];
 
     protected static function boot()
     {

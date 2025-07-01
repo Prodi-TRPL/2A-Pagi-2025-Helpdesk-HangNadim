@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\KomplainHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\KirimEmailKomplainSelesai;
 
 
 class KomplainController extends Controller
@@ -109,6 +110,8 @@ class KomplainController extends Controller
         $oldTingkat = $komplain->tingkat;
         $oldStatus = $komplain->status;
         $oldKategori = $komplain->kategori_id;
+        $pelapor = $komplain->pelapor;
+        $sendEmail = false;
 
         $data['user_id'] = Auth::id();
 
@@ -118,10 +121,16 @@ class KomplainController extends Controller
         }
 
         if($request->status == 'Selesai' && is_null($komplain->completed_at)){
-                    $komplain->completed_at = now();
-                }
+            $data['completed_at'] = now();
+            $sendEmail = true;
+        }
         
         $komplain->update($data);
+        $komplain = $komplain->fresh();
+
+        if ($sendEmail && $pelapor) {
+            KirimEmailKomplainSelesai::dispatch($komplain, $pelapor);
+        }
 
         $riwayat = [];
 
@@ -157,12 +166,20 @@ class KomplainController extends Controller
                 $oldStatus = $komplain->status;
                 $komplain->user_id = Auth::id();
                 $komplain->status = $request->status;
+                $sendEmail = false;
 
                 if($request->status == 'Selesai' && is_null($komplain->completed_at)){
                     $komplain->completed_at = now();
+                    $sendEmail = true;
                 }
 
+                $pelapor = $komplain->pelapor;
                 $komplain->save();
+
+                if ($sendEmail && $pelapor) {
+                    KirimEmailKomplainSelesai::dispatch($komplain->fresh(), $pelapor);
+                }
+
         
             KomplainHistory::create([
                 'komplain_id' => $komplain->id,
