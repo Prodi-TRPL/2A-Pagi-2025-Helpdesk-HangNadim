@@ -38,6 +38,7 @@ Route::group(['middleware' => 'lang'], function (){
     Route::get('/statistik/bar', [StatistikController::class, 'getStatistikBar'])->name('statistik.bar');
     Route::get('/statistik/pie', [StatistikController::class, 'getStatistikPie'])->name('statistik.pie');
     Route::get('/statistik/column', [StatistikController::class, 'getStatistikColumn'])->name('statistik.column');
+    Route::get('/statistik/line', [StatistikController::class, 'getStatistikLine'])->name('statistik.line');
 
     Route::get('lacak/komplain/t', [KomplainController::class, 'trackComplaint'])->name('lacak.komplain.submit');
 

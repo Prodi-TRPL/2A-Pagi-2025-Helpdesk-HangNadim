@@ -116,6 +116,10 @@ class KomplainController extends Controller
             $path = $request->file('bukti_penyelesaian')->store('bukti_penyelesaian', 'public');
             $data['bukti_penyelesaian'] = $path;
         }
+
+        if($request->status == 'Selesai' && is_null($komplain->completed_at)){
+                    $komplain->completed_at = now();
+                }
         
         $komplain->update($data);
 
@@ -153,6 +157,11 @@ class KomplainController extends Controller
                 $oldStatus = $komplain->status;
                 $komplain->user_id = Auth::id();
                 $komplain->status = $request->status;
+
+                if($request->status == 'Selesai' && is_null($komplain->completed_at)){
+                    $komplain->completed_at = now();
+                }
+
                 $komplain->save();
         
             KomplainHistory::create([

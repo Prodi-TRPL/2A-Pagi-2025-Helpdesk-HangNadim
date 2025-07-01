@@ -84,7 +84,7 @@
       <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0 text-primary fw-bold">Statistik Status Komplain</h5>
     
-        <form method="GET" action="#">
+      <form method="GET" action="#">
           <select class="form-select" name="tahun" id="tahun">
             @for ($tahun = 2020; $tahun <= now()->year; $tahun++)
               <option value="{{ $tahun }}" {{ $tahun == now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
@@ -135,6 +135,25 @@
           </div>
         </div>
       </div>
+
+        <div class="card shadow mb-4">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-primary fw-bold fs-6">Rata-rata Waktu Penyelesaian</h5>
+            
+            <form method="GET" action="#" class="d-flex gap-2">
+              <select class="form-select" name="tahunStatistik" id="tahunStatistik">
+                @for ($tahun = 2020; $tahun <= now()->year; $tahun++)
+                  <option value="{{ $tahun }}" {{ $tahun == now()->year ? 'selected' : '' }}>{{ $tahun }}</option>
+                @endfor
+              </select>
+            </form>
+          </div>
+          <div class="card-body">
+            <div style="min-height: 300px;">
+              <canvas id="lineChart"></canvas>
+            </div>
+          </div>
+        </div>
   
 </div>
 
@@ -144,6 +163,7 @@
 <script src="{{ asset('js/demo/chart-bar.js') }}"></script>
 <script src="{{ asset('js/demo/chart-pie.js') }}"></script>
 <script src="{{ asset('js/demo/chart-column.js') }}"></script>
+<script src="{{ asset('js/demo/chart-line.js') }}"></script>
 
 @endpush
 

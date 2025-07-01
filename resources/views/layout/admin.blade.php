@@ -52,7 +52,9 @@
 
     <script src="{{ asset('js/disable_button.js')}}"></script>
 
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
     @stack('scripts')
 </body>
 </html>

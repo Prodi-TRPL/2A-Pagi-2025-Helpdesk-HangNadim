@@ -51,14 +51,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: true, // aktifkan legend agar keterangan warna muncul
-                        position: 'bottom'
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 12
+                        }
                     },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 const label = context.label || '';
-                                const value = context.raw;
+                                const value = context.raw || 0;
                                 return `${label}: ${value}`;
                             }
                         }

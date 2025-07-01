@@ -94,4 +94,28 @@ class StatistikController extends Controller
         'values' => $values
         ]);
     }
+
+    public function getStatistikLine(Request $request)
+    {
+        $tahun = $request->tahun ?? now()->year;
+
+        $data = [];
+
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $avg = DB::table('komplains')
+                ->selectRaw('AVG(TIMESTAMPDIFF(HOUR, created_at, completed_at)) AS rata_jam')
+                ->whereYear('created_at', $tahun)
+                ->whereMonth('created_at', $bulan)
+                ->where('status', 'Selesai')
+                ->whereNotNull('completed_at')
+                ->value('rata_jam');
+
+            $data[] = round($avg ?? 0, 2);
+        }
+
+        return response()->json([
+            'rata_rata' => $data
+        ]);
+    }
+
 }

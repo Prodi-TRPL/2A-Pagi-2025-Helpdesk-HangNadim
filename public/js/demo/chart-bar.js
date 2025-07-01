@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let barChart;
     const dataCache = new Map();
 
-    function loadChartData(tahun) { 
+    function loadChartData(tahun) {
         if (dataCache.has(tahun)) {
             renderChart(dataCache.get(tahun));
             return;
@@ -47,8 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
+                    x: {
+                        stacked: true
+                    },
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stacked: true
                     }
                 }
             }
