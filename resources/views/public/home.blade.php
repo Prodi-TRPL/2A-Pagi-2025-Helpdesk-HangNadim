@@ -31,10 +31,10 @@
     <div class="container pt-4 mt-4 position-relative" style="z-index: 2; font-family:Segoe UI', sans-serif">
         <div class="row align-items-center py-5">
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold mb-4">Solusi Komplain Digital Bandara Hang Nadim</h1>
+                <h1 class="display-5 fw-bold mb-4">{{ __('messages.solution') }}</h1>
                 <p class="lead mb-5">
-                    NadimDesk memudahkan Anda menangani laporan pelanggan dengan cepat, akurat, dan profesional<br>
-                    Demi pengalaman pelanggan yang semakin baik.
+                    {{ __('messages.opening') }}<br>
+                    {{ __('messages.experience') }}
                 </p>
         
                 <div class="d-flex gap-2 flex-wrap">
@@ -70,8 +70,8 @@
   <section class="bg-light py-1" id="features">
       <div class="container py-5" style="font-family:Segoe UI', sans-serif;">
           <div class="text-center mb-5">
-              <h2 class="fw-bold mb-4">Lacak Komplain Anda</h2>
-              <p class="lead text-muted">Pantau status komplain Anda dengan mudah dan transparan</p>
+              <h2 class="fw-bold mb-4">{{ __('messages.track') }}</h2>
+              <p class="lead text-muted">{{ __('messages.monitor') }}</p>
           </div>
           <div class="row g-4">
               <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
@@ -80,8 +80,8 @@
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-file-alt fa-2x"></i>
                           </div>
-                          <h5 class="card-title fw-bold">Registrasi Komplain</h5>
-                          <p class="card-text text-muted">Daftarkan komplain Anda dengan cepat dan mudah melalui sistem kami</p>
+                          <h5 class="card-title fw-bold">{{ __('messages.regis') }}</h5>
+                          <p class="card-text text-muted">{{ __('messages.register') }}</p>
                       </div>
                   </div>
               </div>
@@ -91,8 +91,8 @@
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-search fa-2x"></i>
                           </div>
-                          <h5 class="card-title fw-bold">Lacak Proses</h5>
-                          <p class="card-text text-muted">Pantau status komplain Anda secara real-time dengan nomor tiket</p>
+                          <h5 class="card-title fw-bold">{{ __('messages.process') }}</h5>
+                          <p class="card-text text-muted">{{ __('messages.monitor') }}</p>
                       </div>
                   </div>
               </div>
@@ -102,8 +102,8 @@
                           <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                               <i class="fas fa-check-circle fa-2x"></i>
                           </div>
-                          <h5 class="card-title fw-bold">Penyelesaian</h5>
-                          <p class="card-text text-muted">Dapatkan solusi dan penyelesaian yang memuaskan untuk setiap masalah</p>
+                          <h5 class="card-title fw-bold">{{ __('messages.complet') }}</h5>
+                          <p class="card-text text-muted">{{ __('messages.problem') }}</p>
                       </div>
                   </div>
               </div>
@@ -114,8 +114,8 @@
 <!-- Options Section -->
 <section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
         <div class="text-center mb-4">
-            <h2 class="fw-bold mb-3">Ajukan Komplain & Saran Anda</h2>
-            <p class="lead text-muted">Kami menghargai masukan Anda untuk peningkatan layanan</p>
+            <h2 class="fw-bold mb-3">{{ __('messages.submit') }}</h2>
+            <p class="lead text-muted">{{ __('messages.appreciate') }}</p>
         </div>
         <section class="mb-5">
         <div class="container px-1">
@@ -128,14 +128,14 @@
                             <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                 <i class="fas fa-thumbs-up fa-2x"></i>
                             </div>
-                            <h3 class="fw-bold">Komplain</h3>
-                            <p class="text-muted">Berikan Komplain Anda</p>
+                            <h3 class="fw-bold">{{ __('messages.complain') }}</h3>
+                            <p class="text-muted">{{ __('messages.give') }}</p>
                         </div>
                         <ul class="list-group list-group-flush mb-4">
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Respon cepat dari tim kami</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Solusi yang efektif</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Komunikasi yang baik</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Hasil yang memuaskan</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.respon') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.effective') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.communication') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.satisfactory') }}</li>
                         </ul>
                         <div class="mt-auto text-center">
                             <a href="{{ route('komplain.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">{{ __('messages.complaint') }}</a>
@@ -152,14 +152,14 @@
                             <div class="bg-primary bg-gradient text-white rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
                                 <i class="fas fa-comments fa-2x"></i>
                             </div>
-                            <h3 class="fw-bold">Punya Saran</h3>
-                            <p class="text-muted">Bagikan ide untuk perbaikan layanan</p>
+                            <h3 class="fw-bold">{{ __('messages.have') }}</h3>
+                            <p class="text-muted">{{ __('messages.share') }}</p>
                         </div>
                         <ul class="list-group list-group-flush mb-4">
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Usulan fitur baru</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Saran perbaikan sistem</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Masukan untuk tim layanan</li>
-                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> Ide untuk pengembangan</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.fiture') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.system') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.feedback') }}</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check text-primary me-2"></i> {{ __('messages.idea') }}</li>
                         </ul>
                         <div class="mt-auto text-center">
                             <a href="{{ route('saran.form') }}" class="btn btn-primary btn-lg w-100 rounded-pill text-white btn-hover">{{ __('messages.suggestion')}}</a>
