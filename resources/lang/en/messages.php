@@ -72,7 +72,7 @@ return [
     'com' => 'Please enter your complaint:',
     'proof' => 'Proof (Required):',
     'submit' => 'Submit',
-    'select' => '-- select category --',
+    'select' => '-- Select Category --',
     'detail_saran' => 'Suggestion Details:',
     'suggestion_form' => 'Suggestion',
     'fill_suggestion' => 'Please enter your suggestion:',
@@ -95,8 +95,18 @@ return [
     'komplain_category' => 'Complaint Category',
     'date' => 'Complaint Date:',
     'desc' => 'Completion  Details',
-    'evidence' => 'Completion  Evidence',
+    'evidence' => 'Completion  Proof',
     'photo' => 'No photos for completion',
+
+    //category
+    'cleanliness' => 'Cleanliness',
+    'security' => 'Security',
+    'arrival' => 'Arrival',
+    'departure' => 'Departure',
+    'service' => 'Service',
+    'facilities' => 'Facilities',
+    'hr' => 'Human Resources / Personnel',
+    'others' => 'Others',
 
     //form penilaian
     'rating_detail' => 'Rating Details',
@@ -108,5 +118,8 @@ return [
     'submit2' => 'Submit',
     'thanks_penilaian' => 'Thank you for your feedback!',
     'means' => 'Your feedback means a lot to us and helps improve our service',
+
+    //lacak komplain
+     'ticket_not_found' => 'Your ticket number was not found. Please double-check your ticket 😊'
 
 ];

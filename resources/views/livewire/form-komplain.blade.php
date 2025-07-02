@@ -179,7 +179,7 @@
                                     <select class="form-select @error('kategori_id') is-invalid @enderror" wire:model="kategori_id" id="kategori">
                                         <option value="" hidden>{{ __('messages.select') }}</option>
                                         @foreach ($kategoris as $kategori)
-                                        <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                        <option value="{{ $kategori->id }}">{{ __('messages.' .$kategori->slug) }}</option>
                                         @endforeach
                                     </select>
                                     @error('kategori_id')<div class="invalid-feedback">{{ $message }}</div>@enderror

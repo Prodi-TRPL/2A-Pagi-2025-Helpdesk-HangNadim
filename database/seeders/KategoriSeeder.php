@@ -13,11 +13,21 @@ class KategoriSeeder extends Seeder
      */
     public function run(): void
     {
-        $kategoris = ['Kebersihan', 'Keamanan', 'Kedatangan','Keberangkatan', 'Pelayanan', 'Fasilitas', 'SDM/Personal', 'Lainnya'];
+        $kategoris = [
+            ['nama' => 'Kebersihan',      'slug' => 'cleanliness'],
+            ['nama' => 'Keamanan',        'slug' => 'security'],
+            ['nama' => 'Kedatangan',      'slug' => 'arrival'],
+            ['nama' => 'Keberangkatan',   'slug' => 'departure'],
+            ['nama' => 'Pelayanan',       'slug' => 'service'],
+            ['nama' => 'Fasilitas',       'slug' => 'facilities'],
+            ['nama' => 'SDM/Personal',    'slug' => 'hr'],
+            ['nama' => 'Lainnya',         'slug' => 'others'],
+        ];
 
         foreach ($kategoris as $kategori) {
             Kategori::create([
-                'nama_kategori' => $kategori
+                'nama_kategori' => $kategori['nama'],
+                'slug' => $kategori['slug']
             ]);
         }
     }

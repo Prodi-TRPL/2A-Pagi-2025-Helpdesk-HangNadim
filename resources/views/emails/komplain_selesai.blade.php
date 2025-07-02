@@ -57,7 +57,7 @@
                             <!-- Tombol -->
                             <div style="text-align: center; margin-bottom: 30px;">
                                 <a href="http://127.0.0.1:8000/lacak/komplain/t?tiket={{ $komplain->tiket }}"
-                                   style="background-color: #003366; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; display: inline-block;">
+                                   style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; display: inline-block;">
                                     Lihat Detail Penyelesaian
                                 </a>
                             </div>

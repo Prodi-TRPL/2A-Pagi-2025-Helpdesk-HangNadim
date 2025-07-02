@@ -233,7 +233,7 @@ class KomplainController extends Controller
         if($tiket && $komplain){
             return view('public.status_komplain', compact('komplain'));
         } else {
-            return redirect()->back()->with('error','Nomor tiket Anda tidak ditemukan, pastikan untuk melihat lagi tiket Anda😊');
+            return redirect()->back()->with('error', __('messages.ticket_not_found'));
         }
     }
 }

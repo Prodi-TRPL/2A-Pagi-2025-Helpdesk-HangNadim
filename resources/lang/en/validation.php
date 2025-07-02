@@ -13,7 +13,7 @@ return [
         'no_penerbangan' => 'Flight Number',
         'message' => 'Message',
         'kategori_id' => 'Category',
-        'bukti' => 'Evidence',
+        'bukti' => 'Proof',
     ],
 
     'required' => ':attribute is required.',
