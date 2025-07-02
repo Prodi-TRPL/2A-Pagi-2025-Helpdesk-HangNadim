@@ -21,6 +21,7 @@
   color: #ffc107; /* Warna bintang aktif */
 }
 </style>
+
 <div class="container mt-5 flex-grow-1 py-5 d-flex flex-column justify-content-center">
   <div class="row justify-content-center">
     <div class="col-md-10">
@@ -108,21 +109,33 @@
                     <div class="card shadow-sm mb-3">
                       <div class="card-header bg-primary text-white fw-bold">{{ __('messages.rating_detail') }}</div>
                       <div class="card-body">
-                        <div class="mb-2"><strong>{{ __('messages.tiket') }}</strong> {{ $komplain->tiket }}</div>
-                        <div class="mb-2"><strong>{{ __('messages.name') }}</strong> {{ $komplain->pelapor->nama }}</div>
-                        <div class="mb-2"><strong>{{ __('messages.satisfaction') }}</strong> {{ $komplain->penilaian->rating_text }}</div>
+                        <div class="row mb-2">
+                          <div class="col-md-6"><strong>{{ __('messages.tiket') }}</strong></div> 
+                          <div class="col-md-6">{{ $komplain->tiket }}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-md-6"><strong>{{ __('messages.name') }}</strong></div> 
+                          <div class="col-md-6">{{ $komplain->pelapor->nama }}</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-md-6"><strong>{{ __('messages.satisfaction') }}</strong></div> 
+                          <div class="col-md-6">{{ $komplain->penilaian->rating_text }}</div>
+                        </div>
                         @if($komplain->penilaian->feedback)
-                          <div class="mb-2"><strong>{{ __('messages.comment') }}</strong> {{ $komplain->penilaian->feedback }}</div>
+                          <div class="row mb-2">
+                            <div class="col-md-6"><strong>{{ __('messages.comment') }}</strong></div> 
+                            <div class="col-md-6">{{ $komplain->penilaian->feedback }}</div>
+                          </div>
                         @endif
                       </div>
                     </div>
                   </x-feedback>
                 @else
                   <h5 class="fw-bold mb-3 text-center text-primary">{{ __('messages.rating_feedback') }}</h5>
-                    <form method="POST" action="{{ route('penilaian.submit', $komplain->tiket) }}" novalidate>
-                      @csrf
-                      <div class="mb-3">
-                       <div class="mb-4 text-center">
+                  <form method="POST" action="{{ route('penilaian.submit', $komplain->tiket) }}" novalidate>
+                    @csrf
+                    <div class="mb-3">
+                      <div class="mb-4 text-center">
                         <label class="form-label fw-bold">{{ __('messages.satisfaction') }}</label>
                         <div class="rating">
                           @for($i = 5; $i >= 1; $i--)
@@ -132,37 +145,36 @@
                         </div>
                         @error('rating') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                       </div>
-                        @error('rating')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                      </div>
-                      
-                      <div class="mb-3">
-                        <label for="feedback" class="form-label">{{ __('messages.komen') }}</label>
-                        <textarea name="feedback" id="feedback" rows="5" class="form-control @error('feedback') is-invalid @enderror">{{ old('feedback') }}</textarea>
-                        @error('feedback')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                      </div>
-                      
-                      <div class="text-end">
-                        <button type="submit" class="btn btn-primary">
-                          <i class="fas fa-paper-plane me-1"></i> {{ __('messages.submit2') }}
-                        </button>
-                      </div>
-                    </form>
-                    @endif
-                  </div>
-                </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="feedback" class="form-label">{{ __('messages.komen') }}</label>
+                      <textarea name="feedback" id="feedback" rows="5" class="form-control @error('feedback') is-invalid @enderror">{{ old('feedback') }}</textarea>
+                      @error('feedback') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+                    
+                    <div class="text-end">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i> {{ __('messages.submit2') }}
+                      </button>
+                    </div>
+                  </form>
                 @endif
-                
-                {{-- Tombol Kembali --}}
-                <div class="d-flex justify-content-end mt-4">
-                  <a href="{{ route('home') }}" class="btn btn-outline-primary">
-                    {{ __('messages.back') }} <i class="fas fa-arrow-right ms-1"></i>
+              </div>
+            </div>
+          @endif
+          
+          {{-- Tombol Kembali --}}
+          <div class="d-flex justify-content-end mt-4">
+            <a href="{{ route('home') }}" class="btn btn-outline-primary">
+              {{ __('messages.back') }} <i class="fas fa-arrow-right ms-1"></i>
             </a>
           </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+        </div> {{-- card-body --}}
+      </div> {{-- card --}}
+    </div> {{-- col-md-10 --}}
+  </div> {{-- row --}}
+</div> {{-- container --}}
 
 @endsection
