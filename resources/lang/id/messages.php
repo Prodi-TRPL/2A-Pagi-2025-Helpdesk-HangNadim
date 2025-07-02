@@ -18,7 +18,7 @@ return [
     'regis' => 'Registrasi Komplain',
     'register' => 'Daftarkan komplain Anda dengan cepat dan mudah melalui sistem kami',
     'process' => 'Lacak Proses',
-    'monitor' => 'Pantau status komplain Anda secara real-time dengan nomor tiket',
+    'monitor_card' => 'Pantau status komplain Anda secara real-time dengan nomor tiket',
     'complet' => 'Penyelesaian',
     'problem' => 'Dapatkan solusi dan penyelesaian yang memuaskan untuk setiap masalah',
     'submit_home' => 'Ajukan Komplain & Saran Anda',

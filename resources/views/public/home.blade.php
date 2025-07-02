@@ -92,7 +92,7 @@
                               <i class="fas fa-search fa-2x"></i>
                           </div>
                           <h5 class="card-title fw-bold">{{ __('messages.process') }}</h5>
-                          <p class="card-text text-muted">{{ __('messages.monitor') }}</p>
+                          <p class="card-text text-muted">{{ __('messages.monitor_card') }}</p>
                       </div>
                   </div>
               </div>

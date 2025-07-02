@@ -101,7 +101,10 @@
                 @if($komplain->penilaian)
                   <x-feedback 
                     title="{{ __('messages.thanks_penilaian') }}"
-                    subtitle="{{ __('messages.means') }}">
+                    subtitle="{{ __('messages.means') }}"
+                    :card="false" 
+                    :showImage="false" 
+                    :showButton="false">
                     <div class="card shadow-sm mb-3">
                       <div class="card-header bg-primary text-white fw-bold">{{ __('messages.rating_detail') }}</div>
                       <div class="card-body">
