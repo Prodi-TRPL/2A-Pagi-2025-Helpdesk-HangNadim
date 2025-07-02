@@ -72,7 +72,7 @@ return [
     'com' => 'Silakan isi komplain Anda:',
     'proof' => 'Bukti (Wajib):',
     'submit' => 'Kirim Komplain',
-    'select' => '-- pilih kategori --',
+    'select' => '-- Pilih Kategori --',
     'detail_saran' => 'Detail Saran',
     'suggestion_form' => 'Saran',
     'fill_suggestion' => 'Silahkan isi saran Anda:',
@@ -98,6 +98,16 @@ return [
     'evidence' => 'Bukti Penyelesaian',
     'photo' => 'Tidak ada foto untuk penyelesaian',
 
+    //kategori
+    'cleanliness' => 'Kebersihan',
+    'security' => 'Keamanan',
+    'arrival' => 'Kedatangan',
+    'departure' => 'Keberangkatan',
+    'service' => 'Pelayanan',
+    'facilities' => 'Fasilitas',
+    'hr' => 'SDM/Personal',
+    'others' => 'Lainnya',
+
      //form penilaian
      'rating_detail' => 'Detail Penilaian',
      'tiket' => 'Tiket',
@@ -108,4 +118,7 @@ return [
      'submit2' => 'Kirim Penilaian',
      'thanks_penilaian' => 'Terima Kasih Atas Penilaian Anda!',
      'means' => 'Masukan Anda sangat berarti untuk peningkatan layanan kami',
+
+     //track complaint
+     'ticket_not_found' => 'Nomor tiket Anda tidak ditemukan, pastikan untuk melihat lagi tiket Anda😊'
 ];

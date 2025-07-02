@@ -29,7 +29,7 @@ class EmailTiketPelapor extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject:  'Pemberitahuan: Komplain Baru Masuk (Tiket #' . $this->komplain->tiket . ')',
+            subject:  'Konfirmasi Penerimaan Laporan Anda',
         );
     }
 
