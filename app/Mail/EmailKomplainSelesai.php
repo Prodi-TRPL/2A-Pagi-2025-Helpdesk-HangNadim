@@ -2,25 +2,27 @@
 
 namespace App\Mail;
 
+use App\Models\Pelapor;
+use App\Models\Komplain;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
 
-class EmailTiketPelapor extends Mailable
+class EmailKomplainSelesai extends Mailable
 {
     use Queueable, SerializesModels;
     public $komplain;
     public $pelapor;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($komplain, $pelapor)
+    public function __construct(Komplain $komplain, Pelapor $pelapor)
     {
-        $this->komplain = $komplain;
         $this->pelapor = $pelapor;
+        $this->komplain = $komplain;
     }
 
     /**
@@ -29,7 +31,7 @@ class EmailTiketPelapor extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject:  'Pemberitahuan: Komplain Baru Masuk (Tiket #' . $this->komplain->tiket . ')',
+            subject: 'Pemberitahuan: Komplain Anda dengan Tiket #' . $this->komplain->tiket . ' Telah Diselesaikan',
         );
     }
 
@@ -39,7 +41,7 @@ class EmailTiketPelapor extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.komplain_tiket',
+            view: 'emails.komplain_selesai',
             with: [
                 'komplain' => $this->komplain,
                 'pelapor' => $this->pelapor

@@ -30,7 +30,7 @@ class NewComplaintEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Komplain Baru Masuk: ' . $this->komplain->tiket,
+            subject:  'Pemberitahuan: Komplain Baru Masuk (Tiket #' . $this->komplain->tiket . ')',
         );
     }
 

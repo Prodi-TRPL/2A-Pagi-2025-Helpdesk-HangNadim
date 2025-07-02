@@ -2,22 +2,19 @@
 
 namespace App\Jobs;
 
-use App\Mail\EmailTiketPelapor;
-use App\Models\User;
-use App\Models\Komplain;
-use Illuminate\Bus\Queueable;
-use App\Mail\NewComplaintEmail;
 use App\Models\Pelapor;
+use App\Models\Komplain;
+use App\Mail\EmailKomplainSelesai;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class KirimEmailKomplainBaru implements ShouldQueue
+class KirimEmailKomplainSelesai implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public $komplain;
     public $pelapor;
 
@@ -35,14 +32,7 @@ class KirimEmailKomplainBaru implements ShouldQueue
      */
     public function handle(): void
     {
-        $officers = User::where('role', 'Officer')->get();
-
-        foreach ($officers as $officer){
-        Mail::to($officer->email)
-            ->send(new NewComplaintEmail($this->komplain, $this->pelapor));
-        }
-
         Mail::to($this->pelapor->email)
-            ->send(new EmailTiketPelapor($this->komplain, $this->pelapor));
+            ->send(new EmailKomplainSelesai($this->komplain, $this->pelapor));
     }
 }
