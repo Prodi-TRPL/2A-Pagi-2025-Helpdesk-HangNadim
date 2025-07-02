@@ -3,14 +3,14 @@
 
 <div class="container mt-5 mb-5 flex-grow-1 py-5 d-flex flex-column justify-content-center align-items-center">
     <div class="text-center mb-4">
-        <h1 class="display-4 fw-bold text-primary mb-3 mt-3">{{ __('messages.home') }}Pelacakan Status Aduan</h1>
-        <p class="lead text-muted">{{ __('messages.home') }}Masukkan nomor tiket Anda untuk melacak status pengaduan</p>
+        <h1 class="display-4 fw-bold text-primary mb-3 mt-3">{{ __('messages.tracking') }}</h1>
+        <p class="lead text-muted">{{ __('messages.ticket_enter') }}</p>
     </div>
     
     <div class="mb-4 w-100 row">
         <form action="{{ route('lacak.komplain.submit') }}" method="GET">
             <div class="input-group">
-                <input type="text" class="form-control rounded-start-pill" placeholder="{{ __('messages.home') }}Masukkan no tiket" name="tiket">
+                <input type="text" class="form-control rounded-start-pill" placeholder="{{ __('messages.input') }} " name="tiket">
                 <button class="btn btn-primary rounded-end-pill px-4" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -29,7 +29,7 @@
             {{session('error')}}
         </small>
         @else
-        <small>{{ __('messages.home') }}Masukkan nomor tiket yang Anda terima saat mengajukan aduan😉</small>
+        <small>{{ __('messages.valid') }}</small>
         @endif
     </div>
 </div>

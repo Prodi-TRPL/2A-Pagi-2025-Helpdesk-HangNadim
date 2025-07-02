@@ -4,8 +4,8 @@
 
             @if ($success)
             <x-feedback
-                title="Terima Kasih Atas komplain Anda!"
-                subtitle="Kami akan segera menangani masalah Anda">
+                title="{{ __('messages.thanks_komplain') }}"
+                subtitle="{{ __('messages.solve') }}">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-header bg-primary">
                         <h5 class="mb-0 text-white">{{ __('messages.detail') }}</h5>
@@ -16,7 +16,7 @@
                             <div class="col-md-6">{{ $pelapor->nama }}</div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6 fw-bold">{{ __('messages.email') }}</div>
+                            <div class="col-md-6 fw-bold">Email:</div>
                             <div class="col-md-6">{{ $pelapor->email }}</div>
                         </div>
                         <div class="row mb-3">

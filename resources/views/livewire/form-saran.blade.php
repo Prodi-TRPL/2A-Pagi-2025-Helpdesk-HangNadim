@@ -4,8 +4,8 @@
             
             @if ($success)
                 <x-feedback 
-                    title="Terima Kasih Sarannya!"
-                    subtitle="Kami akan mempertimbangkan saran Anda.">
+                    title="{{ __('messages.thanks_saran') }}"
+                    subtitle="{{ __('messages.improve') }}">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-header bg-primary">
                             <h5 class="mb-0 text-white">{{ __('messages.detail_saran') }}</h5>

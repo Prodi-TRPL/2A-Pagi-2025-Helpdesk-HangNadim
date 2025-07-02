@@ -114,7 +114,7 @@
 <!-- Options Section -->
 <section class="py-1" id="options" style="font-family: 'Segoe UI', sans-serif;">
         <div class="text-center mb-4">
-            <h2 class="fw-bold mb-3">{{ __('messages.submit') }}</h2>
+            <h2 class="fw-bold mb-3">{{ __('messages.submit_home') }}</h2>
             <p class="lead text-muted">{{ __('messages.appreciate') }}</p>
         </div>
         <section class="mb-5">

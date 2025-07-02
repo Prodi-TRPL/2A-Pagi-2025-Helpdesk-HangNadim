@@ -11,7 +11,7 @@
     {{$slot}}
     <div class="mt-4">
         <a href="{{ route('home') }}" class="btn btn-outline-primary">
-            Kembali Ke Beranda<i class="fas fa-arrow-right ms-2"></i> 
+            {{ __('messages.home_back') }}<i class="fas fa-arrow-right ms-2"></i> 
         </a>
     </div>
 </div>

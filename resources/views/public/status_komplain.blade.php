@@ -26,7 +26,7 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-          <h4 class="card-title text-uppercase fw-bold text-center">Status Komplain Anda</h4>
+          <h4 class="card-title text-uppercase fw-bold text-center">{{ __('messages.status') }}</h4>
           <hr>
 
           {{-- Baris Utama: Detail + Gambar --}}
@@ -34,27 +34,27 @@
             {{-- Kiri: Detail --}}
             <div class="col-md-8 order-2 order-md-1">
               <div class="mb-3">
-                <small class="text-primary">Kode Tiket</small>
+                <small class="text-primary">{{ __('messages.ticket') }}</small>
                 <div class="fw-semibold">{{ $komplain->tiket }}</div>
               </div>
 
               <div class="mb-3">
-                <small class="text-primary">Kategori Aduan</small>
+                <small class="text-primary">{{ __('messages.komplain_category') }}</small>
                 <div class="fw-semibold">{{ $komplain->kategori->nama_kategori }}</div>
               </div>
 
               <div class="mb-3">
-                <small class="text-primary">Tanggal Aduan</small>
+                <small class="text-primary">{{ __('messages.date') }}</small>
                 <div class="fw-semibold">{{ \Carbon\Carbon::parse($komplain->created_at)->translatedFormat('d F Y') }}</div>
               </div>
 
               <div class="mb-3">
-                <small class="text-primary">Deskripsi Penyelesaian:</small>
+                <small class="text-primary">{{ __('messages.desc') }}</small>
                 <div class="fw-semibold">{{ $komplain->deskripsi_penyelesaian ?? '-' }}</div>
               </div>
 
               <div class="mb-3">
-                <small class="text-primary">Bukti Penyelesaian:</small>
+                <small class="text-primary">{{ __('messages.evidence') }}</small>
                 <div class="d-flex justify-content-center">
                   @if($komplain->bukti_penyelesaian)
                     <a href="{{ asset('storage/' . $komplain->bukti_penyelesaian) }}" target="_blank">
@@ -64,7 +64,7 @@
                           style="max-width: 100%; max-height: 400px; object-fit: contain;">
                     </a>
                   @else
-                    <div class="text-muted">Tidak ada foto untuk penyelesaian</div>
+                    <div class="text-muted">{{ __('messages.photo') }}</div>
                   @endif
                 </div>
               </div>
@@ -100,27 +100,27 @@
               <div class="col-md-10">
                 @if($komplain->penilaian)
                   <x-feedback 
-                    title="Terima Kasih Atas Penilaian Anda!"
-                    subtitle="Masukan Anda sangat berarti untuk peningkatan layanan kami.">
+                    title="{{ __('messages.thanks_penilaian') }}"
+                    subtitle="{{ __('messages.means') }}">
                     <div class="card shadow-sm mb-3">
-                      <div class="card-header bg-primary text-white fw-bold">Detail Penilaian</div>
+                      <div class="card-header bg-primary text-white fw-bold">{{ __('messages.rating_detail') }}</div>
                       <div class="card-body">
-                        <div class="mb-2"><strong>Tiket:</strong> {{ $komplain->tiket }}</div>
-                        <div class="mb-2"><strong>Nama:</strong> {{ $komplain->pelapor->nama }}</div>
-                        <div class="mb-2"><strong>Tingkat Kepuasan:</strong> {{ $komplain->penilaian->rating_text }}</div>
+                        <div class="mb-2"><strong>{{ __('messages.tiket') }}</strong> {{ $komplain->tiket }}</div>
+                        <div class="mb-2"><strong>{{ __('messages.name') }}</strong> {{ $komplain->pelapor->nama }}</div>
+                        <div class="mb-2"><strong>{{ __('messages.satisfaction') }}</strong> {{ $komplain->penilaian->rating_text }}</div>
                         @if($komplain->penilaian->feedback)
-                          <div class="mb-2"><strong>Komentar:</strong> {{ $komplain->penilaian->feedback }}</div>
+                          <div class="mb-2"><strong>{{ __('messages.comment') }}</strong> {{ $komplain->penilaian->feedback }}</div>
                         @endif
                       </div>
                     </div>
                   </x-feedback>
                 @else
-                  <h5 class="fw-bold mb-3 text-center">Berikan Penilaian Anda</h5>
+                  <h5 class="fw-bold mb-3 text-center text-primary">{{ __('messages.rating_feedback') }}</h5>
                     <form method="POST" action="{{ route('penilaian.submit', $komplain->tiket) }}" novalidate>
                       @csrf
                       <div class="mb-3">
                        <div class="mb-4 text-center">
-                        <label class="form-label fw-bold">Tingkat Kepuasan:</label>
+                        <label class="form-label fw-bold">{{ __('messages.satisfaction') }}</label>
                         <div class="rating">
                           @for($i = 5; $i >= 1; $i--)
                             <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}/>
@@ -133,14 +133,14 @@
                       </div>
                       
                       <div class="mb-3">
-                        <label for="feedback" class="form-label">Komentar:</label>
+                        <label for="feedback" class="form-label">{{ __('messages.komen') }}</label>
                         <textarea name="feedback" id="feedback" rows="5" class="form-control @error('feedback') is-invalid @enderror">{{ old('feedback') }}</textarea>
                         @error('feedback')<div class="invalid-feedback">{{ $message }}</div>@enderror
                       </div>
                       
                       <div class="text-end">
                         <button type="submit" class="btn btn-primary">
-                          <i class="fas fa-paper-plane me-1"></i> Kirim Penilaian
+                          <i class="fas fa-paper-plane me-1"></i> {{ __('messages.submit2') }}
                         </button>
                       </div>
                     </form>
@@ -152,7 +152,7 @@
                 {{-- Tombol Kembali --}}
                 <div class="d-flex justify-content-end mt-4">
                   <a href="{{ route('home') }}" class="btn btn-outline-primary">
-                    Kembali <i class="fas fa-arrow-right ms-1"></i>
+                    {{ __('messages.back') }} <i class="fas fa-arrow-right ms-1"></i>
             </a>
           </div>
           
