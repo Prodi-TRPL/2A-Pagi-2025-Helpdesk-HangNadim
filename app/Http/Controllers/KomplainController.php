@@ -9,7 +9,7 @@ use App\Models\KomplainHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\KirimEmailKomplainSelesai;
-
+use Illuminate\Database\QueryException;
 
 class KomplainController extends Controller
 {
@@ -29,6 +29,9 @@ class KomplainController extends Controller
             default => abort(403)
             };
 
+        $komplains = [];
+        
+        try{
         $komplains = Komplain::with('pelapor','kategori','user:id,name,role','histories.changer')
         ->select('komplains.*')
         ->addSelect(DB::raw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai') as status_order"))
@@ -39,8 +42,12 @@ class KomplainController extends Controller
         ->orderBy('created_at', 'asc')
         ->get();
         
-
+        session()->flash('success', 'Hak akses anda diberikan');
         return view('admin.komplain', compact('komplains'));
+        }catch (QueryException $e) {
+            session()->flash('error', 'Hak akses anda dicabut');
+            return view('admin.komplain', compact('komplains'));
+        }
     }
 
     /**
