@@ -25,7 +25,6 @@
                 <th class="text-center">Tingkatan</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Aksi</th>
-                <th class="text-center">Tingkat Status</th>
               </tr>
             </thead>
             <tbody>
@@ -65,8 +64,6 @@
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalRiwayat{{ $komplain->id }}"><i class="fas fa-clock"></i></button>
               </td>
 
-              {{-- Helper Filter --}}
-              <td>{{ $komplain->status_order }}</td>
               </tr>
 
               <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
@@ -215,14 +212,7 @@
         $(document).ready(function () {
       $('#tabel-komplain').DataTable({
         responsive: true,
-        order: [[7, 'asc'], [3, 'asc']],
-        columnDefs: [
-          {
-            targets: 7,
-            visible: false,
-            searchable: false
-          }
-        ],
+        ordering: false,
         language: {
           search: "Cari:",
           lengthMenu: "Tampilkan _MENU_ data",

@@ -30,12 +30,10 @@ class KomplainController extends Controller
             };
 
         $komplains = Komplain::with('pelapor','kategori','user:id,name,role','histories.changer')
-        ->select('komplains.*')
-        ->addSelect(DB::raw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai') as status_order"))
         ->when($dataFilter, function ($query, $tingkat) {
         $query->where('tingkat', $tingkat);
         })
-        ->orderBy('status_order')
+        ->orderByRaw("FIELD(status, 'Menunggu', 'Diproses', 'Selesai')")
         ->orderBy('created_at', 'asc')
         ->get();
         
