@@ -40,7 +40,7 @@
     $(document).ready(function () {
   $('#tabel-data_pelapor').DataTable({
     responsive: true,
-    
+    ordering: false,
     language: {
       search: "Cari:",
       lengthMenu: "Tampilkan _MENU_ data",

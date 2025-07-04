@@ -12,7 +12,8 @@ class PelaporController extends Controller
      */
     public function index()
     {
-        $pelapors = Pelapor::all();
+        $pelapors = Pelapor::orderBy('created_at', 'desc')->get();
+
         return view('admin.data_pelapor', compact('pelapors'));
     }
 

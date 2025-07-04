@@ -42,7 +42,9 @@ class PenilaianController extends Controller
 
     public function show()
     {
-        $penilaians = Penilaian::with(['komplain:id,pelapor_id', 'komplain.pelapor:id,nama'])->get();
+        $penilaians = Penilaian::with(['komplain:id,pelapor_id', 'komplain.pelapor:id,nama'])
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('admin.penilaian', compact('penilaians'));
     }

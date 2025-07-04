@@ -24,7 +24,7 @@
                     <td>{{$penilaian->created_at->format('Y-m-d')}}</td>
                     <td>{{$penilaian->komplain->pelapor->nama}}</td>
                     <td>{{$penilaian->rating_text}}</td>
-                    <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $penilaian->id }}"><i class="fas fa-info-circle"></i></button></td>
+                    <td class='text-center'><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $penilaian->id }}"><i class="fas fa-info-circle"></i></button></td>
                 </tr>
 
               <x-modal id="modalDetail{{ $penilaian->id }}" title="Detail Penilaian">
@@ -45,7 +45,7 @@
     $(document).ready(function () {
   $('#tabel-penilaian').DataTable({
     responsive: true,
-    
+    ordering: false,
     language: {
       search: "Cari:",
       lengthMenu: "Tampilkan _MENU_ data",

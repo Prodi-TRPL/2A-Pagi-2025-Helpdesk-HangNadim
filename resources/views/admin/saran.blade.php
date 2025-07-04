@@ -86,6 +86,7 @@
       $('#tabel-saran').DataTable({
         responsive: true,
         autoWidth: false,
+        ordering: false,
         columnDefs: [
           { width: '20%', targets: 0 },
           { width: '20%', targets: 1 },

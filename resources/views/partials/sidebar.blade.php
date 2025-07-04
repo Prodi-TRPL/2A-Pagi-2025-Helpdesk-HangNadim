@@ -1,38 +1,3 @@
-<style>
-    @keyframes growFromCenter {
-      0% {
-        transform: scaleY(0);
-        opacity: 0;
-      }
-      100% {
-        transform: scaleY(1);
-        opacity: 1;
-      }
-    }
-    
-    .sidebar .nav-link {
-      position: relative;
-      padding-left: 20px;
-    }
-    
-    .sidebar .nav-link::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 4px;
-      background-color: #ffffff;
-      border-radius: 0 4px 4px 0;
-      transform-origin: center;
-      transform: scaleY(0);
-      opacity: 0;
-    }
-    
-    .sidebar .nav-link.active::before {
-      animation: growFromCenter 0.4s ease-out forwards;
-    }
-      </style>
         <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         
           <a class="sidebar-brand d-flex align-items-center justify-content-start">
