@@ -8,29 +8,30 @@
       <div class="card-body">
         
         <div class="table-responsive">
-          <table id="tabel-data_pelapor" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
-            <thead class="table-primary">
-              <tr>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">WhatsApp</th>
-                <th class="text-center">Pekerjaan</th>
-                <th class="text-center">Umur</th>
-                <th class="text-center">Jenis Kelamin</th>
+          <table id="tabel-data_pelapor" class="table table-hover align-middle nowrap w-100" style="width:100%;">
+            <thead class="table-light">
+              <tr class="align-middle">
+                <th>Nama</th>
+                <th>Email</th>
+                <th>WhatsApp</th>
+                <th>Pekerjaan</th>
+                <th>Umur</th>
+                <th>Jenis Kelamin</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($pelapors as $pelapor)
                 <tr>
-                  <td>{{$pelapor->nama}}</td>
-                  <td class="text-primary">{{$pelapor->email}}</td>
-                  <td class="text-primary">{{$pelapor->whatsapp}}</td>
-                  <td>{{$pelapor->pekerjaan}}</td>
-                  <td>{{$pelapor->umur}}</td>
-                  <td>{{$pelapor->gender}}</td>
+                  <td>{{ $pelapor->nama }}</td>
+                  <td class="text-primary">{{ $pelapor->email }}</td>
+                  <td class="text-primary">{{ $pelapor->whatsapp }}</td>
+                  <td>{{ $pelapor->pekerjaan }}</td>
+                  <td>{{ $pelapor->umur }}</td>
+                  <td>{{ $pelapor->gender }}</td>
                 </tr>
-                @endforeach
-              </tbody>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

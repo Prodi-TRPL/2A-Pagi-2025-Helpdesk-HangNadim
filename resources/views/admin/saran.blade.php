@@ -16,28 +16,30 @@
     <div class="card-body">
       <div class="table-responsive">
         
-        <table id="tabel-saran" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%;">
-            <thead class="table-primary">
-                <tr>
-                  <th class="text-center">Nama</th>
-                  <th class="text-center">Tanggal</th>
-                    <th class="text-center">Saran</th>
-                    <th class="text-center">Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-              @foreach ($sarans as $saran)
-                <tr>
-                  <td>{{ $saran->pelapor->nama }}</td>
-                  <td>{{ $saran->created_at->format('Y-m-d') }}</td>
-                  <td>{{  Str::limit($saran->message, 30, '') }}</td>
-                  <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $saran->id }}"><i class="fas fa-info-circle"></i></button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $saran->id }}">
-                      <i class="fas fa-trash"></i>
+        <table id="tabel-saran" class="table table-hover align-middle nowrap w-100" style="width:100%;">
+          <thead class="table-light">
+            <tr class="align-middle">
+              <th>Nama</th>
+              <th>Tanggal</th>
+              <th>Saran</th>
+              <th class="text-center">Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($sarans as $saran)
+              <tr>
+                <td>{{ $saran->pelapor->nama }}</td>
+                <td>{{ $saran->created_at->format('Y-m-d') }}</td>
+                <td>{{ Str::limit($saran->message, 30, '') }}</td>
+                <td class="text-center">
+                  <button class="btn btn-outline-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $saran->id }}">
+                    <i class="fas fa-info-circle"></i>
                   </button>
-                  </td>
-                </tr>
+                  <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $saran->id }}">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
 
               <x-modal id="modalDetail{{ $saran->id }}" title="Detail Penilaian">
                 <div class="mb-3">

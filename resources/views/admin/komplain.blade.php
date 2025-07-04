@@ -15,15 +15,15 @@
       <div class="card-body">
         
         <div class="table-responsive">
-          <table id="tabel-komplain" class="table table-bordered table-striped dt-responsive nowrap" style="width:100%">
-            <thead class="table-primary">
-              <tr>
-                <th class="text-center">No Tiket</th>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Kategori</th>
-                <th class="text-center">Tanggal Masuk</th>
-                <th class="text-center">Tingkatan</th>
-                <th class="text-center">Status</th>
+          <table id="tabel-komplain" class="table table-hover align-middle nowrap w-100">
+            <thead class="table-light">
+              <tr class="align-middle">
+                <th>No Tiket</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Tanggal Masuk</th>
+                <th>Tingkatan</th>
+                <th>Status</th>
                 <th class="text-center">Aksi</th>
               </tr>
             </thead>
@@ -37,7 +37,7 @@
 
                 <td>
                   <select
-                    class="form-select form-select-sm"
+                    class="form-select form-select-sm rounded-2 py-1 px-2"
                     onchange="showModal(this)"
                     data-komplain-id="{{ $komplain->id }}"
                     data-current-tingkat="{{ $komplain->tingkat }}">
@@ -50,22 +50,38 @@
                 <td>
                   <form action="{{ route('update.status.tingkat', $komplain->id) }}" method="POST">
                     @csrf @method('PATCH')
-                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()" @if(auth()->user()->role == 'Direktur') disabled @endif>
+                    <select name="status"
+                            class="form-select form-select-sm rounded-2 py-1 px-2"
+                            onchange="this.form.submit()"
+                            @if(auth()->user()->role == 'Direktur') disabled style="pointer-events: none; opacity: 0.5;" @endif>
                       <option value="Menunggu" {{ $komplain->status == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
                       <option value="Diproses" {{ $komplain->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
                       <option value="Selesai" {{ $komplain->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                     </select>
                   </form>
-              </td>
-                
-              <td class="text-center">
-                <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm @if(auth()->user()->role == 'Direktur') disabled @endif"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalRiwayat{{ $komplain->id }}"><i class="fas fa-clock"></i></button>
-              </td>
+                </td>
 
+                <td class="text-center">
+                  <a href="{{ route('komplain.edit', $komplain->id) }}"
+                    class="btn btn-outline-warning btn-sm me-1 @if(auth()->user()->role == 'Direktur') disabled @endif"
+                    @if(auth()->user()->role == 'Direktur') style="pointer-events: none; opacity: 0.5;" @endif>
+                    <i class="fas fa-edit"></i>
+                  </a>
+
+                  <button class="btn btn-outline-primary btn-sm me-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalDetail{{ $komplain->id }}">
+                    <i class="fas fa-info-circle"></i>
+                  </button>
+
+                  <button class="btn btn-outline-secondary btn-sm"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalRiwayat{{ $komplain->id }}">
+                    <i class="fas fa-clock"></i>
+                  </button>
+                </td>
               </tr>
-
+      
               <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
                 <div class="mb-3">
                     <strong>Status Penumpang:</strong>
