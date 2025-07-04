@@ -70,6 +70,7 @@
     $(document).ready(function () {
   $('#tabel-kelola_admin').DataTable({
     responsive: true,
+    ordering: false,
     language: {
       search: "Cari:",
       lengthMenu: "Tampilkan _MENU_ data",

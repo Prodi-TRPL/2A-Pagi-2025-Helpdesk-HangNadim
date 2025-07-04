@@ -58,7 +58,7 @@
                   </form>
               </td>
                 
-              <td>
+              <td class="text-center">
                 <a href="{{ route('komplain.edit', $komplain->id) }}" class="btn btn-warning btn-sm @if(auth()->user()->role == 'Direktur') disabled @endif"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $komplain->id }}"><i class="fas fa-info-circle"></i></button>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalRiwayat{{ $komplain->id }}"><i class="fas fa-clock"></i></button>
