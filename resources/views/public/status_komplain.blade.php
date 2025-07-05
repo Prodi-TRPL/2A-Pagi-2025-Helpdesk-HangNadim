@@ -46,7 +46,7 @@
 
               <div class="mb-3">
                 <small class="text-primary">{{ __('messages.date') }}</small>
-                <div class="fw-semibold">{{ \Carbon\Carbon::parse($komplain->created_at)->translatedFormat('d F Y') }}</div>
+                <div class="fw-semibold">{{ ($komplain->created_at)->translatedFormat('d F Y') }}</div>
               </div>
 
               <div class="mb-3">

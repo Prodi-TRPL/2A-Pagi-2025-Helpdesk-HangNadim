@@ -23,10 +23,8 @@
             <div class="col-lg-3">
                 <h6 class="fw-bold mb-4">Navigasi</h6>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#home" class="nav-link text-white p-0">{{ __('messages.home_footer') }}</a></li>
-                    <li class="nav-item mb-2"><a href="#features" class="nav-link text-white p-0">{{ __('messages.track_footer') }}</a></li>
-                    <li class="nav-item mb-2"><a href="#options" class="nav-link text-white p-0">{{ __('messages.rating') }}</a></li>
-                    <li class="nav-item mb-2"><a href="#contact" class="nav-link text-white p-0">{{ __('messages.contact') }}</a></li>
+                    <li class="nav-item mb-2"><a href="{{ route('home') }}" class="nav-link text-white p-0">{{ __('messages.home_footer') }}</a></li>
+                    <li class="nav-item mb-2"><a href="{{ route('lacak.komplain') }}" class="nav-link text-white p-0">{{ __('messages.track_footer') }}</a></li>
                 </ul>
             </div>
             <div class="col-lg-3">

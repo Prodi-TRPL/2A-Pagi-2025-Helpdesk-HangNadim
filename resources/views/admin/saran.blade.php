@@ -29,7 +29,7 @@
             @foreach ($sarans as $saran)
               <tr>
                 <td>{{ $saran->pelapor->nama }}</td>
-                <td>{{ $saran->created_at->format('Y-m-d') }}</td>
+                <td>{{ $saran->created_at->format('d M Y') }}</td>
                 <td>{{ Str::limit($saran->message, 30, '') }}</td>
                 <td class="text-center">
                   <button class="btn btn-outline-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $saran->id }}">

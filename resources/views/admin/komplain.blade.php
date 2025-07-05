@@ -33,7 +33,7 @@
                 <td>{{ $komplain->tiket }}</td>
                 <td>{{ $komplain->pelapor->nama }}</td>
                 <td>{{ $komplain->kategori->nama_kategori }}</td>
-                <td>{{ $komplain->created_at->format('Y-m-d') }}</td>
+                <td>{{ $komplain->created_at->format('d M Y') }}</td>
 
                 <td>
                   <select

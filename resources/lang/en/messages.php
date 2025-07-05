@@ -53,6 +53,7 @@ return [
     'status' => 'Complaint Status:',
     'waiting' => 'Waiting',
     'content' => 'Complaint Detail:',
+    'content_suggestion' => 'Suggestion Detail:',
     'personal' => 'Personal Information',
     'back' => 'Back',
     'complain_line' => 'Complaint',

@@ -20,7 +20,7 @@
                                 <div class="col-md-6">{{ $pelapor->email }}</div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 fw-bold">{{ __('messages.suggestion') }}</div>
+                                <div class="col-md-6 fw-bold">{{ __('messages.content_suggestion') }}</div>
                                 <div class="col-md-6">{{ $saran->message }}</div>
                             </div>
                         </div>
