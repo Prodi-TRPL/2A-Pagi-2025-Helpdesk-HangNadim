@@ -36,9 +36,9 @@
 </head>
 <body>
     <p>Laporan Dibuat oleh: {{ Auth::user()->name }}</p>
-    <p>Tanggal: {{ now()->format('d-m-Y')}}</p>
+    <p>Tanggal: {{ now()->translatedFormat('d F Y')}}</p>
 
-    <h2>Laporan Komplain Tanggal {{ $start }} Sampai {{ $end }}</h2>
+    <h2>Laporan Komplain Tanggal {{ Carbon\Carbon::parse($start)->translatedFormat('d F Y') }} Sampai {{ Carbon\Carbon::parse($end)->translatedFormat('d F Y') }}</h2>
     @if ($data->isEmpty())
         <h1 style="text-align: center;">Tidak ada data untuk periode ini.</h1>
     @else
@@ -60,7 +60,7 @@
                 <td class="col-nama">{{ $item->pelapor->nama ?? '-' }}</td>
                 <td class="col-komplain">{{ Str::limit($item->message, 150, '...') }}</td>
                 <td class="col-kategori">{{ $item->kategori->nama_kategori ?? '-' }}</td>
-                <td class="col-tanggal">{{ $item->created_at->format('d-m-Y') }}</td>
+                <td class="col-tanggal">{{ $item->created_at->translatedFormat('d F Y') }}</td>
                 <td class="col-rating">{{ $item->penilaian->rating_text ?? '-' }}</td>
             </tr>
             @endforeach

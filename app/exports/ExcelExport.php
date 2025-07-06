@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use Carbon\Carbon;
 use App\Models\Komplain;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Events\AfterSheet;
@@ -24,14 +25,14 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
 
     public function collection()
     {
-       $data = Komplain::with('pelapor', 'kategori', 'penilaian')
+        $data = Komplain::with('pelapor', 'kategori', 'penilaian')
             ->whereBetween('created_at', [$this->start, $this->end])
             ->get()
             ->sortByDesc(function ($item) {
                 return $item->penilaian->rating ?? 0;
             });
 
-            return $data;
+        return $data;
     }
 
     public function map($komplain): array
@@ -41,9 +42,8 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
             $komplain->pelapor->nama ?? '-',
             $komplain->message ?? '-',
             $komplain->kategori->nama_kategori ?? '-',
-            $komplain->created_at->format('Y-m-d') ?? '-',
+            $komplain->created_at->translatedformat('d F Y') ?? '-',
             $komplain->penilaian->rating_text ?? '-',
-            $komplain->penilaian->feedback ?? '-'
         ];
     }
 
@@ -56,7 +56,6 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
             'Kategori',
             'Tanggal',
             'Rating',
-            'Komentar',
         ];
     }
 
@@ -71,18 +70,21 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
             AfterSheet::class => function(AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
 
-                $sheet->mergeCells('B1:H1');
-                $sheet->setCellValue('B1', 'Komplain Tanggal ' . $this->start . ' Sampai ' . $this->end);
+                $startFormatted = Carbon::parse($this->start)->translatedFormat('d F Y');
+                $endFormatted = Carbon::parse($this->end)->translatedFormat('d F Y');
+
+                $sheet->mergeCells('B1:G1');
+                $sheet->setCellValue('B1', 'Komplain Tanggal ' . $startFormatted . ' Sampai ' . $endFormatted);
                 $sheet->getStyle('B1')->getFont()->setName('Times New Roman')->setSize(20)->setBold(true);
                 $sheet->getStyle('B1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $sheet->getStyle('B1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 
                 $sheet->mergeCells('B2:C2');
-                $sheet->mergeCells('F2:H2');
+                $sheet->mergeCells('F2:G2');
                 $sheet->setCellValue('B2', 'Dibuat oleh: ' . Auth::user()->name);
-                $sheet->setCellValue('F2', 'Tanggal: ' . now()->format('d-m-Y'));
-                $sheet->getStyle('B2:H2')->getFont()->setName('Times New Roman')->setSize(12)->setBold(true);
-                $sheet->getStyle('B2:H2')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $sheet->setCellValue('F2', 'Tanggal: ' . now()->translatedformat('d F Y'));
+                $sheet->getStyle('B2:G2')->getFont()->setName('Times New Roman')->setSize(12)->setBold(true);
+                $sheet->getStyle('B2:G2')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
                 $sheet->getColumnDimension('B')->setWidth(20);  
                 $sheet->getColumnDimension('C')->setWidth(20);  
@@ -90,9 +92,8 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
                 $sheet->getColumnDimension('E')->setWidth(25);
                 $sheet->getColumnDimension('F')->setWidth(12);
                 $sheet->getColumnDimension('G')->setWidth(15);
-                $sheet->getColumnDimension('H')->setWidth(60);
 
-                foreach (range('B', 'H') as $col) {
+                foreach (range('B', 'G') as $col) {
                     $range = $col . '4:' . $col . $sheet->getHighestRow();
 
                     $sheet->getStyle($range)->getFont()
@@ -108,26 +109,17 @@ class ExcelExport implements FromCollection, WithMapping, WithHeadings, WithCust
                 $sheet->getRowDimension(4)->setRowHeight(40);
 
                 foreach (range(5, $sheet->getHighestRow()) as $row) {
-                    $maxLines = 1;
-
                     $komplainText = $sheet->getCell('D' . $row)->getCalculatedValue();
-                    $komentarText = $sheet->getCell('H' . $row)->getCalculatedValue();
-
                     $lineD = ceil(strlen($komplainText) / 50);
-                    $lineH = ceil(strlen($komentarText) / 40);
-
-                    $maxLines = max($lineD, $lineH);
-
-                    $rowHeight = max(30, $maxLines * 20);
-                    
+                    $rowHeight = max(30, $lineD * 20);
                     $sheet->getRowDimension($row)->setRowHeight($rowHeight);
                 }
 
-                $sheet->getStyle('B4:H4')->getFont()->setSize(12)->setBold(true);
-                $sheet->getStyle('B4:H4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
-                $sheet->getStyle('B4:H4')->getFill()->getStartColor()->setRGB('ADD8E6'); 
+                $sheet->getStyle('B4:G4')->getFont()->setSize(12)->setBold(true);
+                $sheet->getStyle('B4:G4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+                $sheet->getStyle('B4:G4')->getFill()->getStartColor()->setRGB('ADD8E6'); 
 
-                $sheet->getStyle('B4:H' . $sheet->getHighestRow())
+                $sheet->getStyle('B4:G' . $sheet->getHighestRow())
                       ->applyFromArray([
                           'borders' => [
                               'allBorders' => [

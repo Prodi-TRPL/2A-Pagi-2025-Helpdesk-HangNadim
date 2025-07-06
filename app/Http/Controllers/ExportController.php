@@ -21,6 +21,8 @@ class ExportController extends Controller
 
         $start = Carbon::createFromFormat('Y-m', $validated['start'])->startOfMonth()->toDateString();
         $end = Carbon::createFromFormat('Y-m', $validated['end'])->endOfMonth()->toDateString();  
+        $startFormatted = Carbon::parse($start)->translatedFormat('d F Y');
+        $endFormatted = Carbon::parse($end)->translatedFormat('d F Y');
 
         if ($validated['start'] > $validated['end']) {
             return back()->withErrors(['start' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir.']);
@@ -38,7 +40,7 @@ class ExportController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
 
-        return $pdf->stream("Report_{$start}_Sampai_{$end}.pdf");
+        return $pdf->stream("Report_{$startFormatted}_Sampai_{$endFormatted}.pdf");
     }
 
     public function generateExcel(Request $request)
@@ -50,11 +52,12 @@ class ExportController extends Controller
 
        $start = Carbon::createFromFormat('Y-m', $validated['start'])->startOfMonth()->toDateString();
        $end = Carbon::createFromFormat('Y-m', $validated['end'])->endOfMonth()->toDateString(); 
-       
+       $startFormatted = Carbon::parse($start)->translatedFormat('d F Y');
+       $endFormatted = Carbon::parse($end)->translatedFormat('d F Y');
        if ($validated['start'] > $validated['end']) {
             return back()->withErrors(['start' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir.']);
         }
 
-        return Excel::download(new ExcelExport($start, $end), 'Komplain.xlsx');
+        return Excel::download(new ExcelExport($start, $end), "Report_{$startFormatted}_Sampai_{$endFormatted}.xlsx");
     }
 }
