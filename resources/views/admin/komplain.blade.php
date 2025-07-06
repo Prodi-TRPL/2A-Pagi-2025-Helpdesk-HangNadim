@@ -85,18 +85,18 @@
               <x-modal id="modalDetail{{ $komplain->id }}" title="Detail Komplain">
                 <div class="mb-3">
                     <strong>Status Penumpang:</strong>
-                    <p class="text-muted">{{ $komplain->penumpang_text }}</p>
+                    <p class="{{$komplain->is_penumpang ? 'text-success' : 'text-danger'}}">{{ $komplain->penumpang_text }}</p>
                 </div>
                 
                 @if ($komplain->is_penumpang)
                   <div class="mb-3">
                     <strong>Maskapai:</strong>
-                    <p class="text-muted">{{ $komplain->maskapai }}</p>
+                    <p class="text-primary">{{ ucfirst($komplain->maskapai) }}</p>
                   </div>
                   
                   <div class="mb-3">
                     <strong>Nomor Penerbangan:</strong>
-                    <p class="text-muted">{{ ($komplain->no_penerbangan) }}</p>
+                    <p class="text-primary">{{ strtoupper($komplain->no_penerbangan) }}</p>
                   </div>
                 @endif
 
