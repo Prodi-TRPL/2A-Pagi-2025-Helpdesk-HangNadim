@@ -39,13 +39,14 @@ return [
     'suggestion' => 'Berikan Saran',
 
     // footer
-    'footer' => 'Platform manajemen komplain pelanggan yang membantu meningkatkan kepuasan dan loyalitas pelanggan Anda.',
+    'footer' => 'PT. Bandara Internasional Batam',
     'home_footer' => 'Beranda',
     'track_footer' => 'Lacak Komplain',
     'rating' => 'Penilaian',
     'contact' => 'Kontak',
-    'us' => 'Hubungi Kami',
+    'us' => 'Informasi Kontak',
     'copyright' => '2025 NadimDesk. Hak Cipta Dilindung',
+    'navigasi' => 'Navigasi',
 
     // form data diri, komplain, saran, validasi
     'detail' => 'Detail Komplain',
@@ -80,8 +81,8 @@ return [
     'opsional' => 'Bukti (Opsional):',
     'thanks_saran' => 'Terima kasih atas saran Anda!',
     'improve' => 'Kami akan meninjau untuk peningkatan layanan',
-    'thanks_komplain' => 'Terima Kasih Atas komplain Anda!',
-    'solve' => 'Kami akan segera menyelesaikan masalah Anda',
+    'thanks_komplain' => 'Terima kasih atas komplain Anda!',
+    'solve' => 'Silakan cek email untuk melihat nomor tiket dan informasi selengkapnya.',
     'home_back' => 'Kembali Ke Beranda',
     
     //tracking komplain

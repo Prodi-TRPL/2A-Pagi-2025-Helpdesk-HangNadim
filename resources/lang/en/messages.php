@@ -39,13 +39,14 @@ return [
     'suggestion' => 'Make Suggestion',
 
     //footer
-    'footer' => 'A customer complaint management platform that helps improve your customer satisfaction and loyalty.',
+    'footer' => 'PT. Bandara Internasional Batam',
     'home_footer' => 'Home',
     'track_footer' => 'Track Complaints',
     'rating' => 'Rating',
     'contact' => 'Contact',
-    'us' => 'Contact Us',
+    'us' => 'Contact Information',
     'copyright' => '2025 NadimDesk. All Rights Reserved',
+    'navigasi' => 'Navigation',
 
     //form data diri, komplain, saran, validasi
     'detail' => 'Complaint Details',
@@ -80,8 +81,8 @@ return [
     'opsional' => 'Proof (Optional):',
     'thanks_saran' => 'Thank you for your suggestion!',
     'improve' => 'We will review it to improve our service',
-    'thanks_komplain' => 'Thank you for reporting your concern!',
-    'solve' => 'We will solve your problem quickly',
+    'thanks_komplain' => 'Thank you for your report!',
+    'solve' => ' Please check your email for the ticket number and more information.',
     'home_back' => 'Back To Home',
 
     //tracking komplain
