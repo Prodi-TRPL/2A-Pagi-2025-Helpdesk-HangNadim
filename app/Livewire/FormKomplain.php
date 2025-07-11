@@ -104,7 +104,14 @@ class FormKomplain extends Component
 
             if ($this->bukti && $this->bukti->isValid()) {
                 try{
-                    $path = $this->bukti->store('bukti', 'public');
+                    $ext = $this->bukti->getClientOriginalExtension();
+                    if ($ext === 'pdf') {
+                        $name = $this->bukti->getClientOriginalName();
+                        $filename = $name;
+                        $path = $this->bukti->storeAs('bukti', $filename, 'public');
+                    }else {
+                        $path = $this->bukti->store('bukti', 'public');
+                    }
                     $komplain->update(['bukti' => $path]);
                 } catch (\Exception $e) {
                     DB::statement('ROLLBACK TO SAVEPOINT bukti'); 

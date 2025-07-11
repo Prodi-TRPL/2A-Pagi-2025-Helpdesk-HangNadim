@@ -127,6 +127,7 @@
 
                   <div class="mb-3">
                       <strong>Bukti:</strong>
+                    @if ($komplain->isImage())
                     <div class="d-flex justify-content-center">
                       <a href="{{ asset('storage/' . $komplain->bukti) }}" target="_blank">
                           <img src="{{ asset('storage/' . $komplain->bukti) }}"
@@ -135,6 +136,11 @@
                               style="max-width: 100%; max-height: 400px; object-fit: contain;">
                       </a>
                     </div>
+                    @elseif ($komplain->isPdf())
+                      <a href="{{ asset('storage/'.$komplain->bukti) }}" target="_blank" class="text-decoration-none">
+                          <i class="fas fa-file-pdf text-danger me-1"></i>  {{ basename($komplain->bukti) }}
+                      </a>
+                    @endif
                   </div>
 
               </x-modal>

@@ -51,6 +51,21 @@ class Komplain extends Model
         });
     }
 
+    public function fileExtension()
+    {
+        return Str::lower(pathinfo($this->bukti, PATHINFO_EXTENSION));
+    }
+
+    public function isImage()
+    {
+        return in_array($this->fileExtension(), ['jpg', 'jpeg', 'png']);
+    }
+
+    public function isPdf()
+    {
+        return $this->fileExtension() === 'pdf';
+    }
+
     public function getPenumpangTextAttribute(): string
     {
         return match ($this->is_penumpang) {
