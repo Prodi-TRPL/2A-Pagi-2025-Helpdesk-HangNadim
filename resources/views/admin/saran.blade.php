@@ -41,7 +41,7 @@
                 </td>
               </tr>
 
-              <x-modal id="modalDetail{{ $saran->id }}" title="Detail Penilaian">
+              <x-modal id="modalDetail{{ $saran->id }}" title="Detail Saran">
                 <div class="mb-3">
                     <strong>Saran:</strong>
                     <p class="text-muted">{{ $saran->message ?? 'Tidak ada komentar' }}</p>

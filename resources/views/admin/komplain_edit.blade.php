@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('content')
 
-<h4 class="mb-2 text-primary">Komplain</h4>
+<h4 class="mb-2 text-dark">Edit Komplain</h4>
 <div class="card shadow-sm mb-4">
     <div class="card-body p-3 p-md-4">
         <form action="{{ route('komplain.update', $komplain->id) }}" class="needs-validation" method="POST" enctype="multipart/form-data">
